@@ -1,0 +1,17 @@
+{
+	"name": "jquery-tableable",
+	"version": "0.1.0",
+	"homepage": "",
+	"authors": [
+		"Manuel Piesold <manuel@piesold.com>"
+	],
+	"description": "A plugin to filter and pager html tables",
+	"main": "src/jquery.tableable.js",
+	"keywords": [
+		"jquery",
+		"plugin",
+		"tableable",
+		"jquery-plugin"
+	],
+	"license": "MIT"
+}

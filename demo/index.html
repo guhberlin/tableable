@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>tableable</title>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+		<script src="../src/jquery.tableable.js"></script>
+
+		<style>
+			body     { font-size: 1.5em; }
+			table    { border: 1px solid yellow; }
+			table th { border: 1px solid red;    }
+			table td { border: 1px solid black;  }
+		</style>
+
+	</head>
+	<body>
+
+		<h3>demo</h3>
+
+		<input type="text" id="filter" autofocus="true" />
+
+		<table>
+			<thead>
+				<th>head 1</th><th>head 2</th><th>head 4</th><th>head 5</th>
+			</thead>
+			<tbody>
+				<tr><td>row 0 col 1</td><td>row 0 col 2</td><td>page 1</td><td>filter A</td></tr>
+				<tr><td>row 1 col 1</td><td>row 1 col 2</td><td>page 1</td><td>filter A</td></tr>
+				<tr><td>row 2 col 1</td><td>row 2 col 2</td><td>page 1</td><td>filter A</td></tr>
+				<tr><td>row 3 col 1</td><td>row 3 col 2</td><td>page 1</td><td>filter A</td></tr>
+				<tr><td>row 4 col 1</td><td>row 4 col 2</td><td>page 2</td><td>filter A</td></tr>
+				<tr><td>row 5 col 1</td><td>row 5 col 2</td><td>page 2</td><td>filter B</td></tr>
+				<tr><td>row 6 col 1</td><td>row 6 col 2</td><td>page 2</td><td>filter B</td></tr>
+				<tr><td>row 7 col 1</td><td>row 7 col 2</td><td>page 2</td><td>filter B</td></tr>
+				<tr><td>row 8 col 1</td><td>row 8 col 2</td><td>page 3</td><td>filter B</td></tr>
+				<tr><td>row 9 col 1</td><td>row 9 col 2</td><td>page 3</td><td>filter B</td></tr>
+			</tbody>
+		</table>
+
+		<ul id="pager"></ul>
+
+		<script>
+
+			$(function() {
+
+				$( "table" ).tableable({
+					filterInputSelector: "#filter",
+					pagerListSelector: '#pager',
+					elementsPerPage: 4
+				});
+
+			});
+		</script>
+
+	</body>
+</html>

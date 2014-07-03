@@ -1,0 +1,36 @@
+{
+	"name": "tableable",
+	"title": "jQuery tableable plugin",
+	"description": "A plugin to filter and pager html tables",
+	"keywords": [
+		"jquery",
+		"table",
+		"plugins"
+	],
+	"version": "0.1.0",
+	"author": {
+		"name": "manuel piesold",
+		"email": "manuel@piesold.com",
+		"url": "https://github.com/manuelpiesold"
+	},
+	"maintainers": [
+		{
+			"name": "manuel piesold",
+			"email": "manuel@piesold.com",
+			"url": "https://github.com/manuelpiesold"
+		}
+	],
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "http://zenorocha.mit-license.org/"
+		}
+	],
+	"bugs": "https://github.com/manuelpiesold/tableable/issues",
+	"homepage": "",
+	"docs": "https://github.com/manuelpiesold/tableable#readme",
+	"download": "https://github.com/manuelpiesold/tableable/archive/master.zip",
+	"dependencies": {
+		"jquery": ">=1.4"
+	}
+}
