@@ -79,7 +79,7 @@
 
 		$( self.settings.pagerListSelector ).empty();
 		for ( var i=1; i <= pageCount; i++ ) {
-			$( self.settings.pagerListSelector ).append('<li '+self.settings.pageSwitchPageAttribute+'="'+i+'" >'+i+'</li>');
+			$( self.settings.pagerListSelector ).append('<li '+self.settings.pageSwitchPageAttribute+'="'+i+'" ><a>'+i+'</a></li>');
 		}
 
 		$( self.settings.pagerListSelector +' li['+self.settings.pageSwitchPageAttribute+']' ).on('click', function() {
@@ -101,7 +101,15 @@
 		;
 
 		self.settings.currentPageIndex = pageIndex;
-		$( self.settings.pagerListSelector +' li['+self.settings.pageSwitchPageAttribute+'="'+pageIndex+'"]' ).addClass('active');
+
+		$( self.settings.pagerListSelector +' li['+self.settings.pageSwitchPageAttribute+']' )
+			.removeClass( 'active' )
+			.filter( function() {
+				return ( $(this).attr(self.settings.pageSwitchPageAttribute) === pageIndex );
+			})
+			.addClass( 'active' )
+		;
+
 	};
 
 	TableAble.prototype.filter = function ( searched ) {

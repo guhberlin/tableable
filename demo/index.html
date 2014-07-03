@@ -2,8 +2,8 @@
 <html>
 	<head>
 		<title>tableable</title>
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-		<script src="../src/jquery.tableable.js"></script>
+		<script src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>
+		<script src='../src/jquery.tableable.js'></script>
 
 		<style>
 			body     { font-size: 1.5em; }
@@ -17,7 +17,7 @@
 
 		<h3>demo</h3>
 
-		<input type="text" id="filter" autofocus="true" />
+		<input type='text' id='filter' autofocus='true' />
 
 		<table>
 			<thead>
@@ -37,14 +37,14 @@
 			</tbody>
 		</table>
 
-		<ul id="pager"></ul>
+		<ul id='pager'></ul>
 
 		<script>
 
 			$(function() {
 
-				$( "table" ).tableable({
-					filterInputSelector: "#filter",
+				$( 'table' ).tableable({
+					filterInputSelector: '#filter',
 					pagerListSelector: '#pager',
 					elementsPerPage: 4
 				});
