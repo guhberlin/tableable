@@ -2,8 +2,6 @@
 
 ### A plugin to filter and pager html tables.
 
-
-
 ## Usage
 
 1. Include jQuery:
@@ -47,6 +45,8 @@
 8. submit a pull request ;)
 
 ## ToDo
+
+- [ ] add functionality for sorting table
 
 ## History
 
