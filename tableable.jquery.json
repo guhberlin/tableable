@@ -22,8 +22,7 @@
 	],
 	"licenses": [
 		{
-			"type": "MIT",
-			"url": "http://zenorocha.mit-license.org/"
+			"type": "MIT"
 		}
 	],
 	"bugs": "https://github.com/manuelpiesold/tableable/issues",
