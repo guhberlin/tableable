@@ -6,6 +6,7 @@
 		defaults = {
 			useFilter: true,
 			filterInputSelector: '',
+			ignoreCase: false,
 			usePager: true,
 			pagerListSelector: '',
 			elementsPerPage: 3
@@ -106,6 +107,8 @@
 
 	TableAble.prototype.filter = function ( searched ) {
 		var self = this;
+		searched = ( self.settings.ignoreCase ) ? searched.toLowerCase() : searched ;
+
 		$( self.element )
 			.children( 'tbody' )
 			.children( 'tr' )
@@ -114,7 +117,8 @@
 			.each( function() {
 				var row = $(this);
 				row.children( 'td' ).each( function(index, val) {
-					if ( $(val).text().indexOf( searched ) >= 0 ) {
+					val = ( self.settings.ignoreCase ) ? $(val).text().toLowerCase() : $(val).text() ;
+					if ( val.indexOf( searched ) >= 0 ) {
 						row.css( 'display', self.settings.displayType ).removeAttr( self.settings.filteredAttribute );
 						return;
 					}
