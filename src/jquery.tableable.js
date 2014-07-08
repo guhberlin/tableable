@@ -9,7 +9,7 @@
 			ignoreCase: false,
 			usePager: true,
 			pagerListSelector: '',
-			elementsPerPage: 3
+			rowsPerPage: 5
 		},
 		uneditableDefaults = {
 			displayType:             'table-row',
@@ -57,7 +57,7 @@
 			.filter( function() {
 				return !( $(this).hasAttr( self.settings.filteredAttribute ) );
 			}).each( function(index) {
-				if ( (index%self.settings.elementsPerPage) === 0 ) { pageCount++; }
+				if ( (index%self.settings.rowsPerPage) === 0 ) { pageCount++; }
 				$(this).attr( self.settings.pageIndexAttribute, pageCount );
 			})
 		;

@@ -31,7 +31,7 @@
 | `ignoreCase` | en-/disable casesensetive filtering | false |
 | `usePager` | en-/disable pagination | true |
 | `pagerListSelector` | selector for the pager-ul-element |  |
-| `elementsPerPage` | number of displayed rows per page | 3 |
+| `rowsPerPage` | number of displayed rows per page | 5 |
 
 ## Contributing
 
