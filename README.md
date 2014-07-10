@@ -1,6 +1,6 @@
 # jQuery tableable
 
-### A plugin to filter and pager html tables.
+### A plugin to filter, paginate and sort html tables.
 
 ## Usage
 
@@ -46,7 +46,7 @@
 
 ## ToDo
 
-- [ ] add functionality for sorting table
+- [x] add functionality for sorting table
 
 ## History
 

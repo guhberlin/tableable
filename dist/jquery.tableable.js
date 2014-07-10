@@ -1,9 +1,9 @@
 /*
- *  jQuery tableable plugin - v0.1.0
- *  A plugin to filter and pager html tables
+ *  jQuery tableable plugin - v1.0.0
+ *  A plugin to filter, paginate and sort html tables
  *  
  *
- *  Made by manuel piesold
+ *  Made by Manuel Piesold
  *  Under MIT License
  */
 ;(function ( $, window, document, undefined ) {
@@ -21,10 +21,14 @@
 		},
 		uneditableDefaults = {
 			displayType:             'table-row',
+
 			filteredAttribute:       'data-is-filtered',
+
 			pageIndexAttribute:      'data-page-index',
 			pageSwitchPageAttribute: 'data-show-page-index',
-			currentPageIndex:        '1'
+			currentPageIndex:        '1',
+
+			sortedAttribute:         'data-sort-by'
 		};
 
 	function TableAble ( element, options ) {
@@ -51,7 +55,75 @@
 
 		if ( shouldPaginate ) { self.paginate(); }
 
+		$( self.element ).children('thead').children('tr').children('th').each( function() {
+			var th = $(this);
+			th.on('click', function() {
+				self.sortRows( th.index()+1 );
+				if ( shouldPaginate ) { self.paginate(); }
+			});
+		});
+
 	};
+
+
+	TableAble.prototype.sortRows = function( colIndex ) {
+		var self = this,
+			th = $( self.element ).children('thead').children('tr').find(':nth-child('+colIndex+')')
+		;
+
+		if ( th.hasAttr( self.settings.sortedAttribute ) ) {
+			if ( th.attr( self.settings.sortedAttribute ) === 'DESC' ) {
+				self.sortAsc( colIndex );
+				th.attr( self.settings.sortedAttribute, 'ASC' );
+			} else {
+				self.sortDesc( colIndex );
+				th.attr( self.settings.sortedAttribute, 'DESC' );
+			}
+		} else {
+			th.parent().children('th').each(function() {
+				$(this).removeAttr( self.settings.sortedAttribute );
+			});
+			self.sortAsc( colIndex );
+			th.attr( self.settings.sortedAttribute, 'ASC' );
+		}
+
+	};
+	TableAble.prototype.sortAsc = function( colIndex ) {
+		var self = this,
+			rows = $( self.element ).children( 'tbody' ).children( 'tr' )
+		;
+
+		if ( rows.length ) {
+
+			$( self.element ).children( 'tbody' ).empty();
+			rows = rows.sort( function(a,b) {
+				return (
+					($(b).find(':nth-child('+colIndex+')').text()) < ($(a).find(':nth-child('+colIndex+')').text())
+				);
+			});
+			$( self.element ).children( 'tbody' ).append( rows );
+
+		}
+	};
+	TableAble.prototype.sortDesc = function( colIndex ) {
+		var self = this,
+			rows = $( self.element ).children( 'tbody' ).children( 'tr' )
+		;
+
+		if ( rows.length ) {
+
+			$( self.element ).children( 'tbody' ).empty();
+			rows = rows.sort( function(a,b) {
+				return (
+					($(a).find(':nth-child('+colIndex+')').text()) < ($(b).find(':nth-child('+colIndex+')').text())
+				);
+			});
+			$( self.element ).children( 'tbody' ).append( rows );
+
+		}
+	};
+
+
 
 	TableAble.prototype.paginate = function () {
 		var self = this,

@@ -5,7 +5,7 @@
 	"authors": [
 		"Manuel Piesold <manuel@piesold.com>"
 	],
-	"description": "A plugin to filter and pager html tables",
+	"description": "A plugin to filter, paginate and sort html tables",
 	"main": "src/jquery.tableable.js",
 	"keywords": [
 		"jquery",

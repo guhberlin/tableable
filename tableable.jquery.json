@@ -1,21 +1,24 @@
 {
 	"name": "tableable",
 	"title": "jQuery tableable plugin",
-	"description": "A plugin to filter and pager html tables",
+	"description": "A plugin to filter, paginate and sort html tables",
 	"keywords": [
 		"jquery",
+		"plugins",
 		"table",
-		"plugins"
+		"filter",
+		"pager",
+		"sorter"
 	],
 	"version": "1.0.0",
 	"author": {
-		"name": "manuel piesold",
+		"name": "Manuel Piesold",
 		"email": "manuel@piesold.com",
 		"url": "https://github.com/manuelpiesold"
 	},
 	"maintainers": [
 		{
-			"name": "manuel piesold",
+			"name": "Manuel Piesold",
 			"email": "manuel@piesold.com",
 			"url": "https://github.com/manuelpiesold"
 		}
