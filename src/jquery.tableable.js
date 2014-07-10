@@ -2,14 +2,22 @@
 
 	'use strict';
 
+
 	var pluginName = 'tableable',
 		defaults = {
 			useFilter: true,
 			filterInputSelector: '',
 			ignoreCase: false,
+			notFilterAttribute: 'data-no-filter',
+
 			usePager: true,
 			pagerListSelector: '',
-			rowsPerPage: 5
+			rowsPerPage: 5,
+
+			useSorter: true,
+			sortTriggerSelector: '',
+			jumpPageOneAfterSort: true,
+			notSortableAttribute: 'data-no-sort',
 		},
 		uneditableDefaults = {
 			displayType:             'table-row',
@@ -20,8 +28,10 @@
 			pageSwitchPageAttribute: 'data-show-page-index',
 			currentPageIndex:        '1',
 
-			sortedAttribute:         'data-sort-by'
-		};
+			sortedAttribute:         'data-sort-by',
+		}
+	;
+
 
 	function TableAble ( element, options ) {
 		this.element = element;
@@ -31,30 +41,53 @@
 		this.init();
 	}
 
+
 	TableAble.prototype.init = function () {
-		var self = this,
-			shouldPaginate = ( self.settings.usePager && self.settings.pagerListSelector.length ),
-			shouldFilter = ( self.settings.useFilter && self.settings.filterInputSelector.length )
+		var self           = this,
+			shouldPaginate = ( self.settings.usePager  && self.settings.pagerListSelector.length   ),
+			shouldFilter   = ( self.settings.useFilter && self.settings.filterInputSelector.length ),
+			shouldSort     = ( self.settings.useSorter && ( $(self.element).find('thead').length ) )
 		;
 
-		if ( shouldFilter ) {
-			$( self.settings.filterInputSelector ).keyup( function() {
-				self.filter( $(this).val() );
-
-				if ( shouldPaginate ) { self.paginate(); }
-			});
-		}
+		if ( shouldFilter ) { self.initFilter( self, shouldPaginate ); }
+		if ( shouldSort )   { self.initSort(   self, shouldPaginate ); }
 
 		if ( shouldPaginate ) { self.paginate(); }
 
-		$( self.element ).children('thead').children('tr').children('th').each( function() {
-			var th = $(this);
-			th.on('click', function() {
-				self.sortRows( th.index()+1 );
-				if ( shouldPaginate ) { self.paginate(); }
-			});
+	};
+	TableAble.prototype.initFilter = function( self, shouldPaginate ) {
+
+		$( self.settings.filterInputSelector ).keyup( function() {
+			self.filter( $(this).val() );
+
+			if ( shouldPaginate ) { self.paginate(); }
 		});
 
+	};
+	TableAble.prototype.initSort = function( self, shouldPaginate ) {
+		$( self.element ).children('thead').children('tr').children('th').each( function() {
+
+			if ( self.settings.notSortableAttribute.length &&
+				 $(this).hasAttr( self.settings.notSortableAttribute ) ) {
+				return;
+			}
+
+			var thIndex = $(this).index()+1,
+				trigger = ( self.settings.sortTriggerSelector.length ) ? $(this).find( self.settings.sortTriggerSelector ) : $(this)
+			;
+
+			trigger.on('click', function() {
+				self.sortRows( thIndex );
+
+				if ( shouldPaginate ) {
+					if ( self.settings.jumpPageOneAfterSort ) {
+						self.settings.currentPageIndex = '1';
+					}
+					self.paginate();
+				}
+			});
+
+		});
 	};
 
 
@@ -107,14 +140,13 @@
 			$( self.element ).children( 'tbody' ).empty();
 			rows = rows.sort( function(a,b) {
 				return (
-					($(a).find(':nth-child('+colIndex+')').text()) < ($(b).find(':nth-child('+colIndex+')').text())
+					($(b).find(':nth-child('+colIndex+')').text()) > ($(a).find(':nth-child('+colIndex+')').text())
 				);
 			});
 			$( self.element ).children( 'tbody' ).append( rows );
 
 		}
 	};
-
 
 
 	TableAble.prototype.paginate = function () {
@@ -138,7 +170,6 @@
 		self.showPage( self.settings.currentPageIndex );
 
 	};
-
 	TableAble.prototype.buildPagerList = function ( pageCount ) {
 		var self = this;
 
@@ -151,7 +182,6 @@
 			self.showPage( $(this).attr( self.settings.pageSwitchPageAttribute ) );
 		});
 	};
-
 	TableAble.prototype.showPage = function ( pageIndex ) {
 		var self = this;
 
@@ -177,6 +207,7 @@
 
 	};
 
+
 	TableAble.prototype.filter = function ( searched ) {
 		var self = this;
 		searched = ( self.settings.ignoreCase ) ? searched.toLowerCase() : searched ;
@@ -189,6 +220,10 @@
 			.each( function() {
 				var row = $(this);
 				row.children( 'td' ).each( function(index, val) {
+					if ( self.settings.notFilterAttribute.length &&
+						 $(this).hasAttr( self.settings.notFilterAttribute ) ) {
+						return;
+					}
 					val = ( self.settings.ignoreCase ) ? $(val).text().toLowerCase() : $(val).text() ;
 					if ( val.indexOf( searched ) >= 0 ) {
 						row.css( 'display', self.settings.displayType ).removeAttr( self.settings.filteredAttribute );
@@ -198,6 +233,7 @@
 			})
 		;
 	};
+
 
 	$.fn[ pluginName ] = function ( options ) {
 		this.each(function() {
@@ -209,8 +245,10 @@
 		return this;
 	};
 
+
 	$.fn.hasAttr = function( name ) {
    		return this.attr( name ) !== undefined;
 	};
+
 
 })( jQuery, window, document );

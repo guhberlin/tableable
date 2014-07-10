@@ -21,19 +21,19 @@
 
 		<table>
 			<thead>
-				<th>head 1</th><th>head 2</th><th>head 4</th><th>head 5</th>
+				<th>head 1</th><th>head 2</th><th>head 4</th><th data-no-sort>head 5</th>
 			</thead>
 			<tbody>
-				<tr><td>row 0 col 1</td><td>9 col 2</td><td>page 1</td><td>filter A</td></tr>
-				<tr><td>row 1 col 1</td><td>8 col 2</td><td>page 1</td><td>filter A</td></tr>
-				<tr><td>row 2 col 1</td><td>7 col 2</td><td>page 1</td><td>filter C</td></tr>
-				<tr><td>row 3 col 1</td><td>6 col 2</td><td>page 1</td><td>filter A</td></tr>
-				<tr><td>row 4 col 1</td><td>5 col 2</td><td>page 2</td><td>filter A</td></tr>
-				<tr><td>row 5 col 1</td><td>4 col 2</td><td>page 2</td><td>filter B</td></tr>
-				<tr><td>row 6 col 1</td><td>3 col 2</td><td>page 2</td><td>filter B</td></tr>
-				<tr><td>row 7 col 1</td><td>2 col 2</td><td>page 2</td><td>filter B</td></tr>
-				<tr><td>row 8 col 1</td><td>1 col 2</td><td>page 3</td><td>filter B</td></tr>
-				<tr><td>row 9 col 1</td><td>0 col 2</td><td>page 3</td><td>filter B</td></tr>
+				<tr><td>row 0</td><td>9</td><td data-no-filter>page 1</td><td>filter A</td></tr>
+				<tr><td>row 1</td><td>8</td><td data-no-filter>page 1</td><td>filter A</td></tr>
+				<tr><td>row 2</td><td>7</td><td data-no-filter>page 1</td><td>filter C</td></tr>
+				<tr><td>row 3</td><td>6</td><td data-no-filter>page 1</td><td>filter A</td></tr>
+				<tr><td>row 4</td><td>5</td><td data-no-filter>page 2</td><td>filter A</td></tr>
+				<tr><td>row 5</td><td>4</td><td data-no-filter>page 2</td><td>filter B</td></tr>
+				<tr><td>row 6</td><td>3</td><td data-no-filter>page 2</td><td>filter B</td></tr>
+				<tr><td>row 7</td><td>2</td><td data-no-filter>page 2</td><td>filter B</td></tr>
+				<tr><td>row 8</td><td>1</td><td data-no-filter>page 3</td><td>filter B p</td></tr>
+				<tr><td>row 9</td><td>0</td><td data-no-filter>page 3</td><td>filter B p</td></tr>
 			</tbody>
 		</table>
 
@@ -47,7 +47,7 @@
 					filterInputSelector: '#filter',
 					pagerListSelector: '#pager',
 					rowsPerPage: 4,
-					ignoreCase: true
+					ignoreCase: true,
 				});
 
 			});
