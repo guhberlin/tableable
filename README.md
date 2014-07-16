@@ -55,6 +55,7 @@
 ## ToDo
 
 - [x] add functionality for sorting table
+- [ ] add triggers for callbacks like `$('element').on('page-changed')`
 
 ## History
 
