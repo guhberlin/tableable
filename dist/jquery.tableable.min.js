@@ -1,5 +1,5 @@
 /*
- *  jQuery tableable plugin - v1.0.0
+ *  jQuery tableable plugin - v1.1.0
  *  A plugin to filter, paginate and sort html tables
  *  
  *
