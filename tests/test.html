@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src='libs/jquery.min.js'></script>
+		<script src='../dist/jquery.tableable.min.js'></script>
+	</head>
+	<body>
+
+		<div id="filter">
+			<input class="filter" />
+			<table>
+				<tbody>
+					<tr><td>abc</td><td data-no-filter>abcefg</td></tr>
+					<tr><td>abc</td><td data-no-filter>abcefg</td></tr>
+					<tr><td>def</td><td data-no-filter>abcefg</td></tr>
+				</tbody>
+			</table>
+			<script>
+				$(function() {
+					$( '#filter table' ).tableable({
+						usePager: false, useSorter: false,
+						filterInputSelector: '#filter .filter'
+					});
+				});
+			</script>
+		</div>
+
+		<div id="pager">
+			<table>
+				<tbody>
+					<tr><td>page1</td></tr><tr><td>page1</td></tr><tr><td>page1</td></tr><tr><td>page1</td></tr>
+					<tr><td>page2</td></tr><tr><td>page2</td></tr><tr><td>page2</td></tr><tr><td>page2</td></tr>
+					<tr><td>page3</td></tr><tr><td>page3</td></tr>
+				</tbody>
+			</table>
+			<ul class='pager'></ul>
+			<script>
+				$(function() {
+					$( '#pager table' ).tableable({
+						useFilter: false, useSorter: false,
+						pagerListSelector: '#pager .pager',
+						rowsPerPage: 4,
+					});
+				});
+			</script>
+		</div>
+
+		<div id="sorter">
+			<table>
+				<thead><tr><th>head a</th><th data-no-sort>head b</th></tr></thead>
+				<tbody>
+					<tr><td>abc</td><td>123</td></tr>
+					<tr><td>def</td><td>456</td></tr>
+					<tr><td>ghi</td><td>789</td></tr>
+				</tbody>
+			</table>
+			<script>
+				$(function() {
+					$( '#sorter table' ).tableable({
+						useFilter: false, usePager: false,
+					});
+				});
+			</script>
+		</div>
+
+	</body>
+</html>

@@ -3,7 +3,7 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 
 		// Import package manifest
-		pkg: grunt.file.readJSON('tableable.jquery.json'),
+		pkg: grunt.file.readJSON( 'tableable.jquery.json' ),
 
 		// Banner definitions
 		meta: {
@@ -20,7 +20,7 @@ module.exports = function(grunt) {
 		// Concat definitions
 		concat: {
 			dist: {
-				src: ['src/jquery.tableable.js'],
+				src: [ 'src/jquery.tableable.js' ],
 				dest: 'dist/jquery.tableable.js'
 			},
 			options: {
@@ -42,7 +42,7 @@ module.exports = function(grunt) {
 			main: {
 				options: {
 					test: true,
-					// pre: 'tests/initial.js',
+					pre: 'tests/initial.js',
 				},
 				files: {
 					'tests/logs/testlog.<%= grunt.template.today("yyyymmddHHMMss") %>.xml': [ 'tests/suites/' ],
@@ -53,7 +53,7 @@ module.exports = function(grunt) {
 		// Minify definitions
 		uglify: {
 			my_target: {
-				src: ['dist/jquery.tableable.js'],
+				src: [ 'dist/jquery.tableable.js' ],
 				dest: 'dist/jquery.tableable.min.js'
 			},
 			options: {
@@ -68,9 +68,9 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks( 'grunt-contrib-uglify' );
 	grunt.loadNpmTasks( 'grunt-casper' );
 
-	grunt.registerTask( 'default', ['jshint', 'concat', 'uglify', 'casper'] );
-	grunt.registerTask( 'travis',  ['jshint'] );
-	grunt.registerTask( 'test',    ['casper'] );
+	grunt.registerTask( 'default', [ 'jshint', 'concat', 'uglify', 'casper' ] );
+	grunt.registerTask( 'travis',  [ 'jshint' ] );
+	grunt.registerTask( 'test',    [ 'casper' ] );
 
 
 };

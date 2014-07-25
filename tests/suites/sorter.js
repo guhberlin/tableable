@@ -1,12 +1,8 @@
 
-casper.test.begin( 'tests: filter', function( test ) {
+casper.test.begin( 'tests: sorter', function( test ) {
 
-	casper.start( 'demo/index.html' )
+ 	casper.start( 'tests/test.html' )
 
-	.then( function() {
-		test.assertElementCount( 'table tbody tr', 10 );
-	})
-
-	.run( function() { test.done(); });
+ 	.run( function() { test.done(); });
 
 });
