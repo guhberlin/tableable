@@ -43,12 +43,18 @@
 
 			$(function() {
 
-				$( 'table' ).tableable({
-					filterInputSelector: '#filter',
-					pagerListSelector: '#pager',
-					rowsPerPage: 4,
-					ignoreCase: true,
-				});
+				$( 'table' )
+					.tableable({
+						filterInputSelector: '#filter',
+						pagerListSelector: '#pager',
+						rowsPerPage: 4,
+						ignoreCase: true,
+					})
+					.on('sorted',      function() { console.log( 'sorted' );      })
+					.on('pageChanged', function() { console.log( 'pageChanged' ); })
+					.on('filtered',    function() { console.log( 'filtered' );    })
+					.on('updated',     function() { console.log( 'updated' );     })
+				;
 
 			});
 		</script>

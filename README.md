@@ -41,6 +41,18 @@
 | `sortTriggerSelector`  | String  | selector where to find sorttrigger in th  |                |
 | `jumpPageOneAfterSort` | Boolean | sould jump back to page one after sorting | true           |
 
+### Events
+
+After filtering, sorting and pagechanging the plugin will trigger events so you can add observers. All events are triggered on the rootelement.
+
+| Eventname     | Trigger                                                                                        |
+| ------------- | ---------------------------------------------------------------------------------------------- |
+| `filtered`    | triggered each time the value of filter input is changed, so that the filter runs on the table |
+| `sorted`      | triggered each time the table is resorted                                                      |
+| `pageChanged` | triggered each time one of the page buttons is clicked                                         |
+| `updated`     | triggered each time `filtered` or `sorted` is triggered                                        |
+
+
 ## Contributing
 
 1. fork it!
@@ -50,17 +62,17 @@
 5. check the style: `grunt`
 6. commit your changes: `git commit -m 'add some feature'`
 7. push to the branch: `git push origin new-feature-name`
-8. submit a pull request ;)
+8. submit a pull request :D
 
 ## ToDo
 
 - [x] add functionality for sorting table
-- [ ] add triggers for callbacks like `$('element').on('page-changed')`
+- [x] add triggers for callbacks like `$('element').on('page-changed')`
 - [ ] finish testcases for sorter
 
 ## History
 
-Check [Releases](https://github.com/manuelpiesold/tableable/releases) for detailed changelog.
+Check [Releases](https://github.com/socnab/tableable/releases) for detailed changelog.
 
 ## License
 

@@ -10,11 +10,10 @@
 		"pager",
 		"sorter"
 	],
-	"version": "1.1.0",
+	"version": "1.2.0",
 	"author": {
-		"name": "Manuel Piesold",
-		"email": "manuel@piesold.com",
-		"url": "https://github.com/manuelpiesold"
+		"name": "socnab",
+		"url": "https://github.com/socnab"
 	},
 	"maintainers": [
 		{
@@ -28,10 +27,10 @@
 			"type": "MIT"
 		}
 	],
-	"bugs": "https://github.com/manuelpiesold/tableable/issues",
+	"bugs": "https://github.com/socnab/tableable/issues",
 	"homepage": "",
-	"docs": "https://github.com/manuelpiesold/tableable#readme",
-	"download": "https://github.com/manuelpiesold/tableable/archive/master.zip",
+	"docs": "https://github.com/socnab/tableable#readme",
+	"download": "https://github.com/socnab/tableable/archive/master.zip",
 	"dependencies": {
 		"jquery": ">=1.4"
 	}

@@ -1,9 +1,9 @@
 /*
- *  jQuery tableable plugin - v1.1.0
+ *  jQuery tableable plugin - v1.2.0
  *  A plugin to filter, paginate and sort html tables
  *  
  *
- *  Made by Manuel Piesold
+ *  Made by socnab
  *  Under MIT License
  */
 ;(function ( $, window, document, undefined ) {
@@ -29,14 +29,19 @@
 		},
 		uneditableDefaults = {
 			displayType:             'table-row',
+			updatedEvent:            'updated',
 
 			filteredAttribute:       'data-is-filtered',
+			filteredEvent:           'filtered',
 
 			pageIndexAttribute:      'data-page-index',
 			pageSwitchPageAttribute: 'data-show-page-index',
 			currentPageIndex:        '1',
+			pagedEvent:              'paged',
+			pageChangedEvent:        'pageChanged',
 
 			sortedAttribute:         'data-sort-by',
+			sortedEvent:             'sorted',
 		}
 	;
 
@@ -63,15 +68,56 @@
 		if ( shouldPaginate ) { self.paginate(); }
 
 	};
+	TableAble.prototype.trigger = function( eventName, autoTriggerUpdate ) {
+		var self = this,
+			triggerUpdate = ( autoTriggerUpdate === undefined ) ? true : autoTriggerUpdate
+		;
+
+		$( self.element ).trigger( eventName );
+
+		if ( triggerUpdate ) { $( self.element ).trigger( self.settings.updatedEvent ); }
+	};
+
+
 	TableAble.prototype.initFilter = function( self, shouldPaginate ) {
 
 		$( self.settings.filterInputSelector ).keyup( function() {
 			self.filter( $(this).val() );
 
 			if ( shouldPaginate ) { self.paginate(); }
+
+			self.trigger( self.settings.filteredEvent );
 		});
 
 	};
+	TableAble.prototype.filter = function ( searched ) {
+		var self = this;
+		searched = ( self.settings.ignoreCase ) ? searched.toLowerCase() : searched ;
+
+		$( self.element )
+			.children( 'tbody' )
+			.children( 'tr' )
+			.css( 'display', 'none' )
+			.attr( self.settings.filteredAttribute, '' )
+			.each( function() {
+				var row = $(this);
+				row.children( 'td' ).each( function(index, val) {
+					if ( self.settings.notFilterAttribute.length &&
+						 $(this).hasAttr( self.settings.notFilterAttribute ) ) {
+						return;
+					}
+					val = ( self.settings.ignoreCase ) ? $(val).text().toLowerCase() : $(val).text() ;
+					if ( val.indexOf( searched ) >= 0 ) {
+						row.css( 'display', self.settings.displayType ).removeAttr( self.settings.filteredAttribute );
+						return;
+					}
+				});
+			})
+		;
+
+	};
+
+
 	TableAble.prototype.initSort = function( self, shouldPaginate ) {
 		$( self.element ).children('thead').children('tr').children('th').each( function() {
 
@@ -93,9 +139,12 @@
 					}
 					self.paginate();
 				}
+
+				self.trigger( self.settings.sortedEvent );
 			});
 
 		});
+
 	};
 
 
@@ -213,33 +262,7 @@
 			.addClass( 'active' )
 		;
 
-	};
-
-
-	TableAble.prototype.filter = function ( searched ) {
-		var self = this;
-		searched = ( self.settings.ignoreCase ) ? searched.toLowerCase() : searched ;
-
-		$( self.element )
-			.children( 'tbody' )
-			.children( 'tr' )
-			.css( 'display', 'none' )
-			.attr( self.settings.filteredAttribute, '' )
-			.each( function() {
-				var row = $(this);
-				row.children( 'td' ).each( function(index, val) {
-					if ( self.settings.notFilterAttribute.length &&
-						 $(this).hasAttr( self.settings.notFilterAttribute ) ) {
-						return;
-					}
-					val = ( self.settings.ignoreCase ) ? $(val).text().toLowerCase() : $(val).text() ;
-					if ( val.indexOf( searched ) >= 0 ) {
-						row.css( 'display', self.settings.displayType ).removeAttr( self.settings.filteredAttribute );
-						return;
-					}
-				});
-			})
-		;
+		self.trigger( self.settings.pageChangedEvent, false );
 	};
 
 
