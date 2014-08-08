@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Tableable by socnab</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Tableable</h1>
+        <h2>A plugin to filter, paginate and sort html tables.</h2>
+        <a href="https://github.com/socnab/tableable" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a name="jquery-tableable" class="anchor" href="#jquery-tableable"><span class="octicon octicon-link"></span></a>jQuery tableable</h1>
+
+<h3>
+<a name="a-plugin-to-filter-paginate-and-sort-html-tables" class="anchor" href="#a-plugin-to-filter-paginate-and-sort-html-tables"><span class="octicon octicon-link"></span></a>A plugin to filter, paginate and sort html tables.</h3>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<ol>
+<li>
+<p>Include jQuery:</p>
+
+<div class="highlight highlight-html"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</pre></div>
+</li>
+<li>
+<p>Include plugin:</p>
+
+<div class="highlight highlight-html"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"dist/jquery.tableable.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</pre></div>
+</li>
+<li>
+<p>Call the plugin:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">$</span><span class="p">(</span><span class="s2">"#element"</span><span class="p">).</span><span class="nx">tableable</span><span class="p">(</span> <span class="nx">options</span> <span class="p">);</span>
+</pre></div>
+</li>
+</ol><h3>
+<a name="options" class="anchor" href="#options"><span class="octicon octicon-link"></span></a>Options</h3>
+
+<table>
+<thead><tr>
+<th>Option</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>FilterOpts</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>useFilter</code></td>
+<td>Boolean</td>
+<td>en-/disable filtering</td>
+<td>true</td>
+</tr>
+<tr>
+<td><code>filterInputSelector</code></td>
+<td>String</td>
+<td>selector for the filter-input-element</td>
+<td></td>
+</tr>
+<tr>
+<td><code>notFilterAttribute</code></td>
+<td>String</td>
+<td>disable sort on th if they have this attr</td>
+<td>data-no-filter</td>
+</tr>
+<tr>
+<td><code>ignoreCase</code></td>
+<td>Boolean</td>
+<td>en-/disable casesensetive filtering</td>
+<td>false</td>
+</tr>
+<tr>
+<td>PagerOpts</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>usePager</code></td>
+<td>Boolean</td>
+<td>en-/disable pagination</td>
+<td>true</td>
+</tr>
+<tr>
+<td><code>pagerListSelector</code></td>
+<td>String</td>
+<td>selector for the pager-ul-element</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rowsPerPage</code></td>
+<td>Integer</td>
+<td>number of displayed rows per page</td>
+<td>5</td>
+</tr>
+<tr>
+<td>SorterOpts</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>useSorter</code></td>
+<td>Boolean</td>
+<td>en-/disable sorting</td>
+<td>true</td>
+</tr>
+<tr>
+<td><code>notSortableAttribute</code></td>
+<td>String</td>
+<td>disable sort on th if they have this attr</td>
+<td>data-no-sort</td>
+</tr>
+<tr>
+<td><code>sortTriggerSelector</code></td>
+<td>String</td>
+<td>selector where to find sorttrigger in th</td>
+<td></td>
+</tr>
+<tr>
+<td><code>jumpPageOneAfterSort</code></td>
+<td>Boolean</td>
+<td>sould jump back to page one after sorting</td>
+<td>true</td>
+</tr>
+</tbody>
+</table><h3>
+<a name="events" class="anchor" href="#events"><span class="octicon octicon-link"></span></a>Events</h3>
+
+<p>After filtering, sorting and pagechanging the plugin will trigger events so you can add observers. All events are triggered on the rootelement.</p>
+
+<table>
+<thead><tr>
+<th>Eventname</th>
+<th>Trigger</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><code>filtered</code></td>
+<td>triggered each time the value of filter input is changed, so that the filter runs on the table</td>
+</tr>
+<tr>
+<td><code>sorted</code></td>
+<td>triggered each time the table is resorted</td>
+</tr>
+<tr>
+<td><code>pageChanged</code></td>
+<td>triggered each time one of the page buttons is clicked</td>
+</tr>
+<tr>
+<td><code>updated</code></td>
+<td>triggered each time <code>filtered</code> or <code>sorted</code> is triggered</td>
+</tr>
+</tbody>
+</table><h2>
+<a name="contributing" class="anchor" href="#contributing"><span class="octicon octicon-link"></span></a>Contributing</h2>
+
+<ol>
+<li>fork it!</li>
+<li>create your new feature branch: <code>git checkout -b new-feature-name</code>
+</li>
+<li>npm install</li>
+<li>make your changes on the <code>src</code> folder, never on the <code>dist</code>
+</li>
+<li>check the style: <code>grunt</code>
+</li>
+<li>commit your changes: <code>git commit -m 'add some feature'</code>
+</li>
+<li>push to the branch: <code>git push origin new-feature-name</code>
+</li>
+<li>submit a pull request :D</li>
+</ol><h2>
+<a name="todo" class="anchor" href="#todo"><span class="octicon octicon-link"></span></a>ToDo</h2>
+
+<ul>
+<li>[x] add functionality for sorting table</li>
+<li>[x] add triggers for callbacks like <code>$('element').on('page-changed')</code>
+</li>
+<li>[ ] finish testcases for sorter</li>
+</ul><h2>
+<a name="history" class="anchor" href="#history"><span class="octicon octicon-link"></span></a>History</h2>
+
+<p>Check <a href="https://github.com/socnab/tableable/releases">Releases</a> for detailed changelog.</p>
+
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p><a href="http://opensource.org/licenses/MIT">MIT License</a></p>
+
+<p>Copyright (c) 2014 socnab</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/socnab/tableable/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/socnab/tableable/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/socnab/tableable"></a> is maintained by <a href="https://github.com/socnab">socnab</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
