@@ -162,7 +162,7 @@
 		}
 
 	};
-	TableAble.prototype.sortAsc = function( colIndex ) {
+	TableAble.prototype.sortWithCallback = function( sortCallBack ) {
 		var self = this,
 			rows = $( self.element ).children( 'tbody' ).children( 'tr' )
 		;
@@ -170,31 +170,30 @@
 		if ( rows.length ) {
 
 			$( self.element ).children( 'tbody' ).empty();
-			rows = rows.sort( function(a,b) {
-				return (
-					($(b).find(':nth-child('+colIndex+')').text()) < ($(a).find(':nth-child('+colIndex+')').text())
-				);
-			});
+			rows = rows.sort( sortCallBack );
 			$( self.element ).children( 'tbody' ).append( rows );
 
 		}
 	};
+	TableAble.prototype.sortAsc = function( colIndex ) {
+		var self = this;
+
+		self.sortWithCallback( function(a,b) {
+				return (
+					($(b).find(':nth-child('+colIndex+')').text()) < ($(a).find(':nth-child('+colIndex+')').text())
+				);
+			}
+		);
+	};
 	TableAble.prototype.sortDesc = function( colIndex ) {
-		var self = this,
-			rows = $( self.element ).children( 'tbody' ).children( 'tr' )
-		;
+		var self = this;
 
-		if ( rows.length ) {
-
-			$( self.element ).children( 'tbody' ).empty();
-			rows = rows.sort( function(a,b) {
+		self.sortWithCallback( function(a,b) {
 				return (
 					($(b).find(':nth-child('+colIndex+')').text()) > ($(a).find(':nth-child('+colIndex+')').text())
 				);
-			});
-			$( self.element ).children( 'tbody' ).append( rows );
-
-		}
+			}
+		);
 	};
 
 
