@@ -1,0 +1,40 @@
+
+table {
+    border-collapse: separate;
+    border-spacing:5px;
+    border: 0px;
+}
+
+table.slimTable tbody tr.tableSubHead {
+    font-style: italic;
+}
+table.slimTable tbody tr.tableSubHead td {
+    padding: 10px 20px;
+}
+
+table.slimTable tbody tr td {
+    text-align: left;
+    border: 0px;
+}
+
+table.slimTable thead th {
+    font-weight: bold;
+}
+
+#smallHead {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    color: white;
+    z-index: 1;
+}
+#smallHead h1 {
+    font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
+    font-size: 2em;
+}
+
+aside#sidebar {
+    position: 'relative',
+    right: 10, top: 30;
+}
+
