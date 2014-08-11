@@ -1,5 +1,26 @@
 
 
+pre {
+    background-color: #e7e7e7;
+    border-color: #a4001d;
+}
+pre .highlight {
+    background-color: #e7e7e7;
+}
+
+
+a, a:hover, a:active {
+    color: #a4001d;
+}
+a:hover {
+    font-style: italic;
+}
+code {
+    background-color: #e7e7e7;
+    border-radius: 3px;
+}
+
+
 #bigHead {
     background: #a4001d url(../images/header-bg_red.png) 0 0 repeat-x;
     border-bottom: 0px;
@@ -21,7 +42,7 @@
 }
 
 
-#main-content h1, #main-content h2, #main-content h3, #main-content h4 {
+#main-content h1, #main-content h2, #main-content h3, #main-content h4, #main-content h5, #main-content h6 {
     color: #a4001d;
 }
 #main-content h1 a:before {
@@ -38,25 +59,8 @@
 aside a.button {
     background: transparent url(../images/download-button_red.png) 0 0 no-repeat;
 }
-
-
-pre {
-    background-color: #e7e7e7;
-    border-color: #a4001d;
-}
-pre .highlight {
-    background-color: #e7e7e7;
+aside a.button:hover, aside a.button:active {
+    color: #e7e7e7;
 }
 
-
-a, a:hover, a:active {
-    color: #a4001d;
-}
-a:hover {
-    font-style: italic;
-}
-code {
-    background-color: #e7e7e7;
-    border-radius: 3px;
-}
 
