@@ -1,7 +1,8 @@
 
 
 #bigHead {
-    background: #a4001d url(../images/_header-bg.jpg) 0 0 repeat-x;
+    background: #a4001d url(../images/header-bg_red.png) 0 0 repeat-x;
+    border-bottom: 0px;
 }
 #bigHead .inner h1 {
     color: white;
@@ -12,7 +13,8 @@
 
 
 #smallHead {
-    background: #a4001d url(../images/_header-bg.jpg) 0 0 repeat-x;
+    background: #a4001d url(../images/header-bg_red.png) 0 0 repeat-x;
+    border-bottom: 0px;
 }
 #smallHead .inner h1 {
     color: #e7e7e7;
@@ -32,6 +34,10 @@
     content: '///  ';
 }
 
+
+aside a.button {
+    background: transparent url(../images/download-button_red.png) 0 0 no-repeat;
+}
 
 
 pre {
