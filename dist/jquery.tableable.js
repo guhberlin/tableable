@@ -1,5 +1,5 @@
 /*
- *  jQuery tableable plugin - v1.2.0
+ *  jQuery tableable plugin - v1.2.2
  *  A plugin to filter, paginate and sort html tables
  *  
  *
@@ -84,7 +84,10 @@
 		$( self.settings.filterInputSelector ).keyup( function() {
 			self.filter( $(this).val() );
 
-			if ( shouldPaginate ) { self.paginate(); }
+			if ( shouldPaginate ) {
+				self.settings.currentPageIndex = '1';
+				self.paginate();
+			}
 
 			self.trigger( self.settings.filteredEvent );
 		});

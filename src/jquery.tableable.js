@@ -76,7 +76,10 @@
 		$( self.settings.filterInputSelector ).keyup( function() {
 			self.filter( $(this).val() );
 
-			if ( shouldPaginate ) { self.paginate(); }
+			if ( shouldPaginate ) {
+				self.settings.currentPageIndex = '1';
+				self.paginate();
+			}
 
 			self.trigger( self.settings.filteredEvent );
 		});
