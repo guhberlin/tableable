@@ -6,7 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
         <script src="js/jquery.min.js"></script>
+        <script src="js/jquery.tableable.min.js"></script>
         <script src="js/main.js"></script>
+
 
         <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
@@ -44,13 +46,32 @@
 
                     <p>desc here</p>
 
-                    <section>
-                        <h1><a name="demo" class="anchor" href="#demo"></a>Demo</h1>
+                    <section id="demo">
+                        <h1><a href="#demo"></a>Demo</h1>
 
-                        <p>coming soon...</p>
+                        <label for="filter">Filter</label>
+                        <input name="filter" id="demoFilter"/>
+
+                        <table id="demoTable">
+                            <thead><tr>
+                                <th>Name</th><th>Firstname</th><th>Birthday</th>
+                            </tr></thead>
+                            <tbody>
+                                <tr><td>Ham</td><td>Michael L.</td><td>1980/02/12</td></tr>
+                                <tr><td>Smith</td><td>Robert D.</td><td>1981/04/08</td></tr>
+                                <tr><td>Fontaine</td><td>Roger S.</td><td>1975/03/27</td></tr>
+                                <tr><td>Tilly</td><td>Bobby K.</td><td>1982/01/23</td></tr>
+                                <tr><td>McFadden</td><td>Christine S.</td><td>1980/04/21</td></tr>
+                                <tr><td>Cater</td><td>George L.</td><td>1976/08/06</td></tr>
+                            </tbody>
+                        </table>
+
+                        <ul id="demoPager"></ul>
+                        <div class="clearFix"></div>
 
                     </section>
 
+                    <br />
                     <section>
                         <h1><a name="usage" class="anchor" href="#usage"></a>Usage</h1>
 

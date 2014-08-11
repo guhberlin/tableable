@@ -21,6 +21,14 @@ $.fn.isOnScreen = function(){
 $(document).ready(function($) {
 
 
+    $('#demoTable').tableable({
+        filterInputSelector: '#demoFilter',
+        ignoreCase: true,
+        pagerListSelector: '#demoPager',
+        rowsPerPage: 3,
+    });
+
+
     $(document).scroll(function(event) {
 
         var top = $(window).scrollTop();

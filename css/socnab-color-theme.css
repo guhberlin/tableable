@@ -7,8 +7,6 @@ pre {
 pre .highlight {
     background-color: #e7e7e7;
 }
-
-
 a, a:hover, a:active {
     color: #a4001d;
 }
@@ -21,6 +19,22 @@ code {
 }
 
 
+
+#demo ul li {
+    border-color: #a4001d;
+}
+#demo ul li.active {
+    background-color: #a4001d;
+}
+#demo ul li.active a {
+    color: #e7e7e7;
+}
+#demo ul li:first-child {
+    border-left: 1px solid #a4001d;
+}
+
+
+
 #bigHead {
     background: #a4001d url(../images/header-bg_red.png) 0 0 repeat-x;
     border-bottom: 0px;
@@ -31,7 +45,9 @@ code {
 #bigHead .inner h2 {
     color: #e7e7e7;
 }
-
+#bigHead .inner a:hover, #bigHead .inner a:active {
+    color: #e7e7e7;
+}
 
 #smallHead {
     background: #a4001d url(../images/header-bg_red.png) 0 0 repeat-x;
@@ -40,6 +56,7 @@ code {
 #smallHead .inner h1 {
     color: #e7e7e7;
 }
+
 
 
 #main-content h1, #main-content h2, #main-content h3, #main-content h4, #main-content h5, #main-content h6 {
@@ -54,6 +71,7 @@ code {
 #main-content h3 a:before {
     content: '///  ';
 }
+
 
 
 aside a.button {
