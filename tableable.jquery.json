@@ -10,7 +10,7 @@
 		"pager",
 		"sorter"
 	],
-	"version": "1.2.2",
+	"version": "1.3.0",
 	"author": {
 		"name": "socnab",
 		"url": "https://github.com/socnab"
@@ -28,7 +28,7 @@
 		}
 	],
 	"bugs": "https://github.com/socnab/tableable/issues",
-	"homepage": "",
+	"homepage": "http://socnab.github.io/tableable",
 	"docs": "https://github.com/socnab/tableable#readme",
 	"download": "https://github.com/socnab/tableable/archive/master.zip",
 	"dependencies": {

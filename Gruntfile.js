@@ -20,7 +20,14 @@ module.exports = function(grunt) {
 		// Concat definitions
 		concat: {
 			dist: {
-				src: [ 'src/jquery.tableable.js' ],
+				src: [
+						'src/filter.js',
+						'src/sorter.js',
+						'src/pager.js',
+						'src/options.js',
+						'src/tableable.js',
+						'src/jquery.tableable.js'
+					],
 				dest: 'dist/jquery.tableable.js'
 			},
 			options: {
@@ -69,8 +76,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks( 'grunt-casper' );
 
 	grunt.registerTask( 'default', [ 'jshint', 'concat', 'uglify', 'casper' ] );
-	grunt.registerTask( 'travis',  [ 'jshint' ] );
 	grunt.registerTask( 'test',    [ 'casper' ] );
-
 
 };

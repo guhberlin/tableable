@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<script src='libs/jquery.min.js'></script>
-		<script src='../dist/jquery.tableable.min.js'></script>
+		<script src='../dist/jquery.tableable.js'></script>
 	</head>
 	<body>
 
@@ -62,6 +62,37 @@
 				});
 			</script>
 		</div>
+
+
+		<div id="man">
+			<style>
+				#man { margin-top: 50px; font-size: 2em; }
+				.active { color: green; }
+			</style>
+			<input class="filter" />
+			<table>
+				<thead><tr><th>head a</th><th data-no-sort>head b</th></tr></thead>
+				<tbody>
+					<tr><td>abc</td><td data-no-filter>abcefg</td></tr>
+					<tr><td>abc</td><td data-no-filter>abcefg</td></tr>
+					<tr><td>def</td><td data-no-filter>abcefg</td></tr>
+					<tr><td>jhd</td><td data-no-filter>asdkna</td></tr>
+					<tr><td>sdf</td><td data-no-filter>fewjfn</td></tr>
+					<tr><td>ojo</td><td data-no-filter>asdoke</td></tr>
+				</tbody>
+			</table>
+			<ul class='pager'></ul>
+			<script>
+				$(function() {
+					$( '#man table' ).tableable({
+						filterInputSelector: '#man .filter',
+						pagerListSelector: '#man .pager',
+						rowsPerPage: 2,
+					});
+				});
+			</script>
+		</div>
+
 
 	</body>
 </html>
