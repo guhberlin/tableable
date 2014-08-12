@@ -1,5 +1,5 @@
 /*
- *  jQuery tableable plugin - v1.3.0
+ *  jQuery tableable plugin - v1.3.1
  *  A plugin to filter, paginate and sort html tables
  *  http://socnab.github.io/tableable
  *
@@ -79,6 +79,14 @@ function Sorter ( element, options ) {
         });
 
     });
+
+    if ( self.settings.notSortableAttribute.length ) {
+        var th = $(self.element).find( 'thead tr th:nth-child('+self.settings.initalSortColIndex+')' );
+        if ( th && !th.hasAttr( self.settings.notSortableAttribute ) ) {
+            self.sortRows( self.settings.initalSortColIndex );
+        }
+    }
+
 }
 
 Sorter.prototype.setAfterSortCallback = function( cb ) {
@@ -237,6 +245,8 @@ Options.prototype.getDefaults = function() {
         sortTriggerSelector: '',
         jumpPageOneAfterSort: true,
         notSortableAttribute: 'data-no-sort',
+
+        initalSortColIndex: -1,
     };
 };
 

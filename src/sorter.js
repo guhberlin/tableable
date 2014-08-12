@@ -23,6 +23,14 @@ function Sorter ( element, options ) {
         });
 
     });
+
+    if ( self.settings.notSortableAttribute.length ) {
+        var th = $(self.element).find( 'thead tr th:nth-child('+self.settings.initalSortColIndex+')' );
+        if ( th && !th.hasAttr( self.settings.notSortableAttribute ) ) {
+            self.sortRows( self.settings.initalSortColIndex );
+        }
+    }
+
 }
 
 Sorter.prototype.setAfterSortCallback = function( cb ) {

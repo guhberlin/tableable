@@ -69,7 +69,7 @@ After filtering, sorting and pagechanging the plugin will trigger events so you 
 - [x] add functionality for sorting table
 - [x] add triggers for callbacks like `$('element').on('page-changed')`
 - [x] finish testcases for sorter
-- [ ] optional sorting on init
+- [x] optional sorting on init
 
 ## History
 

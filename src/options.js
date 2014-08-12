@@ -16,6 +16,8 @@ Options.prototype.getDefaults = function() {
         sortTriggerSelector: '',
         jumpPageOneAfterSort: true,
         notSortableAttribute: 'data-no-sort',
+
+        initalSortColIndex: -1,
     };
 };
 
