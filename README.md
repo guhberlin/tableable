@@ -24,22 +24,23 @@
 
 ### Options
 
-| Option                 | Type    | Description                               | Default        |
-| ---------------------- | ------- | ----------------------------------------- | -------------- |
+| Option                 | Type    | Description                                | Default        |
+| ---------------------- | ------- | ------------------------------------------ | -------------- |
 |FilterOpts||||
-| `useFilter`            | Boolean | en-/disable filtering                     | true           |
-| `filterInputSelector`  | String  | selector for the filter-input-element     |                |
-| `notFilterAttribute`   | String  | disable sort on th if they have this attr | data-no-filter |
-| `ignoreCase`           | Boolean | en-/disable casesensetive filtering       | false          |
+| `useFilter`            | Boolean | en-/disable filtering                      | true           |
+| `filterInputSelector`  | String  | selector for the filter-input-element      |                |
+| `notFilterAttribute`   | String  | disable sort on th if they have this attr  | data-no-filter |
+| `ignoreCase`           | Boolean | en-/disable casesensetive filtering        | false          |
 |PagerOpts||||
-| `usePager`             | Boolean | en-/disable pagination                    | true           |
-| `pagerListSelector`    | String  | selector for the pager-ul-element         |                |
-| `rowsPerPage`          | Integer | number of displayed rows per page         | 5              |
+| `usePager`             | Boolean | en-/disable pagination                     | true           |
+| `pagerListSelector`    | String  | selector for the pager-ul-element          |                |
+| `rowsPerPage`          | Integer | number of displayed rows per page          | 5              |
 |SorterOpts||||
-| `useSorter`            | Boolean | en-/disable sorting                       | true           |
-| `notSortableAttribute` | String  | disable sort on th if they have this attr | data-no-sort   |
-| `sortTriggerSelector`  | String  | selector where to find sorttrigger in th  |                |
-| `jumpPageOneAfterSort` | Boolean | sould jump back to page one after sorting | true           |
+| `useSorter`            | Boolean | en-/disable sorting                        | true           |
+| `notSortableAttribute` | String  | disable sort on th if they have this attr  | data-no-sort   |
+| `sortTriggerSelector`  | String  | selector where to find sorttrigger in th   |                |
+| `jumpPageOneAfterSort` | Boolean | sould jump back to page one after sorting  | true           |
+| `initalSortColIndex`   | Integer | sort the table inital by given columnindex | -1             |
 
 ### Events
 
