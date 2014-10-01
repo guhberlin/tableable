@@ -9,6 +9,7 @@ Options.prototype.getDefaults = function() {
         notFilterAttribute: 'data-no-filter',
 
         usePager: true,
+        useDottedPager: true,
         pagerListSelector: '',
         rowsPerPage: 5,
 

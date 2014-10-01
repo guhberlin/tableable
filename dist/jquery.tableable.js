@@ -1,5 +1,5 @@
 /*
- *  jQuery tableable plugin - v1.3.1
+ *  jQuery tableable plugin - v1.3.2
  *  A plugin to filter, paginate and sort html tables
  *  http://socnab.github.io/tableable
  *
@@ -157,6 +157,12 @@ function Pager ( element, options ) {
     this.element = element;
     this.settings = options;
     this.afterPaginate = function() {};
+
+    this.pagerListBuildFunction = this.buildDottedPagerList;
+    if ( !this.settings.useDottedPager ) {
+    	this.pagerListBuildFunction = this.buildFullPagerList;
+    }
+
 }
 
 Pager.prototype.setAfterPaginateCallback = function( cb ) {
@@ -183,20 +189,40 @@ Pager.prototype.paginate = function () {
         })
     ;
 
-    // self.buildPagerList();
     self.showPage( self.settings.currentPageIndex );
 
 };
 
 Pager.prototype.buildPagerList = function () {
-    var
+    var self = this;
+
+    $( self.settings.pagerListSelector ).empty();
+
+    self.pagerListBuildFunction();
+
+    $( self.settings.pagerListSelector +' li['+self.settings.pageSwitchPageAttribute+']' ).on('click', function() {
+        self.showPage( $(this).attr( self.settings.pageSwitchPageAttribute ) );
+    });
+};
+
+Pager.prototype.buildFullPagerList = function() {
+	var
+		self	  = this,
+    	pageCount = Math.ceil( $(self.element).find('tbody tr').length / self.settings.rowsPerPage )
+	;
+
+    for ( var i=1; i <= pageCount; i++ ) {
+        $( self.settings.pagerListSelector ).append('<li '+self.settings.pageSwitchPageAttribute+'="'+i+'" ><a>'+i+'</a></li>');
+    }
+
+};
+Pager.prototype.buildDottedPagerList = function() {
+	var
     	self      = this,
     	pageCount = Math.ceil( $(self.element).find('tbody tr').length / self.settings.rowsPerPage ),
     	cpi       =  parseInt( self.settings.currentPageIndex ),
     	drawDots  = false
     ;
-
-    $( self.settings.pagerListSelector ).empty();
 
     for ( var i=1; i <= pageCount; i++ ) {
         if (
@@ -213,12 +239,6 @@ Pager.prototype.buildPagerList = function () {
         	}
         }
     }
-
-
-    $( self.settings.pagerListSelector +' li['+self.settings.pageSwitchPageAttribute+']' ).on('click', function() {
-        console.log( $(this).attr( self.settings.pageSwitchPageAttribute ) );
-        self.showPage( $(this).attr( self.settings.pageSwitchPageAttribute ) );
-    });
 };
 
 Pager.prototype.showPage = function ( pageIndex ) {
@@ -258,6 +278,7 @@ Options.prototype.getDefaults = function() {
         notFilterAttribute: 'data-no-filter',
 
         usePager: true,
+        useDottedPager: true,
         pagerListSelector: '',
         rowsPerPage: 5,
 
