@@ -66,7 +66,12 @@ module.exports = function(grunt) {
 			options: {
 				banner: '<%= meta.banner %>'
 			}
-		}
+		},
+
+		watch: {
+		    files: ['src/*'],
+		    tasks: ['default']
+		},
 
 	});
 
@@ -74,6 +79,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
 	grunt.loadNpmTasks( 'grunt-contrib-uglify' );
 	grunt.loadNpmTasks( 'grunt-casper' );
+	grunt.loadNpmTasks("grunt-contrib-watch");
 
 	grunt.registerTask( 'default', [ 'jshint', 'concat', 'uglify', 'casper' ] );
 	grunt.registerTask( 'test',    [ 'casper' ] );
