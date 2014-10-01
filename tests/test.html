@@ -6,94 +6,103 @@
 	</head>
 	<body>
 
-		<div id="filter">
-			<input class="filter" />
-			<table>
-				<tbody>
-					<tr><td>abc</td><td data-no-filter>abcefg</td></tr>
-					<tr><td>abc</td><td data-no-filter>abcefg</td></tr>
-					<tr><td>def</td><td data-no-filter>abcefg</td></tr>
-				</tbody>
-			</table>
-			<script>
-				$(function() {
-					$( '#filter table' ).tableable({
-						usePager: false, useSorter: false,
-						filterInputSelector: '#filter .filter'
-					});
-				});
-			</script>
-		</div>
 
-		<div id="pager">
-			<table>
-				<tbody>
-					<tr><td>page1</td></tr><tr><td>page1</td></tr><tr><td>page1</td></tr><tr><td>page1</td></tr>
-					<tr><td>page2</td></tr><tr><td>page2</td></tr><tr><td>page2</td></tr><tr><td>page2</td></tr>
-					<tr><td>page3</td></tr><tr><td>page3</td></tr>
-				</tbody>
-			</table>
-			<ul class='pager'></ul>
-			<script>
-				$(function() {
-					$( '#pager table' ).tableable({
-						useFilter: false, useSorter: false,
-						pagerListSelector: '#pager .pager',
-						rowsPerPage: 4,
-					});
-				});
-			</script>
-		</div>
+		<div id="manual">
 
-		<div id="sorter">
-			<table>
-				<thead><tr><th>head a</th><th data-no-sort>head b</th></tr></thead>
-				<tbody>
-					<tr><td>abc</td><td>123</td></tr>
-					<tr><td>def</td><td>456</td></tr>
-					<tr><td>ghi</td><td>789</td></tr>
-				</tbody>
-			</table>
-			<script>
-				$(function() {
-					$( '#sorter table' ).tableable({
-						useFilter: false, usePager: false,
-					});
-				});
-			</script>
-		</div>
-
-
-		<div id="man">
 			<style>
-				#man { margin-top: 50px; font-size: 2em; }
+				#manual { margin-top: 50px; font-size: 1.5em; }
 				.active { color: green; }
 			</style>
-			<input class="filter" />
+			<!--<input class="filter" />-->
 			<table>
-				<thead><tr><th>head a</th><th data-no-sort>head b</th></tr></thead>
-				<tbody>
-					<tr><td>abc</td><td data-no-filter>abcefg</td></tr>
-					<tr><td>jhd</td><td data-no-filter>asdkna</td></tr>
-					<tr><td>sdf</td><td data-no-filter>fewjfn</td></tr>
-					<tr><td>def</td><td data-no-filter>abcefg</td></tr>
-					<tr><td>ojo</td><td data-no-filter>asdoke</td></tr>
-					<tr><td>abc</td><td data-no-filter>abcefg</td></tr>
-				</tbody>
+				<thead><tr><th>n</th><th data-no-sort>n*n</th></tr></thead>
+				<tbody></tbody>
 			</table>
 			<ul class='pager'></ul>
 			<script>
+
 				$(function() {
-					$( '#man table' ).tableable({
-						filterInputSelector: '#man .filter',
-						pagerListSelector: '#man .pager',
-						rowsPerPage: 3,
-						initalSortColIndex: 1
+					for (var i = 0; i < 95; i++) {
+						$('#manual table tbody').append('<tr><td>'+i+'</td><td>'+(i*i)+'</td></tr>');
+					};
+				});
+
+				$(function() {
+					$( '#manual table' ).tableable({
+						useFilter: false,
+						useSorter: false,
+						// filterInputSelector: '#manual .filter',
+						pagerListSelector: '#manual .pager',
+						rowsPerPage: 5,
+						// initalSortColIndex: 1
 					});
 				});
 			</script>
-		</div>
 
+		</div> <!-- /#manual -->
+
+		<hr />
+
+		<div id="automatic">
+
+			<div id="filter">
+				<input class="filter" />
+				<table>
+					<tbody>
+						<tr><td>abc</td><td data-no-filter>abcefg</td></tr>
+						<tr><td>abc</td><td data-no-filter>abcefg</td></tr>
+						<tr><td>def</td><td data-no-filter>abcefg</td></tr>
+					</tbody>
+				</table>
+				<script>
+					$(function() {
+						$( '#filter table' ).tableable({
+							usePager: false, useSorter: false,
+							filterInputSelector: '#filter .filter'
+						});
+					});
+				</script>
+			</div>
+
+			<div id="pager">
+				<table>
+					<tbody>
+						<tr><td>page1</td></tr><tr><td>page1</td></tr><tr><td>page1</td></tr><tr><td>page1</td></tr>
+						<tr><td>page2</td></tr><tr><td>page2</td></tr><tr><td>page2</td></tr><tr><td>page2</td></tr>
+						<tr><td>page3</td></tr><tr><td>page3</td></tr>
+					</tbody>
+				</table>
+				<ul class='pager'></ul>
+				<script>
+					$(function() {
+						$( '#pager table' ).tableable({
+							useFilter: false, useSorter: false,
+							pagerListSelector: '#pager .pager',
+							rowsPerPage: 4,
+						});
+					});
+				</script>
+			</div>
+
+			<div id="sorter">
+				<table>
+					<thead><tr><th>head a</th><th data-no-sort>head b</th></tr></thead>
+					<tbody>
+						<tr><td>abc</td><td>123</td></tr>
+						<tr><td>def</td><td>456</td></tr>
+						<tr><td>ghi</td><td>789</td></tr>
+					</tbody>
+				</table>
+				<script>
+					$(function() {
+						$( '#sorter table' ).tableable({
+							useFilter: false, usePager: false,
+						});
+					});
+				</script>
+			</div>
+
+		</div> <!-- /#automatic -->
 
 	</body>
 </html>
