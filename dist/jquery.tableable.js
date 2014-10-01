@@ -183,27 +183,46 @@ Pager.prototype.paginate = function () {
         })
     ;
 
-    self.buildPagerList( pageCount );
+    // self.buildPagerList();
     self.showPage( self.settings.currentPageIndex );
 
 };
 
-Pager.prototype.buildPagerList = function ( pageCount ) {
-    var self = this;
+Pager.prototype.buildPagerList = function () {
+    var
+    	self      = this,
+    	pageCount = Math.ceil( $(self.element).find('tbody tr').length / self.settings.rowsPerPage ),
+    	cpi       =  parseInt( self.settings.currentPageIndex ),
+    	drawDots  = false
+    ;
 
     $( self.settings.pagerListSelector ).empty();
+
     for ( var i=1; i <= pageCount; i++ ) {
-        $( self.settings.pagerListSelector ).append('<li '+self.settings.pageSwitchPageAttribute+'="'+i+'" ><a>'+i+'</a></li>');
+        if (
+        	i === 1 || i === 2 ||
+        	i === cpi || i === cpi-1 || i === cpi+1 ||
+        	i === pageCount || i === pageCount-1
+        ){
+        	$( self.settings.pagerListSelector ).append('<li '+self.settings.pageSwitchPageAttribute+'="'+i+'" ><a>'+i+'</a></li>');
+	        drawDots = true;
+        } else {
+        	if ( drawDots ) {
+	        	$( self.settings.pagerListSelector ).append('<li><a>...</a></li>');
+	        	drawDots = false;
+        	}
+        }
     }
 
+
     $( self.settings.pagerListSelector +' li['+self.settings.pageSwitchPageAttribute+']' ).on('click', function() {
+        console.log( $(this).attr( self.settings.pageSwitchPageAttribute ) );
         self.showPage( $(this).attr( self.settings.pageSwitchPageAttribute ) );
     });
 };
 
 Pager.prototype.showPage = function ( pageIndex ) {
     var self = this;
-
     $( self.element )
         .children( 'tbody' )
         .children( 'tr' )
@@ -215,6 +234,7 @@ Pager.prototype.showPage = function ( pageIndex ) {
     ;
 
     self.settings.currentPageIndex = pageIndex;
+    self.buildPagerList();
 
     $( self.settings.pagerListSelector +' li['+self.settings.pageSwitchPageAttribute+']' )
         .removeClass( 'active' )
