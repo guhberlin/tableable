@@ -34,6 +34,7 @@
 |PagerOpts||||
 | `usePager`             | Boolean | en-/disable pagination                     | true           |
 | `pagerListSelector`    | String  | selector for the pager-ul-element          |                |
+| `useDottedPager`       | Boolean | en-/disable dotted pager                   | true           |
 | `rowsPerPage`          | Integer | number of displayed rows per page          | 5              |
 |SorterOpts||||
 | `useSorter`            | Boolean | en-/disable sorting                        | true           |
@@ -71,6 +72,7 @@ After filtering, sorting and pagechanging the plugin will trigger events so you 
 - [x] add triggers for callbacks like `$('element').on('page-changed')`
 - [x] finish testcases for sorter
 - [x] optional sorting on init
+- [ ] check support for different ie versions
 
 ## History
 
