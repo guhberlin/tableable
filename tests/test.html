@@ -13,7 +13,7 @@
 				#manual { margin-top: 50px; font-size: 1.5em; }
 				.active { color: green; }
 			</style>
-			<!--<input class="filter" />-->
+			<input class="filter" />
 			<table>
 				<thead><tr><th>n</th><th data-no-sort>n*n</th></tr></thead>
 				<tbody></tbody>
@@ -29,13 +29,12 @@
 
 				$(function() {
 					$( '#manual table' ).tableable({
-						useFilter: false,
 						useSorter: false,
 
 						// useDottedPager: false,
-						// filterInputSelector: '#manual .filter',
+						filterInputSelector: '#manual .filter',
 						pagerListSelector: '#manual .pager',
-						rowsPerPage: 5,
+						rowsPerPage: 10,
 						// initalSortColIndex: 1
 					});
 				});

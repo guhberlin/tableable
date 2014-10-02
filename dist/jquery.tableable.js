@@ -1,5 +1,5 @@
 /*
- *  jQuery tableable plugin - v1.4.0
+ *  jQuery tableable plugin - v1.4.1
  *  A plugin to filter, paginate and sort html tables
  *  http://socnab.github.io/tableable
  *
@@ -158,10 +158,11 @@ function Pager ( element, options ) {
     this.settings = options;
     this.afterPaginate = function() {};
 
-    this.pagerListBuildFunction = this.buildDottedPagerList;
+    this.pagerListBuildFunction = 'buildDottedPagerList';
     if ( !this.settings.useDottedPager ) {
-    	this.pagerListBuildFunction = this.buildFullPagerList;
+    	this.pagerListBuildFunction = 'buildFullPagerList';
     }
+
 
 }
 
@@ -193,12 +194,23 @@ Pager.prototype.paginate = function () {
 
 };
 
+Pager.prototype.getPageCount = function() {
+    var self = this;
+    return ( $( self.element )
+        .children( 'tbody' )
+        .children( 'tr' )
+        .filter( function() {
+            return !( $(this).hasAttr( self.settings.filteredAttribute ) );
+        }).length )
+    ;
+};
+
 Pager.prototype.buildPagerList = function () {
     var self = this;
 
     $( self.settings.pagerListSelector ).empty();
 
-    self.pagerListBuildFunction();
+    self[self.pagerListBuildFunction]();
 
     $( self.settings.pagerListSelector +' li['+self.settings.pageSwitchPageAttribute+']' ).on('click', function() {
         self.showPage( $(this).attr( self.settings.pageSwitchPageAttribute ) );
@@ -208,7 +220,7 @@ Pager.prototype.buildPagerList = function () {
 Pager.prototype.buildFullPagerList = function() {
 	var
 		self	  = this,
-    	pageCount = Math.ceil( $(self.element).find('tbody tr').length / self.settings.rowsPerPage )
+    	pageCount = self.getPageCount()
 	;
 
     for ( var i=1; i <= pageCount; i++ ) {
@@ -219,8 +231,8 @@ Pager.prototype.buildFullPagerList = function() {
 Pager.prototype.buildDottedPagerList = function() {
 	var
     	self      = this,
-    	pageCount = Math.ceil( $(self.element).find('tbody tr').length / self.settings.rowsPerPage ),
-    	cpi       =  parseInt( self.settings.currentPageIndex ),
+    	cpi       = parseInt( self.settings.currentPageIndex ),
+    	pageCount = self.getPageCount(),
     	drawDots  = false
     ;
 
