@@ -17,7 +17,7 @@ casper.test.begin( 'tests: pager', function( test ) {
 
 	.then( function() {
 		test.comment( '> ul.pager' );
-		test.assertElementCount( '#pager ul li', 5 );
+		test.assertElementCount( '#pager ul li', 3 );
 		test.assertElementCount( '#pager ul li[class="active"]', 1 );
 	})
 

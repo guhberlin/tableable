@@ -1,5 +1,5 @@
 /*
- *  jQuery tableable plugin - v1.4.1
+ *  jQuery tableable plugin - v1.4.2
  *  A plugin to filter, paginate and sort html tables
  *  http://socnab.github.io/tableable
  *
@@ -196,12 +196,13 @@ Pager.prototype.paginate = function () {
 
 Pager.prototype.getPageCount = function() {
     var self = this;
-    return ( $( self.element )
-        .children( 'tbody' )
-        .children( 'tr' )
-        .filter( function() {
-            return !( $(this).hasAttr( self.settings.filteredAttribute ) );
-        }).length )
+    return Math.ceil(
+            ( $( self.element )
+            .children( 'tbody' ).children( 'tr' )
+            .filter( function() {
+                return !( $(this).hasAttr( self.settings.filteredAttribute ) );
+            }).length ) / self.settings.rowsPerPage
+        )
     ;
 };
 

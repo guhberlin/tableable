@@ -42,12 +42,13 @@ Pager.prototype.paginate = function () {
 
 Pager.prototype.getPageCount = function() {
     var self = this;
-    return ( $( self.element )
-        .children( 'tbody' )
-        .children( 'tr' )
-        .filter( function() {
-            return !( $(this).hasAttr( self.settings.filteredAttribute ) );
-        }).length )
+    return Math.ceil(
+            ( $( self.element )
+            .children( 'tbody' ).children( 'tr' )
+            .filter( function() {
+                return !( $(this).hasAttr( self.settings.filteredAttribute ) );
+            }).length ) / self.settings.rowsPerPage
+        )
     ;
 };
 
