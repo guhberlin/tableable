@@ -12,8 +12,8 @@
 	],
 	"version": "1.4.2",
 	"author": {
-		"name": "socnab",
-		"url": "https://github.com/socnab"
+		"name": "guhberlin",
+		"url": "https://github.com/guhberlin"
 	},
 	"maintainers": [
 		{
@@ -27,10 +27,10 @@
 			"type": "MIT"
 		}
 	],
-	"bugs": "https://github.com/socnab/tableable/issues",
-	"homepage": "http://socnab.github.io/tableable",
-	"docs": "https://github.com/socnab/tableable#readme",
-	"download": "https://github.com/socnab/tableable/archive/master.zip",
+	"bugs": "https://github.com/guhberlin/tableable/issues",
+	"homepage": "http://guhberlin.github.io/tableable",
+	"docs": "https://github.com/guhberlin/tableable#readme",
+	"download": "https://github.com/guhberlin/tableable/archive/master.zip",
 	"dependencies": {
 		"jquery": ">=1.4"
 	}
