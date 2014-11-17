@@ -10,7 +10,7 @@
 		"pager",
 		"sorter"
 	],
-	"version": "1.4.2",
+	"version": "2.0.0",
 	"author": {
 		"name": "guhberlin",
 		"url": "https://github.com/guhberlin"
@@ -24,7 +24,7 @@
 	],
 	"licenses": [
 		{
-			"type": "MIT"
+			"type": "BSD-3-Clause"
 		}
 	],
 	"bugs": "https://github.com/guhberlin/tableable/issues",

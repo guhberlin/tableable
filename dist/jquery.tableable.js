@@ -1,10 +1,10 @@
 /*
- *  jQuery tableable plugin - v1.4.2
+ *  jQuery tableable plugin - v2.0.0
  *  A plugin to filter, paginate and sort html tables
  *  http://guhberlin.github.io/tableable
  *
  *  Made by guhberlin
- *  Under MIT License
+ *  Under BSD-3-Clause License
  */
 
 function Filter ( element, options ) {
