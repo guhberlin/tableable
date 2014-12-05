@@ -27,6 +27,9 @@
 					};
 				});
 
+				$('#manual table tbody').append('<tr data-demo><td>foo</td><td>foo</td></tr>');
+				$('#manual table tbody').append('<tr data-demo3><td>bar</td><td>bar</td></tr>');
+
 				$(function() {
 					$( '#manual table' ).tableable({
 						useSorter: false,
@@ -35,6 +38,7 @@
 						filterInputSelector: '#manual .filter',
 						pagerListSelector: '#manual .pager',
 						rowsPerPage: 10,
+						customFilterAttributes: ['data-demo', 'data-demo2'],
 						// initalSortColIndex: 1
 					});
 				});
@@ -71,6 +75,7 @@
 						<tr><td>page1</td></tr><tr><td>page1</td></tr><tr><td>page1</td></tr><tr><td>page1</td></tr>
 						<tr><td>page2</td></tr><tr><td>page2</td></tr><tr><td>page2</td></tr><tr><td>page2</td></tr>
 						<tr><td>page3</td></tr><tr><td>page3</td></tr>
+						<tr data-custom-filter><td>not visible</td></tr>
 					</tbody>
 				</table>
 				<ul class='pager'></ul>
@@ -80,6 +85,7 @@
 							useFilter: false, useSorter: false,
 							pagerListSelector: '#pager .pager',
 							rowsPerPage: 4,
+							customFilterAttributes: ['data-custom-filter'],
 						});
 					});
 				</script>

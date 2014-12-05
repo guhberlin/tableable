@@ -1,5 +1,5 @@
 /*
- *  jQuery tableable plugin - v2.0.0
+ *  jQuery tableable plugin - v2.1.0
  *  A plugin to filter, paginate and sort html tables
  *  http://guhberlin.github.io/tableable
  *
@@ -158,6 +158,10 @@ function Pager ( element, options ) {
     this.settings = options;
     this.afterPaginate = function() {};
 
+    this.settings.attrsToIgnoreRowOnPaging = [].concat(
+        [this.settings.filteredAttribute], this.settings.customFilterAttributes
+    );
+
     this.pagerListBuildFunction = 'buildDottedPagerList';
     if ( !this.settings.useDottedPager ) {
     	this.pagerListBuildFunction = 'buildFullPagerList';
@@ -183,7 +187,7 @@ Pager.prototype.paginate = function () {
         .children( 'tr' )
         .removeAttr( self.settings.pageIndexAttribute )
         .filter( function() {
-            return !( $(this).hasAttr( self.settings.filteredAttribute ) );
+            return ( !self.hasElOneOfAttrs( this, self.settings.attrsToIgnoreRowOnPaging ) );
         }).each( function(index) {
             if ( (index%self.settings.rowsPerPage) === 0 ) { pageCount++; }
             $(this).attr( self.settings.pageIndexAttribute, pageCount );
@@ -200,7 +204,7 @@ Pager.prototype.getPageCount = function() {
             ( $( self.element )
             .children( 'tbody' ).children( 'tr' )
             .filter( function() {
-                return !( $(this).hasAttr( self.settings.filteredAttribute ) );
+                return ( !self.hasElOneOfAttrs( this, self.settings.attrsToIgnoreRowOnPaging ) );
             }).length ) / self.settings.rowsPerPage
         )
     ;
@@ -219,37 +223,38 @@ Pager.prototype.buildPagerList = function () {
 };
 
 Pager.prototype.buildFullPagerList = function() {
-	var
-		self	  = this,
-    	pageCount = self.getPageCount()
-	;
+    var
+        self      = this,
+        pageCount = self.getPageCount()
+    ;
 
     for ( var i=1; i <= pageCount; i++ ) {
         $( self.settings.pagerListSelector ).append('<li '+self.settings.pageSwitchPageAttribute+'="'+i+'" ><a>'+i+'</a></li>');
     }
 
 };
+
 Pager.prototype.buildDottedPagerList = function() {
-	var
-    	self      = this,
-    	cpi       = parseInt( self.settings.currentPageIndex ),
-    	pageCount = self.getPageCount(),
-    	drawDots  = false
+    var
+        self      = this,
+        cpi       = parseInt( self.settings.currentPageIndex ),
+        pageCount = self.getPageCount(),
+        drawDots  = false
     ;
 
     for ( var i=1; i <= pageCount; i++ ) {
         if (
-        	i === 1 || i === 2 ||
-        	i === cpi || i === cpi-1 || i === cpi+1 ||
-        	i === pageCount || i === pageCount-1
+            i === 1 || i === 2 ||
+            i === cpi || i === cpi-1 || i === cpi+1 ||
+            i === pageCount || i === pageCount-1
         ){
-        	$( self.settings.pagerListSelector ).append('<li '+self.settings.pageSwitchPageAttribute+'="'+i+'" ><a>'+i+'</a></li>');
-	        drawDots = true;
+            $( self.settings.pagerListSelector ).append('<li '+self.settings.pageSwitchPageAttribute+'="'+i+'" ><a>'+i+'</a></li>');
+            drawDots = true;
         } else {
-        	if ( drawDots ) {
-	        	$( self.settings.pagerListSelector ).append('<li><a>...</a></li>');
-	        	drawDots = false;
-        	}
+            if ( drawDots ) {
+                $( self.settings.pagerListSelector ).append('<li><a>...</a></li>');
+                drawDots = false;
+            }
         }
     }
 };
@@ -281,6 +286,15 @@ Pager.prototype.showPage = function ( pageIndex ) {
 };
 
 
+Pager.prototype.hasElOneOfAttrs = function( el, attributes ) {
+    var ret = false;
+    $.each(attributes, function(index, val) {
+        if ( $(el).hasAttr( val ) ) { ret = true; }
+    });
+    return ret;
+};
+
+
 function Options() {}
 
 Options.prototype.getDefaults = function() {
@@ -289,6 +303,7 @@ Options.prototype.getDefaults = function() {
         filterInputSelector: '',
         ignoreCase: false,
         notFilterAttribute: 'data-no-filter',
+        customFilterAttributes: [],
 
         usePager: true,
         useDottedPager: true,

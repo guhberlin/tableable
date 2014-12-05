@@ -7,6 +7,7 @@ Options.prototype.getDefaults = function() {
         filterInputSelector: '',
         ignoreCase: false,
         notFilterAttribute: 'data-no-filter',
+        customFilterAttributes: [],
 
         usePager: true,
         useDottedPager: true,
