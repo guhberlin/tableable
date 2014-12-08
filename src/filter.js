@@ -45,3 +45,10 @@ Filter.prototype.filter = function ( searched ) {
     ;
 
 };
+
+Filter.prototype.triggerFilter = function() {
+    var self = this;
+
+    self.filter( $(self.settings.filterInputSelector).val() );
+    self.afterFilter();
+};

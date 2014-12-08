@@ -30,6 +30,15 @@ TableAble.prototype.init = function () {
 
     if ( shouldPaginate ) { self.pager.paginate(); }
 
+
+    $(self.element).on( 'refresh', function() {
+        if ( shouldFilter ) {
+            self.filter.triggerFilter();
+        } else if ( shouldPaginate ) {
+            self.pager.paginate();
+        }
+    });
+
 };
 
 TableAble.prototype.afterFilter = function( shouldPaginate ) {
