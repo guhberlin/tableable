@@ -133,9 +133,7 @@ Pager.prototype.showPage = function ( pageIndex ) {
 
 
 Pager.prototype.hasElOneOfAttrs = function( el, attributes ) {
-    var ret = false;
-    $.each(attributes, function(index, val) {
-        if ( $(el).hasAttr( val ) ) { ret = true; }
-    });
-    return ret;
+    return ( attributes.filter( function(attribute) {
+        return $(el).hasAttr( attribute );
+    }).length > 0 );
 };
