@@ -21,6 +21,12 @@ casper.test.begin( 'tests: pager', function( test ) {
 		test.assertElementCount( '#pager ul li[class="active"]', 1 );
 	})
 
+	.then( function() {
+		test.comment( '> ul.pager switch to last page' );
+		this.click( '#pager ul li:last-child' );
+		test.assertElementCount( '#pager table tbody tr[style*="table-row"]', 2 );
+	})
+
 	.run( function() { test.done(); });
 
 });
