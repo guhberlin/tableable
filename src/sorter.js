@@ -24,13 +24,10 @@ function Sorter ( element, options ) {
 
     });
 
-    if ( self.settings.notSortableAttribute.length ) {
-        var th = $(self.element).find( 'thead tr th:nth-child('+self.settings.initalSortColIndex+')' );
-        if ( th && !th.hasAttr( self.settings.notSortableAttribute ) ) {
-            self.sortRows( self.settings.initalSortColIndex );
-        }
+    var th = $(self.element).find( 'thead tr th:nth-child('+self.settings.initalSortColIndex+')' );
+    if ( th && !th.hasAttr( self.settings.notSortableAttribute ) ) {
+        self.sortRows( self.settings.initalSortColIndex );
     }
-
 }
 
 Sorter.prototype.setAfterSortCallback = function( cb ) {
@@ -45,53 +42,34 @@ Sorter.prototype.sortRows = function( colIndex ) {
         th = $( self.element ).children('thead').children('tr').find(':nth-child('+colIndex+')')
     ;
 
-    if ( th.hasAttr( self.settings.sortedAttribute ) ) {
-        if ( th.attr( self.settings.sortedAttribute ) === 'DESC' ) {
-            self.sortAsc( colIndex );
-            th.attr( self.settings.sortedAttribute, 'ASC' );
-        } else {
-            self.sortDesc( colIndex );
-            th.attr( self.settings.sortedAttribute, 'DESC' );
-        }
-    } else {
-        th.parent().children('th').each(function() {
-            $(this).removeAttr( self.settings.sortedAttribute );
-        });
-        self.sortAsc( colIndex );
-        th.attr( self.settings.sortedAttribute, 'ASC' );
-    }
+    var sortDirection = ( th.attr( self.settings.sortedAttribute ) !== 'ASC' ) ? 'ASC' : 'DESC';
 
+    self['sort'+sortDirection]( colIndex );
+
+    th.parent().children('th').removeAttr( self.settings.sortedAttribute );
+    th.attr( self.settings.sortedAttribute, sortDirection );
+};
+Sorter.prototype.sortASC = function( colIndex ) {
+    var self = this;
+
+    self.sortWithCallback( function(a,b) {
+        return self.sortCallback( a, b, colIndex );
+    });
+};
+Sorter.prototype.sortDESC = function( colIndex ) {
+    var self = this;
+
+    self.sortWithCallback( function(a,b) {
+        return self.sortCallback( b, a, colIndex );
+    });
+};
+Sorter.prototype.sortCallback = function( a, b, colIndex ) {
+    return ($(b).find(':nth-child('+colIndex+')').text()) < ($(a).find(':nth-child('+colIndex+')').text()) ? 1 : -1;
 };
 Sorter.prototype.sortWithCallback = function( sortCallBack ) {
-    var self = this,
-        rows = $( self.element ).children( 'tbody' ).children( 'tr' )
-    ;
-
-    if ( rows.length ) {
-
-        $( self.element ).children( 'tbody' ).empty();
-        rows = rows.sort( sortCallBack );
-        $( self.element ).children( 'tbody' ).append( rows );
-
-    }
-};
-Sorter.prototype.sortAsc = function( colIndex ) {
     var self = this;
 
-    self.sortWithCallback( function(a,b) {
-            return (
-                ($(b).find(':nth-child('+colIndex+')').text()) < ($(a).find(':nth-child('+colIndex+')').text())
-            );
-        }
-    );
-};
-Sorter.prototype.sortDesc = function( colIndex ) {
-    var self = this;
-
-    self.sortWithCallback( function(a,b) {
-            return (
-                ($(b).find(':nth-child('+colIndex+')').text()) > ($(a).find(':nth-child('+colIndex+')').text())
-            );
-        }
+    $( self.element ).children( 'tbody' ).append(
+        ($( self.element ).children( 'tbody' ).children( 'tr' )).sort( sortCallBack )
     );
 };

@@ -14,7 +14,7 @@
 	};
 
 	$.fn.hasAttr = function( name ) {
-   		return this.attr( name ) !== undefined;
+   		return ( name !== undefined ) ? (this.attr( name ) !== undefined) : false ;
 	};
 
 })( jQuery, window, document );

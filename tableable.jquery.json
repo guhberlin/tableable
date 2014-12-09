@@ -10,7 +10,7 @@
 		"pager",
 		"sorter"
 	],
-	"version": "2.2.0",
+	"version": "2.2.1",
 	"author": {
 		"name": "guhberlin",
 		"url": "https://github.com/guhberlin"
@@ -20,7 +20,12 @@
 			"name": "Manuel Piesold",
 			"email": "manuel@piesold.com",
 			"url": "https://github.com/manuelpiesold"
-		}
+		},
+        {
+            "name": "Alexander Lipinski",
+            "email": "skeln@gmx.de",
+            "url": "https://github.com/skeln"
+        }
 	],
 	"licenses": [
 		{

@@ -21,18 +21,18 @@
 			<ul class='pager'></ul>
 			<script>
 
-				$(function() {
-					for (var i = 0; i < 95; i++) {
-						$('#manual table tbody').append('<tr><td>'+i+'</td><td>'+(i*i)+'</td></tr>');
-					};
-				});
+				// $(function() {
+				// 	for (var i = 0; i < 95; i++) {
+				// 		$('#manual table tbody').append('<tr><td>'+i+'</td><td>'+(i*i)+'</td></tr>');
+				// 	};
+				// });
 
-				$('#manual table tbody').append('<tr data-demo><td>foo</td><td>foo</td></tr>');
-				$('#manual table tbody').append('<tr data-demo3><td>bar</td><td>bar</td></tr>');
+				// $('#manual table tbody').append('<tr data-demo><td>foo</td><td>foo</td></tr>');
+				// $('#manual table tbody').append('<tr data-demo3><td>bar</td><td>bar</td></tr>');
 
 				$(function() {
 					$( '#manual table' ).tableable({
-						useSorter: false,
+						useSorter: true,
 
 						// useDottedPager: false,
 						filterInputSelector: '#manual .filter',
@@ -95,8 +95,8 @@
 				<table>
 					<thead><tr><th>head a</th><th data-no-sort>head b</th></tr></thead>
 					<tbody>
-						<tr><td>abc</td><td>123</td></tr>
 						<tr><td>def</td><td>456</td></tr>
+						<tr><td>abc</td><td>123</td></tr>
 						<tr><td>ghi</td><td>789</td></tr>
 					</tbody>
 				</table>
@@ -104,6 +104,7 @@
 					$(function() {
 						$( '#sorter table' ).tableable({
 							useFilter: false, usePager: false,
+							initalSortColIndex: 1
 						});
 					});
 				</script>
