@@ -13,6 +13,8 @@ Options.prototype.getDefaults = function() {
         useDottedPager: true,
         pagerListSelector: '',
         rowsPerPage: 5,
+        noOfShownPagesStartEnd: 2,
+        noOfShownPagesNextToCurrentPage: 1,
 
         useSorter: true,
         sortTriggerSelector: '',

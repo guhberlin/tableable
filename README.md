@@ -24,25 +24,29 @@
 
 ### Options
 
-| Option                   | Type    | Description                                | Default        |
-| ------------------------ | ------- | ------------------------------------------ | -------------- |
+| Option                            | Type    | Description                                                                  | Default        |
+| --------------------------------- | ------- | ---------------------------------------------------------------------------- | -------------- |
 |FilterOpts||||
-| `useFilter`              | Boolean | en-/disable filtering                      | true           |
-| `filterInputSelector`    | String  | selector for the filter-input-element      |                |
-| `notFilterAttribute`     | String  | disable sort on th if they have this attr  | data-no-filter |
-| `ignoreCase`             | Boolean | en-/disable casesensetive filtering        | false          |
-| `customFilterAttributes` | Array   | custom attributes for external filters     | []             |
+| `useFilter`                       | Boolean | en-/disable filtering                                                        | true           |
+| `filterInputSelector`             | String  | selector for the filter-input-element                                        |                |
+| `notFilterAttribute`              | String  | disable sort on th if they have this attr                                    | data-no-filter |
+| `ignoreCase`                      | Boolean | en-/disable casesensetive filtering                                          | false          |
+| `customFilterAttributes`          | Array   | custom attributes for external filters                                       | []             |
 |PagerOpts||||
-| `usePager`               | Boolean | en-/disable pagination                     | true           |
-| `pagerListSelector`      | String  | selector for the pager-ul-element          |                |
-| `useDottedPager`         | Boolean | en-/disable dotted pager                   | true           |
-| `rowsPerPage`            | Integer | number of displayed rows per page          | 5              |
+| `usePager`                        | Boolean | en-/disable pagination                                                       | true           |
+| `pagerListSelector`               | String  | selector for the pager-ul-element                                            |                |
+| `useDottedPager`                  | Boolean | en-/disable dotted pager                                                     | true           |
+| `rowsPerPage`                     | Integer | number of displayed rows per page                                            | 5              |
+| `noOfShownPagesStartEnd`          | Integer | number of displayed pagerElements at the start and end of the pager (*)          | 2          |
+| `noOfShownPagesNextToCurrentPage` | Integer | number of displayed pagerElements on either side of the current pagerElement (*) | 1          |
 |SorterOpts||||
-| `useSorter`              | Boolean | en-/disable sorting                        | true           |
-| `notSortableAttribute`   | String  | disable sort on th if they have this attr  | data-no-sort   |
-| `sortTriggerSelector`    | String  | selector where to find sorttrigger in th   |                |
-| `jumpPageOneAfterSort`   | Boolean | sould jump back to page one after sorting  | true           |
-| `initalSortColIndex`     | Integer | sort the table inital by given columnindex | -1             |
+| `useSorter`                       | Boolean | en-/disable sorting                                                          | true           |
+| `notSortableAttribute`            | String  | disable sort on th if they have this attr                                    | data-no-sort   |
+| `sortTriggerSelector`             | String  | selector where to find sorttrigger in th                                     |                |
+| `jumpPageOneAfterSort`            | Boolean | sould jump back to page one after sorting                                    | true           |
+| `initalSortColIndex`              | Integer | sort the table inital by given columnindex                                   | -1             |
+
+* ony useable with dottedPager
 
 ### Events
 

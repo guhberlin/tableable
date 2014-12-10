@@ -1,5 +1,5 @@
 /*
- *  jQuery tableable plugin - v2.2.2
+ *  jQuery tableable plugin - v2.3.0
  *  A plugin to filter, paginate and sort html tables
  *  http://guhberlin.github.io/tableable
  *
@@ -224,15 +224,17 @@ Pager.prototype.buildFullPagerList = function() {
 Pager.prototype.buildDottedPagerList = function() {
     var self      = this,
         cpi       = parseInt( self.settings.currentPageIndex ),
+        nospse    = parseInt( self.settings.noOfShownPagesStartEnd ),
+        nospntcp  = parseInt( self.settings.noOfShownPagesNextToCurrentPage ),
         pageCount = self.getPageCount(),
         drawDots  = false
     ;
 
     for ( var i=1; i <= pageCount; i++ ) {
         if (
-            i === 1 || i === 2 ||
-            i === cpi || i === cpi-1 || i === cpi+1 ||
-            i === pageCount || i === pageCount-1
+            (i <= nospse) ||
+            (i >= cpi - nospntcp && i <= cpi + nospntcp ) ||
+            (i > pageCount - nospse)
         ){
             $( self.settings.pagerListSelector ).append('<li '+self.settings.showPageIndexAttribute+'="'+i+'"><a>'+i+'</a></li>');
             drawDots = true;
@@ -282,6 +284,8 @@ Options.prototype.getDefaults = function() {
         useDottedPager: true,
         pagerListSelector: '',
         rowsPerPage: 5,
+        noOfShownPagesStartEnd: 2,
+        noOfShownPagesNextToCurrentPage: 1,
 
         useSorter: true,
         sortTriggerSelector: '',
