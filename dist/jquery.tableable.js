@@ -1,5 +1,5 @@
 /*
- *  jQuery tableable plugin - v2.2.1
+ *  jQuery tableable plugin - v2.2.2
  *  A plugin to filter, paginate and sort html tables
  *  http://guhberlin.github.io/tableable
  *
@@ -28,8 +28,18 @@ Filter.prototype.setAfterFilterCallback = function( cb ) {
 };
 
 Filter.prototype.filter = function ( searched ) {
-    var self = this;
+    var self = this,
+        ignoredColumnIndices = []
+    ;
+
     searched = ( self.settings.ignoreCase ) ? searched.toLowerCase() : searched ;
+
+    $( self.element )
+        .children( 'thead' )
+        .children( 'tr' )
+        .children( 'th['+self.settings.notFilterAttribute+']' )
+        .each(function() { ignoredColumnIndices.push( $(this).index() ); })
+    ;
 
     $( self.element )
         .children( 'tbody' )
@@ -39,14 +49,11 @@ Filter.prototype.filter = function ( searched ) {
         .each( function() {
             var row = $(this);
             row.children( 'td' ).each( function(index, val) {
-                if ( self.settings.notFilterAttribute.length &&
-                     $(this).hasAttr( self.settings.notFilterAttribute ) ) {
-                    return;
-                }
+                if ( ignoredColumnIndices.indexOf( $(this).index() ) >= 0 || $(this).hasAttr( self.settings.notFilterAttribute ) ) { return; }
+
                 val = ( self.settings.ignoreCase ) ? $(val).text().toLowerCase() : $(val).text() ;
                 if ( val.indexOf( searched ) >= 0 ) {
                     row.css( 'display', self.settings.displayType ).removeAttr( self.settings.filteredAttribute );
-                    return;
                 }
             });
         })
@@ -147,12 +154,7 @@ function Pager ( element, options ) {
         [this.settings.filteredAttribute], this.settings.customFilterAttributes
     );
 
-    this.pagerListBuildFunction = 'buildDottedPagerList';
-    if ( !this.settings.useDottedPager ) {
-    	this.pagerListBuildFunction = 'buildFullPagerList';
-    }
-
-
+    this.pagerListBuildFunction = ( this.settings.useDottedPager ) ? 'buildDottedPagerList' : 'buildFullPagerList' ;
 }
 
 Pager.prototype.setAfterPaginateCallback = function( cb ) {
@@ -172,27 +174,28 @@ Pager.prototype.paginate = function () {
         .children( 'tr' )
         .removeAttr( self.settings.pageIndexAttribute )
         .filter( function() {
-            return ( !self.hasElOneOfAttrs( this, self.settings.attrsToIgnoreRowOnPaging ) );
-        }).each( function(index) {
+            return ( !$(this).hasOneOfAttrs( self.settings.attrsToIgnoreRowOnPaging ) );
+        })
+        .each( function(index) {
             if ( (index%self.settings.rowsPerPage) === 0 ) { pageCount++; }
             $(this).attr( self.settings.pageIndexAttribute, pageCount );
         })
     ;
 
     self.showPage( self.settings.currentPageIndex );
-
 };
 
 Pager.prototype.getPageCount = function() {
     var self = this;
-    return Math.ceil(
-            ( $( self.element )
-            .children( 'tbody' ).children( 'tr' )
-            .filter( function() {
-                return ( !self.hasElOneOfAttrs( this, self.settings.attrsToIgnoreRowOnPaging ) );
-            }).length ) / self.settings.rowsPerPage
-        )
-    ;
+
+    return Math.ceil( $( self.element )
+        .children( 'tbody' )
+        .children( 'tr' )
+        .filter( function() {
+            return ( !$(this).hasOneOfAttrs( self.settings.attrsToIgnoreRowOnPaging ) );
+        })
+        .length / self.settings.rowsPerPage
+    );
 };
 
 Pager.prototype.buildPagerList = function () {
@@ -202,26 +205,24 @@ Pager.prototype.buildPagerList = function () {
 
     self[self.pagerListBuildFunction]();
 
-    $( self.settings.pagerListSelector +' li['+self.settings.pageSwitchPageAttribute+']' ).on('click', function() {
-        self.showPage( $(this).attr( self.settings.pageSwitchPageAttribute ) );
+    $( self.settings.pagerListSelector +' li['+self.settings.showPageIndexAttribute+']' ).on('click', function() {
+        self.showPage( $(this).attr( self.settings.showPageIndexAttribute ) );
     });
 };
 
 Pager.prototype.buildFullPagerList = function() {
-    var
-        self      = this,
+    var self      = this,
         pageCount = self.getPageCount()
     ;
 
     for ( var i=1; i <= pageCount; i++ ) {
-        $( self.settings.pagerListSelector ).append('<li '+self.settings.pageSwitchPageAttribute+'="'+i+'" ><a>'+i+'</a></li>');
+        $( self.settings.pagerListSelector ).append('<li '+self.settings.showPageIndexAttribute+'="'+i+'"><a>'+i+'</a></li>');
     }
 
 };
 
 Pager.prototype.buildDottedPagerList = function() {
-    var
-        self      = this,
+    var self      = this,
         cpi       = parseInt( self.settings.currentPageIndex ),
         pageCount = self.getPageCount(),
         drawDots  = false
@@ -233,7 +234,7 @@ Pager.prototype.buildDottedPagerList = function() {
             i === cpi || i === cpi-1 || i === cpi+1 ||
             i === pageCount || i === pageCount-1
         ){
-            $( self.settings.pagerListSelector ).append('<li '+self.settings.pageSwitchPageAttribute+'="'+i+'" ><a>'+i+'</a></li>');
+            $( self.settings.pagerListSelector ).append('<li '+self.settings.showPageIndexAttribute+'="'+i+'"><a>'+i+'</a></li>');
             drawDots = true;
         } else {
             if ( drawDots ) {
@@ -250,32 +251,21 @@ Pager.prototype.showPage = function ( pageIndex ) {
         .children( 'tbody' )
         .children( 'tr' )
         .css( 'display', 'none' )
-        .filter( function() {
-            return ( $(this).attr( self.settings.pageIndexAttribute ) === pageIndex );
-        })
+        .filter( 'tr['+self.settings.pageIndexAttribute+'="'+pageIndex+'"]' )
         .css( 'display', self.settings.displayType )
     ;
 
     self.settings.currentPageIndex = pageIndex;
     self.buildPagerList();
 
-    $( self.settings.pagerListSelector +' li['+self.settings.pageSwitchPageAttribute+']' )
-        .removeClass( 'active' )
-        .filter( function() {
-            return ( $(this).attr(self.settings.pageSwitchPageAttribute) === pageIndex );
-        })
-        .addClass( 'active' )
-    ;
+    $( self.settings.pagerListSelector +' li' ).removeClass( 'active' );
+    $( self.settings.pagerListSelector +' li['+self.settings.showPageIndexAttribute+'="'+pageIndex+'"]' ).addClass( 'active' );
 
     self.afterPaginate();
 };
 
 
-Pager.prototype.hasElOneOfAttrs = function( el, attributes ) {
-    return ( attributes.filter( function(attribute) {
-        return $(el).hasAttr( attribute );
-    }).length > 0 );
-};
+
 
 
 function Options() {}
@@ -311,7 +301,7 @@ Options.prototype.getUneditableDefaults = function() {
         filteredEvent:           'filtered',
 
         pageIndexAttribute:      'data-page-index',
-        pageSwitchPageAttribute: 'data-show-page-index',
+        showPageIndexAttribute:  'data-show-page-index',
         currentPageIndex:        '1',
         pagedEvent:              'paged',
         pageChangedEvent:        'pageChanged',
@@ -417,6 +407,13 @@ TableAble.prototype.trigger = function( eventName, autoTriggerUpdate ) {
 
 	$.fn.hasAttr = function( name ) {
    		return ( name !== undefined ) ? (this.attr( name ) !== undefined) : false ;
+	};
+
+	$.fn.hasOneOfAttrs = function( attributes ) {
+		var el = this;
+	    return ( attributes.filter( function(attribute) {
+	        return $(el).hasAttr( attribute );
+	    }).length > 0 );
 	};
 
 })( jQuery, window, document );

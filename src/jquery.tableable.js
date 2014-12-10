@@ -17,4 +17,11 @@
    		return ( name !== undefined ) ? (this.attr( name ) !== undefined) : false ;
 	};
 
+	$.fn.hasOneOfAttrs = function( attributes ) {
+		var el = this;
+	    return ( attributes.filter( function(attribute) {
+	        return $(el).hasAttr( attribute );
+	    }).length > 0 );
+	};
+
 })( jQuery, window, document );

@@ -15,17 +15,17 @@
 			</style>
 			<input class="filter" />
 			<table>
-				<thead><tr><th>n</th><th data-no-sort>n*n</th></tr></thead>
+				<thead><tr><th>n</th><th data-no-filter>n*n</th><th style="color:fuchsia;" data-no-filter>n*n</th></tr></thead>
 				<tbody></tbody>
 			</table>
 			<ul class='pager'></ul>
 			<script>
 
-				// $(function() {
-				// 	for (var i = 0; i < 95; i++) {
-				// 		$('#manual table tbody').append('<tr><td>'+i+'</td><td>'+(i*i)+'</td></tr>');
-				// 	};
-				// });
+				$(function() {
+					for (var i = 0; i < 95; i++) {
+						$('#manual table tbody').append('<tr><td>'+i+'</td><td>a</td><td>'+'</td></tr>'); //+(i*i)
+					};
+				});
 
 				// $('#manual table tbody').append('<tr data-demo><td>foo</td><td>foo</td></tr>');
 				// $('#manual table tbody').append('<tr data-demo3><td>bar</td><td>bar</td></tr>');
@@ -33,7 +33,6 @@
 				$(function() {
 					$( '#manual table' ).tableable({
 						useSorter: true,
-
 						// useDottedPager: false,
 						filterInputSelector: '#manual .filter',
 						pagerListSelector: '#manual .pager',
@@ -53,17 +52,24 @@
 			<div id="filter">
 				<input class="filter" />
 				<table>
+					<thead>
+						<tr>
+							<th>demo</th>
+							<th data-no-filter>demo2</th>
+						</tr>
+					</thead>
 					<tbody>
-						<tr><td>abc</td><td data-no-filter>abcefg</td></tr>
-						<tr><td>abc</td><td data-no-filter>abcefg</td></tr>
-						<tr><td>def</td><td data-no-filter>abcefg</td></tr>
+						<tr><td>abc</td><td>abcefg</td></tr>
+						<tr><td>abc</td><td>abcefg</td></tr>
+						<tr><td>def</td><td>abcefg</td></tr>
 					</tbody>
 				</table>
 				<script>
 					$(function() {
 						$( '#filter table' ).tableable({
 							usePager: false, useSorter: false,
-							filterInputSelector: '#filter .filter'
+							filterInputSelector: '#filter .filter',
+							ignoreCase: true
 						});
 					});
 				</script>
@@ -72,18 +78,20 @@
 			<div id="pager">
 				<table>
 					<tbody>
-						<tr><td>page1</td></tr><tr><td>page1</td></tr><tr><td>page1</td></tr><tr><td>page1</td></tr>
-						<tr><td>page2</td></tr><tr><td>page2</td></tr><tr><td>page2</td></tr><tr><td>page2</td></tr>
-						<tr><td>page3</td></tr><tr><td>page3</td></tr>
-						<tr data-custom-filter><td>not visible</td></tr>
+						<tr data-custom-filter><td>not visible</td><td>not visible</td></tr>
 					</tbody>
 				</table>
 				<ul class='pager'></ul>
 				<script>
 					$(function() {
+						for (var i = 0; i < 94; i++) {
+							$('#pager table tbody').append('<tr><td>'+i+'</td><td>'+(i*i)+'</td></tr>'); //+(i*i)
+						};
+
 						$( '#pager table' ).tableable({
 							useFilter: false, useSorter: false,
 							pagerListSelector: '#pager .pager',
+							// useDottedPager: false,
 							rowsPerPage: 4,
 							customFilterAttributes: ['data-custom-filter'],
 						});

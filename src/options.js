@@ -32,7 +32,7 @@ Options.prototype.getUneditableDefaults = function() {
         filteredEvent:           'filtered',
 
         pageIndexAttribute:      'data-page-index',
-        pageSwitchPageAttribute: 'data-show-page-index',
+        showPageIndexAttribute:  'data-show-page-index',
         currentPageIndex:        '1',
         pagedEvent:              'paged',
         pageChangedEvent:        'pageChanged',
