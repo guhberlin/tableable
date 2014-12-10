@@ -29,7 +29,7 @@
 |FilterOpts||||
 | `useFilter`                       | Boolean | en-/disable filtering                                                        | true           |
 | `filterInputSelector`             | String  | selector for the filter-input-element                                        |                |
-| `notFilterAttribute`              | String  | disable sort on th if they have this attr                                    | data-no-filter |
+| `notFilterAttribute`              | String  | disable filter on th if they have this attr                                  | data-no-filter |
 | `ignoreCase`                      | Boolean | en-/disable casesensetive filtering                                          | false          |
 | `customFilterAttributes`          | Array   | custom attributes for external filters                                       | []             |
 |PagerOpts||||
@@ -43,7 +43,7 @@
 | `useSorter`                       | Boolean | en-/disable sorting                                                          | true           |
 | `notSortableAttribute`            | String  | disable sort on th if they have this attr                                    | data-no-sort   |
 | `sortTriggerSelector`             | String  | selector where to find sorttrigger in th                                     |                |
-| `jumpPageOneAfterSort`            | Boolean | sould jump back to page one after sorting                                    | true           |
+| `jumpPageOneAfterSort`            | Boolean | should jump back to page one after sorting                                   | true           |
 | `initalSortColIndex`              | Integer | sort the table inital by given columnindex                                   | -1             |
 
 * ony useable with dottedPager
