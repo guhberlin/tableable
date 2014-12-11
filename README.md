@@ -19,6 +19,7 @@
 3. Call the plugin:
 
     ```javascript
+    var options = { filter: {...}, pager: {...}, sorter: {...} };
     $("#element").tableable( options );
     ```
 
@@ -46,7 +47,7 @@
 | `jumpPageOneAfterSort`            | Boolean | should jump back to page one after sorting                                   | true           |
 | `initalSortColIndex`              | Integer | sort the table inital by given columnindex                                   | -1             |
 
-* ony useable with dottedPager
+(*) ony useable with dottedPager
 
 ### Events
 

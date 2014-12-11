@@ -23,22 +23,21 @@
 
 				$(function() {
 					for (var i = 0; i < 95; i++) {
-						$('#manual table tbody').append('<tr><td>'+i+'</td><td>a</td><td>'+'</td></tr>'); //+(i*i)
+						$('#manual table tbody').append('<tr><td>'+i+'</td><td>'+(i*i)+'</td><td>a</td></tr>');
 					};
 				});
 
-				// $('#manual table tbody').append('<tr data-demo><td>foo</td><td>foo</td></tr>');
-				// $('#manual table tbody').append('<tr data-demo3><td>bar</td><td>bar</td></tr>');
-
 				$(function() {
 					$( '#manual table' ).tableable({
-						useSorter: true,
-						// useDottedPager: false,
-						filterInputSelector: '#manual .filter',
-						pagerListSelector: '#manual .pager',
-						rowsPerPage: 10,
-						customFilterAttributes: ['data-demo', 'data-demo2'],
-						// initalSortColIndex: 1
+						filter: {
+							filterInputSelector: '#manual .filter',
+						},
+						pager: {
+							// useDottedPager: false,
+							pagerListSelector: '#manual .pager',
+							rowsPerPage: 10,
+							customFilterAttributes: ['data-demo', 'data-demo2'],
+						}
 					});
 				});
 			</script>
@@ -67,9 +66,10 @@
 				<script>
 					$(function() {
 						$( '#filter table' ).tableable({
-							usePager: false, useSorter: false,
-							filterInputSelector: '#filter .filter',
-							ignoreCase: true
+							filter: {
+								filterInputSelector: '#filter .filter',
+								ignoreCase: true
+							}
 						});
 					});
 				</script>
@@ -89,11 +89,12 @@
 						};
 
 						$( '#pager table' ).tableable({
-							useFilter: false, useSorter: false,
-							pagerListSelector: '#pager .pager',
-							// useDottedPager: false,
-							rowsPerPage: 4,
-							customFilterAttributes: ['data-custom-filter'],
+							pager: {
+								pagerListSelector: '#pager .pager',
+								// useDottedPager: false,
+								rowsPerPage: 4,
+								customFilterAttributes: ['data-custom-filter']
+							}
 						});
 					});
 				</script>
@@ -111,8 +112,9 @@
 				<script>
 					$(function() {
 						$( '#sorter table' ).tableable({
-							useFilter: false, usePager: false,
-							initalSortColIndex: 1
+							sorter: {
+								initalSortColIndex: 1
+							}
 						});
 					});
 				</script>

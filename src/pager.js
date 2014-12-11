@@ -4,10 +4,6 @@ function Pager ( element, options ) {
     this.settings = options;
     this.afterPaginate = function() {};
 
-    this.settings.attrsToIgnoreRowOnPaging = [].concat(
-        [this.settings.filteredAttribute], this.settings.customFilterAttributes
-    );
-
     this.pagerListBuildFunction = ( this.settings.useDottedPager ) ? 'buildDottedPagerList' : 'buildFullPagerList' ;
 }
 
@@ -102,6 +98,9 @@ Pager.prototype.buildDottedPagerList = function() {
 };
 
 Pager.prototype.showPage = function ( pageIndex ) {
+
+    if ( pageIndex === -1 ) { return; }
+
     var self = this;
     $( self.element )
         .children( 'tbody' )
