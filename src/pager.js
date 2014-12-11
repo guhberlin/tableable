@@ -28,7 +28,7 @@ Pager.prototype.paginate = function () {
         .children( 'tr' )
         .removeAttr( self.settings.pageIndexAttribute )
         .filter( function() {
-            return ( !$(this).hasOneOfAttrs( self.settings.attrsToIgnoreRowOnPaging ) );
+            return ( !Utils.Element( this ).hasOneOfAttrs( self.settings.attrsToIgnoreRowOnPaging ) );
         })
         .each( function(index) {
             if ( (index%self.settings.rowsPerPage) === 0 ) { pageCount++; }
@@ -46,7 +46,7 @@ Pager.prototype.getPageCount = function() {
         .children( 'tbody' )
         .children( 'tr' )
         .filter( function() {
-            return ( !$(this).hasOneOfAttrs( self.settings.attrsToIgnoreRowOnPaging ) );
+            return ( !Utils.Element( this ).hasOneOfAttrs( self.settings.attrsToIgnoreRowOnPaging ) );
         })
         .length / self.settings.rowsPerPage
     );

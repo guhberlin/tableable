@@ -21,6 +21,7 @@ module.exports = function(grunt) {
 		concat: {
 			dist: {
 				src: [
+						'src/utils.js',
 						'src/filter.js',
 						'src/sorter.js',
 						'src/pager.js',

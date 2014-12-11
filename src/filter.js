@@ -41,7 +41,7 @@ Filter.prototype.filter = function ( searched ) {
         .each( function() {
             var row = $(this);
             row.children( 'td' ).each( function(index, val) {
-                if ( ignoredColumnIndices.indexOf( $(this).index() ) >= 0 || $(this).hasAttr( self.settings.notFilterAttribute ) ) { return; }
+                if ( ignoredColumnIndices.indexOf( $(this).index() ) >= 0 || Utils.Element( this ).hasAttr( self.settings.notFilterAttribute ) ) { return; }
 
                 val = ( self.settings.ignoreCase ) ? $(val).text().toLowerCase() : $(val).text() ;
                 if ( val.indexOf( searched ) >= 0 ) {

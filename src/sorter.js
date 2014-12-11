@@ -9,7 +9,7 @@ function Sorter ( element, options ) {
     $( self.element ).children('thead').children('tr').children('th').each( function() {
 
         if ( self.settings.notSortableAttribute.length &&
-             $(this).hasAttr( self.settings.notSortableAttribute ) ) {
+             Utils.Element( this ).hasAttr( self.settings.notSortableAttribute ) ) {
             return;
         }
 
@@ -25,7 +25,7 @@ function Sorter ( element, options ) {
     });
 
     var th = $(self.element).find( 'thead tr th:nth-child('+self.settings.initalSortColIndex+')' );
-    if ( th && !th.hasAttr( self.settings.notSortableAttribute ) ) {
+    if ( th && !Utils.Element( th ).hasAttr( self.settings.notSortableAttribute ) ) {
         self.sortRows( self.settings.initalSortColIndex );
     }
 }
