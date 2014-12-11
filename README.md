@@ -51,15 +51,22 @@
 
 ### Events
 
-After filtering, sorting and pagechanging the plugin will trigger events so you can add observers. All events are triggered on the rootelement.
+#### Throwed by plugin
+
+After filtering, sorting and pageing the plugin will trigger events so you can add observers. All events are triggered on the rootelement.
 
 | Eventname     | Trigger                                                                                        |
 | ------------- | ---------------------------------------------------------------------------------------------- |
 | `filtered`    | triggered each time the value of filter input is changed, so that the filter runs on the table |
 | `sorted`      | triggered each time the table is resorted                                                      |
-| `pageChanged` | triggered each time one of the page buttons is clicked                                         |
+| `paged`       | triggered each time the table is paged                                                         |
 | `updated`     | triggered each time `filtered` or `sorted` is triggered                                        |
 
+#### Observed by plugin
+
+| Eventname     | Trigger                                                                                        |
+| ------------- | ---------------------------------------------------------------------------------------------- |
+| `refresh`     | you can trigger this event to retrigger filter, pager and sorter                               |
 
 ## Contributing
 
