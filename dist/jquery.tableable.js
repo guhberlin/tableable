@@ -1,5 +1,5 @@
 /*
- *  jQuery tableable plugin - v2.4.0
+ *  jQuery tableable plugin - v2.4.1
  *  A plugin to filter, paginate and sort html tables
  *  http://guhberlin.github.io/tableable
  *
@@ -309,7 +309,7 @@ Pager.prototype.appendPagerItem = function ( text, pageIndex, xtraAttrs ) {
         formattedXtraAttrs = ''
     ;
 
-    if ( pageIndex !== 'undefined' && pageIndex !== null ) {
+    if ( pageIndex !== undefined ) {
         pageIndexAttr = self.settings.showPageIndexAttribute+'="'+pageIndex+'"';
     }
 

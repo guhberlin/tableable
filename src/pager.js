@@ -142,7 +142,7 @@ Pager.prototype.appendPagerItem = function ( text, pageIndex, xtraAttrs ) {
         formattedXtraAttrs = ''
     ;
 
-    if ( pageIndex !== 'undefined' && pageIndex !== null ) {
+    if ( pageIndex !== undefined ) {
         pageIndexAttr = self.settings.showPageIndexAttribute+'="'+pageIndex+'"';
     }
 
