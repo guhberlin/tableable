@@ -15,6 +15,11 @@ Options.prototype.getDefaults = function() {
             noOfShownPagesStartEnd: 2,
             noOfShownPagesNextToCurrentPage: 1,
             customFilterAttributes: [],
+            inactivPagerIndex: '-1',
+            firstLable: '',
+            prevLable: '',
+            nextLable: '',
+            lastLable: '',
         },
         sorter: {
             sortTriggerSelector: '',

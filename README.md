@@ -40,6 +40,11 @@
 | `rowsPerPage`                     | Integer | number of displayed rows per page                                            | 5              |
 | `noOfShownPagesStartEnd`          | Integer | number of displayed pagerElements at the start and end of the pager (*)          | 2          |
 | `noOfShownPagesNextToCurrentPage` | Integer | number of displayed pagerElements on either side of the current pagerElement (*) | 1          |
+| `inactivPagerIndex`               | String  | PagerIndex for inactive pagerElements                                            | -1         |
+| `firstLable`                      | String  | Label for pagerElement that redirects to first page (**) - not shown if empty    |            |
+| `prevLable`                       | String  | Label for pagerElement that redirects to previous page (**) - not shown if empty |            |
+| `nextLable`                       | String  | Label for pagerElement that redirects to next page (**) - not shown if empty     |            |
+| `lastLable`                       | String  | Label for pagerElement that redirects to last page (**) - not shown if empty     |            |
 |SorterOpts||||
 | `useSorter`                       | Boolean | en-/disable sorting                                                          | true           |
 | `notSortableAttribute`            | String  | disable sort on th if they have this attr                                    | data-no-sort   |
@@ -48,6 +53,7 @@
 | `initalSortColIndex`              | Integer | sort the table inital by given columnindex                                   | -1             |
 
 (*) ony useable with dottedPager
+(**) can contain HTML
 
 ### Events
 
