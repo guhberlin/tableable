@@ -51,7 +51,7 @@ TableAble.prototype.afterFilter = function( shouldPaginate ) {
     self.trigger( self.settings.events.filtered, false );
 
     if ( shouldPaginate ) {
-        self.settings.currentPageIndex = '1';
+        self.settings.pager.currentPageIndex = '1';
         self.pager.paginate();
     } else {
         self.trigger( self.settings.events.updated );
@@ -65,7 +65,7 @@ TableAble.prototype.afterSort = function( shouldPaginate ) {
 
     if ( shouldPaginate ) {
         if ( self.settings.jumpPageOneAfterSort ) {
-            self.settings.currentPageIndex = '1';
+            self.settings.pager.currentPageIndex = '1';
         }
         self.pager.paginate();
     } else {
