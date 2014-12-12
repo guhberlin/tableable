@@ -52,8 +52,9 @@
 | `jumpPageOneAfterSort`            | Boolean | should jump back to page one after sorting                                   | true           |
 | `initalSortColIndex`              | Integer | sort the table inital by given columnindex                                   | -1             |
 
-(*) ony useable with dottedPager
-(**) can contain HTML
+(\*) ony useable with dottedPager
+
+(\*\*) can contain HTML
 
 ### Events
 
