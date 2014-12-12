@@ -25,9 +25,10 @@ casper.test.begin( 'tests: filter', function( test ) {
 	})
 
 	.then( function() {
-        test.comment( '> observing envent filtered' );
+        test.comment( '> observing envent filtered and updated' );
 
         test.assertSelectorHasText( 'p.eventCounter', '13' );
+        test.assertSelectorHasText( 'p.updatedEventCounter', '13' );
     })
 
 	.run( function() { test.done(); });

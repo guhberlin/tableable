@@ -31,9 +31,10 @@ casper.test.begin( 'tests: sorter', function( test ) {
     })
 
     .then( function() {
-        test.comment( '> observing envent sorted' );
+        test.comment( '> observing envent sorted and updated' );
 
         test.assertSelectorHasText( 'p.eventCounter', '2' );
+        test.assertSelectorHasText( 'p.updatedEventCounter', '2' );
     })
 
  	.run( function() { test.done(); });

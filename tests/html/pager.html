@@ -15,6 +15,7 @@
             <ul class='pager'></ul>
 
             <div><p class="eventCounter">0</p></div>
+            <div><p class="updatedEventCounter">0</p></div>
 
 
             <script>
@@ -41,6 +42,9 @@
 
                     tableElement.on( 'paged', function() {
                         $('.eventCounter').text( parseInt($('.eventCounter').text())+1 );
+                    });
+                    tableElement.on( 'updated', function() {
+                        $('.updatedEventCounter').text( parseInt($('.updatedEventCounter').text())+1 );
                     });
                 });
             </script>

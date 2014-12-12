@@ -76,9 +76,10 @@ casper.test.begin( 'tests: pager', function( test ) {
 	})
 
 	.then( function() {
-        test.comment( '> observing envent paged' );
+        test.comment( '> observing envent paged and updated' );
 
         test.assertSelectorHasText( 'p.eventCounter', '6' );
+        test.assertSelectorHasText( 'p.updatedEventCounter', '6' );
     })
 
 	.run( function() { test.done(); });

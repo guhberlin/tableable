@@ -89,6 +89,7 @@ TableAble.prototype.trigger = function( eventName, autoTriggerUpdate ) {
 
     $( self.element ).trigger( eventName );
 
-    if ( triggerUpdate ) { $( self.element ).trigger( self.settings.events.updated ); }
+    if ( triggerUpdate && eventName !== self.settings.events.updated ) {
+        $( self.element ).trigger( self.settings.events.updated );
+    }
 };
-
