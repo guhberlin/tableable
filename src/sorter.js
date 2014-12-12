@@ -1,8 +1,8 @@
 
-function Sorter ( element, options ) {
-    this.element = element;
-    this.settings = options;
-    this.afterSort = function() {};
+function Sorter ( element, options, cb ) {
+    this.element   = element;
+    this.settings  = options;
+    this.afterSort = cb;
 
     var self = this;
 
@@ -29,13 +29,6 @@ function Sorter ( element, options ) {
         self.sortRows( self.settings.initalSortColIndex );
     }
 }
-
-Sorter.prototype.setAfterSortCallback = function( cb ) {
-    var self = this;
-    if ( $.isFunction( cb ) ) {
-        self.afterSort = cb;
-    }
-};
 
 Sorter.prototype.sortRows = function( colIndex ) {
     var self = this,

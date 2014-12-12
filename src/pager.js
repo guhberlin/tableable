@@ -1,18 +1,11 @@
 
-function Pager ( element, options ) {
-    this.element = element;
-    this.settings = options;
-    this.afterPaginate = function() {};
+function Pager ( element, options, cb ) {
+    this.element       = element;
+    this.settings      = options;
+    this.afterPaginate = cb;
 
     this.pagerListBuildFunction = ( this.settings.useDottedPager ) ? 'buildDottedPagerList' : 'buildFullPagerList' ;
 }
-
-Pager.prototype.setAfterPaginateCallback = function( cb ) {
-    var self = this;
-    if ( $.isFunction( cb ) ) {
-        self.afterPaginate = cb;
-    }
-};
 
 Pager.prototype.paginate = function () {
     var self = this,

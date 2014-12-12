@@ -28,22 +28,19 @@ TableAble.prototype.initFeatures = function () {
     var self = this;
 
     if ( self.settings.shouldFilter ) {
-        self.filter = new Filter( self.element, self.settings.filter );
-        self.filter.setAfterFilterCallback( function() { self.afterFilter(); } );
+        self.filter = new Filter( self.element, self.settings.filter, function() { self.afterFilter(); } );
     }
     if ( self.settings.shouldSort )   {
-        self.sorter = new Sorter( self.element, self.settings.sorter );
-        self.sorter.setAfterSortCallback( function() { self.afterSort(); } );
+        self.sorter = new Sorter( self.element, self.settings.sorter, function() { self.afterSort(); } );
     }
     if ( self.settings.shouldPaginate ) {
-        self.pager  = new Pager ( self.element, self.settings.pager );
-        self.pager.setAfterPaginateCallback( function() { self.afterPaginate(); } );
+        self.pager  = new Pager ( self.element, self.settings.pager, function() { self.afterPaginate(); } );
         self.pager.paginate();
     }
 
     $(self.element).on( self.settings.events.refresh, function() {
         if ( self.settings.shouldFilter ) {
-            self.filter.triggerFilter();
+            self.filter.filter();
         } else if ( self.settings.shouldPaginate ) {
             self.pager.paginate();
         }

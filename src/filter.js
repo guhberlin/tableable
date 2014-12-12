@@ -1,27 +1,20 @@
 
-function Filter ( element, options ) {
-    this.element = element;
-    this.settings = options;
-    this.afterFilter = function() {};
+function Filter ( element, options, cb ) {
+    this.element     = element;
+    this.settings    = options;
+    this.afterFilter = cb;
 
     var self = this;
 
     $( this.settings.filterInputSelector ).keyup( function() {
-        self.filter( $(this).val() );
-        self.afterFilter();
+        self.filter();
     });
 }
 
-Filter.prototype.setAfterFilterCallback = function( cb ) {
-    var self = this;
-    if ( $.isFunction( cb ) ) {
-        self.afterFilter = cb;
-    }
-};
-
-Filter.prototype.filter = function ( searched ) {
+Filter.prototype.filter = function() {
     var self = this,
-        ignoredColumnIndices = []
+        ignoredColumnIndices = [],
+        searched = $(self.settings.filterInputSelector).val()
     ;
 
     searched = ( self.settings.ignoreCase ) ? searched.toLowerCase() : searched ;
@@ -51,11 +44,5 @@ Filter.prototype.filter = function ( searched ) {
         })
     ;
 
-};
-
-Filter.prototype.triggerFilter = function() {
-    var self = this;
-
-    self.filter( $(self.settings.filterInputSelector).val() );
     self.afterFilter();
 };
