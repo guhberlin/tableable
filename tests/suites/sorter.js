@@ -2,7 +2,7 @@
 casper.test.begin( 'tests: sorter', function( test ) {
 
 
- 	casper.start( 'tests/test.html' )
+ 	casper.start( 'tests/html/sorter.html' )
 
     .then( function() {
         test.comment( '> initial sort on column 1' );

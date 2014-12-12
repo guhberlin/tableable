@@ -1,7 +1,7 @@
 
 casper.test.begin( 'tests: filter', function( test ) {
 
-	casper.start( 'tests/test.html' )
+	casper.start( 'tests/html/filter.html' )
 
 	.then( function() {
 		test.comment( '> table' );

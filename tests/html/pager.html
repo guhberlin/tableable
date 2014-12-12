@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src='../libs/jquery.min.js'></script>
+        <script src='../../dist/jquery.tableable.js'></script>
+    </head>
+    <body>
+
+        <div id="pager">
+            <table>
+                <tbody>
+                    <tr data-custom-filter><td>not visible</td><td>not visible</td></tr>
+                </tbody>
+            </table>
+            <ul class='pager'></ul>
+            <script>
+                $(function() {
+                    for (var i = 0; i < 94; i++) {
+                        $('#pager table tbody').append('<tr><td>'+i+'</td><td>'+(i*i)+'</td></tr>'); //+(i*i)
+                    };
+
+                    $( '#pager table' ).tableable({
+                        pager: {
+                            pagerListSelector: '#pager .pager',
+                            // useDottedPager: false,
+                            rowsPerPage: 4,
+                            customFilterAttributes: ['data-custom-filter'],
+                            firstLable: 'first',
+                            prevLable: 'prev',
+                            nextLable: 'next',
+                            lastLable: 'last',
+                        }
+                    });
+                });
+            </script>
+        </div>
+
+    </body>
+</html>

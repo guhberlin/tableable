@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src='../libs/jquery.min.js'></script>
+        <script src='../../dist/jquery.tableable.js'></script>
+    </head>
+    <body>
+
+        <div id="filter">
+            <input class="filter" />
+            <table>
+                <thead>
+                    <tr>
+                        <th>demo</th>
+                        <th data-no-filter>demo2</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>abc</td><td>abcefg</td></tr>
+                    <tr><td>abc</td><td>abcefg</td></tr>
+                    <tr><td>def</td><td>abcefg</td></tr>
+                </tbody>
+            </table>
+            <script>
+                $(function() {
+                    $( '#filter table' ).tableable({
+                        filter: {
+                            filterInputSelector: '#filter .filter',
+                            ignoreCase: true
+                        }
+                    });
+                });
+            </script>
+        </div>
+
+    </body>
+</html>

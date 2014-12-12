@@ -3,16 +3,15 @@
 	<head>
 		<script src='libs/jquery.min.js'></script>
 		<script src='../dist/jquery.tableable.js'></script>
+
+		<style>
+			* { margin-top: 50px; font-size: 1.5em; }
+			.active { color: green; }
+		</style>
+
 	</head>
 	<body>
 
-
-		<div id="manual">
-
-			<style>
-				#manual { margin-top: 50px; font-size: 1.5em; }
-				.active { color: green; }
-			</style>
 			<input class="filter" />
 			<table>
 				<thead><tr><th>n</th><th data-no-filter>n*n</th><th style="color:fuchsia;" data-no-filter>n*n</th></tr></thead>
@@ -41,90 +40,6 @@
 					});
 				});
 			</script>
-
-		</div> <!-- /#manual -->
-
-		<hr />
-
-		<div id="automatic">
-
-			<div id="filter">
-				<input class="filter" />
-				<table>
-					<thead>
-						<tr>
-							<th>demo</th>
-							<th data-no-filter>demo2</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr><td>abc</td><td>abcefg</td></tr>
-						<tr><td>abc</td><td>abcefg</td></tr>
-						<tr><td>def</td><td>abcefg</td></tr>
-					</tbody>
-				</table>
-				<script>
-					$(function() {
-						$( '#filter table' ).tableable({
-							filter: {
-								filterInputSelector: '#filter .filter',
-								ignoreCase: true
-							}
-						});
-					});
-				</script>
-			</div>
-
-			<div id="pager">
-				<table>
-					<tbody>
-						<tr data-custom-filter><td>not visible</td><td>not visible</td></tr>
-					</tbody>
-				</table>
-				<ul class='pager'></ul>
-				<script>
-					$(function() {
-						for (var i = 0; i < 94; i++) {
-							$('#pager table tbody').append('<tr><td>'+i+'</td><td>'+(i*i)+'</td></tr>'); //+(i*i)
-						};
-
-						$( '#pager table' ).tableable({
-							pager: {
-								pagerListSelector: '#pager .pager',
-								// useDottedPager: false,
-								rowsPerPage: 4,
-								customFilterAttributes: ['data-custom-filter'],
-								firstLable: 'first',
-								prevLable: 'prev',
-								nextLable: 'next',
-								lastLable: 'last',
-							}
-						});
-					});
-				</script>
-			</div>
-
-			<div id="sorter">
-				<table>
-					<thead><tr><th>head a</th><th data-no-sort>head b</th></tr></thead>
-					<tbody>
-						<tr><td>def</td><td>456</td></tr>
-						<tr><td>abc</td><td>123</td></tr>
-						<tr><td>ghi</td><td>789</td></tr>
-					</tbody>
-				</table>
-				<script>
-					$(function() {
-						$( '#sorter table' ).tableable({
-							sorter: {
-								initalSortColIndex: 1
-							}
-						});
-					});
-				</script>
-			</div>
-
-		</div> <!-- /#automatic -->
 
 	</body>
 </html>

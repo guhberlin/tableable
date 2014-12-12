@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src='../libs/jquery.min.js'></script>
+        <script src='../../dist/jquery.tableable.js'></script>
+    </head>
+    <body>
+
+        <div id="sorter">
+            <table>
+                <thead><tr><th>head a</th><th data-no-sort>head b</th></tr></thead>
+                <tbody>
+                    <tr><td>def</td><td>456</td></tr>
+                    <tr><td>abc</td><td>123</td></tr>
+                    <tr><td>ghi</td><td>789</td></tr>
+                </tbody>
+            </table>
+            <script>
+                $(function() {
+                    $( '#sorter table' ).tableable({
+                        sorter: {
+                            initalSortColIndex: 1
+                        }
+                    });
+                });
+            </script>
+        </div>
+
+    </body>
+</html>

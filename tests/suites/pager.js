@@ -1,7 +1,7 @@
 
 casper.test.begin( 'tests: pager', function( test ) {
 
-	casper.start( 'tests/test.html' )
+	casper.start( 'tests/html/pager.html' )
 
 	.then( function() {
 		test.comment( '> table' );
