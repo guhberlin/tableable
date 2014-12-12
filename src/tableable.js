@@ -1,56 +1,63 @@
 
 function TableAble ( element, opts ) {
     this.element = element;
-    var options = new Options();
 
-    this.settings = $.extend( true, {}, options.getDefaults(), opts, options.getUneditableDefaults() );
-    this.settings.pager.attrsToIgnoreRowOnPaging = [].concat(
-        [this.settings.filter.filteredAttribute], this.settings.pager.customFilterAttributes
-    );
-
-    this.init();
+    this.initSettings( opts ).initFeatures();
 }
 
-TableAble.prototype.init = function () {
-    var self           = this,
-        shouldPaginate = ( self.settings.pager  && self.settings.pager.pagerListSelector.length   ),
-        shouldFilter   = ( self.settings.filter && self.settings.filter.filterInputSelector.length ),
-        shouldSort     = ( self.settings.sorter && ( $(self.element).find('thead').length ) )
+TableAble.prototype.initSettings = function ( externalOptions ) {
+    var self = this,
+        options = new Options()
     ;
 
-    if ( shouldPaginate ) {
+    self.settings = {};
+
+    self.settings.shouldPaginate = ( externalOptions.pager  && externalOptions.pager.pagerListSelector.length ) ? true : false;
+    self.settings.shouldFilter   = ( externalOptions.filter && externalOptions.filter.filterInputSelector.length ) ? true : false;
+    self.settings.shouldSort     = ( externalOptions.sorter && ( $(self.element).find('thead').length ) ) ? true : false;
+
+    self.settings = $.extend( true, self.settings, options.getDefaults(), externalOptions, options.getUneditableDefaults() );
+    self.settings.pager.attrsToIgnoreRowOnPaging = [].concat(
+        [self.settings.filter.filteredAttribute], self.settings.pager.customFilterAttributes
+    );
+
+    return self;
+};
+
+TableAble.prototype.initFeatures = function () {
+    var self = this;
+
+    if ( self.settings.shouldFilter ) {
+        self.filter = new Filter( self.element, self.settings.filter );
+        self.filter.setAfterFilterCallback( function() { self.afterFilter(); } );
+    }
+    if ( self.settings.shouldSort )   {
+        self.sorter = new Sorter( self.element, self.settings.sorter );
+        self.sorter.setAfterSortCallback( function() { self.afterSort(); } );
+    }
+    if ( self.settings.shouldPaginate ) {
         self.pager  = new Pager ( self.element, self.settings.pager );
         self.pager.setAfterPaginateCallback( function() { self.afterPaginate(); } );
+        self.pager.paginate();
     }
-
-    if ( shouldFilter ) {
-        self.filter = new Filter( self.element, self.settings.filter );
-        self.filter.setAfterFilterCallback( function(){ self.afterFilter( shouldPaginate ); } );
-    }
-    if ( shouldSort )   {
-        self.sorter = new Sorter( self.element, self.settings.sorter );
-        self.sorter.setAfterSortCallback( function(){ self.afterSort( shouldPaginate ); } );
-    }
-
-    if ( shouldPaginate ) { self.pager.paginate(); }
-
 
     $(self.element).on( self.settings.events.refresh, function() {
-        if ( shouldFilter ) {
+        if ( self.settings.shouldFilter ) {
             self.filter.triggerFilter();
-        } else if ( shouldPaginate ) {
+        } else if ( self.settings.shouldPaginate ) {
             self.pager.paginate();
         }
     });
 
+    return self;
 };
 
-TableAble.prototype.afterFilter = function( shouldPaginate ) {
+TableAble.prototype.afterFilter = function() {
     var self = this;
 
     self.trigger( self.settings.events.filtered, false );
 
-    if ( shouldPaginate ) {
+    if ( self.settings.shouldPaginate ) {
         self.settings.pager.currentPageIndex = '1';
         self.pager.paginate();
     } else {
@@ -58,12 +65,12 @@ TableAble.prototype.afterFilter = function( shouldPaginate ) {
     }
 };
 
-TableAble.prototype.afterSort = function( shouldPaginate ) {
+TableAble.prototype.afterSort = function() {
     var self = this;
 
     self.trigger( self.settings.events.sorted, false );
 
-    if ( shouldPaginate ) {
+    if ( self.settings.shouldPaginate ) {
         if ( self.settings.jumpPageOneAfterSort ) {
             self.settings.pager.currentPageIndex = '1';
         }

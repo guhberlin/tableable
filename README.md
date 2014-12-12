@@ -25,36 +25,38 @@
 
 ### Options
 
-| Option                            | Type    | Description                                                                  | Default        |
-| --------------------------------- | ------- | ---------------------------------------------------------------------------- | -------------- |
-|FilterOpts||||
-| `useFilter`                       | Boolean | en-/disable filtering                                                        | true           |
-| `filterInputSelector`             | String  | selector for the filter-input-element                                        |                |
-| `notFilterAttribute`              | String  | disable filter on th if they have this attr                                  | data-no-filter |
-| `ignoreCase`                      | Boolean | en-/disable casesensetive filtering                                          | false          |
-| `customFilterAttributes`          | Array   | custom attributes for external filters                                       | []             |
-|PagerOpts||||
-| `usePager`                        | Boolean | en-/disable pagination                                                       | true           |
-| `pagerListSelector`               | String  | selector for the pager-ul-element                                            |                |
-| `useDottedPager`                  | Boolean | en-/disable dotted pager                                                     | true           |
-| `rowsPerPage`                     | Integer | number of displayed rows per page                                            | 5              |
-| `noOfShownPagesStartEnd`          | Integer | number of displayed pagerElements at the start and end of the pager (*)          | 2          |
-| `noOfShownPagesNextToCurrentPage` | Integer | number of displayed pagerElements on either side of the current pagerElement (*) | 1          |
-| `inactivPagerIndex`               | String  | PagerIndex for inactive pagerElements                                            | -1         |
-| `firstLable`                      | String  | Label for pagerElement that redirects to first page (**) - not shown if empty    |            |
-| `prevLable`                       | String  | Label for pagerElement that redirects to previous page (**) - not shown if empty |            |
-| `nextLable`                       | String  | Label for pagerElement that redirects to next page (**) - not shown if empty     |            |
-| `lastLable`                       | String  | Label for pagerElement that redirects to last page (**) - not shown if empty     |            |
-|SorterOpts||||
-| `useSorter`                       | Boolean | en-/disable sorting                                                          | true           |
-| `notSortableAttribute`            | String  | disable sort on th if they have this attr                                    | data-no-sort   |
-| `sortTriggerSelector`             | String  | selector where to find sorttrigger in th                                     |                |
-| `jumpPageOneAfterSort`            | Boolean | should jump back to page one after sorting                                   | true           |
-| `initalSortColIndex`              | Integer | sort the table inital by given columnindex                                   | -1             |
+By passing the feature-objects to options you automatically activate the feature.
 
-(\*) ony useable with dottedPager
+####FilterOpts
+| Option                            | Type    | Description                                    | Default        |
+| --------------------------------- | ------- | ---------------------------------------------- | -------------- |
+| `filterInputSelector`             | String  | selector for the filter-input-element          |                |
+| `notFilterAttribute`              | String  | disable filter on th if they have this attr    | data-no-filter |
+| `ignoreCase`                      | Boolean | en-/disable casesensetive filtering            | false          |
+| `customFilterAttributes`          | Array   | custom attributes for external filters         | []             |
 
-(\*\*) can contain HTML
+####PagerOpts
+| Option                                        | Type    | Description                                                                  | Default |
+| --------------------------------------------- | ------- | ---------------------------------------------------------------------------- | ------- |
+| `pagerListSelector`                           | String  | selector for the pager-ul-element                                            |         |
+| `useDottedPager`                              | Boolean | en-/disable dotted pager                                                     | true    |
+| `rowsPerPage`                                 | Integer | number of displayed rows per page                                            | 5       |
+| `noOfShownPagesStartEnd`<sup>1</sup>          | Integer | number of displayed pagerElements at the start and end of the pager          | 2       |
+| `noOfShownPagesNextToCurrentPage`<sup>1</sup> | Integer | number of displayed pagerElements on either side of the current pagerElement | 1       |
+| `inactivPagerIndex`                           | String  | PagerIndex for pagerElements that dont provoke pagechanges                   | -1      |
+| `firstLable`                                  | String  | Label for pagerElement that redirects to first page <sup>2,3</sup>           |         |
+| `prevLable`                                   | String  | Label for pagerElement that redirects to previous page <sup>2,3</sup>        |         |
+| `nextLable`                                   | String  | Label for pagerElement that redirects to next page <sup>2,3</sup>            |         |
+| `lastLable`                                   | String  | Label for pagerElement that redirects to last page <sup>2,3</sup>            |         |
+(<sup>1</sup>) ony useable with dottedPager - (<sup>2</sup>) can contain HTML - (<sup>3</sup>) not shown if empty
+
+####SorterOpts
+| Option                            | Type    | Description                                    | Default        |
+| --------------------------------- | ------- | ---------------------------------------------- | -------------- |
+| `notSortableAttribute`            | String  | disable sort on th if they have this attr      | data-no-sort   |
+| `sortTriggerSelector`             | String  | selector where to find sorttrigger in th       |                |
+| `jumpPageOneAfterSort`            | Boolean | should jump back to page one after sorting     | true           |
+| `initalSortColIndex`              | Integer | sort the table inital by given columnindex     | -1             |
 
 ### Events
 
