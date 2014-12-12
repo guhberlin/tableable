@@ -24,6 +24,12 @@ casper.test.begin( 'tests: filter', function( test ) {
 		test.assertElementCount( '#filter table tbody tr[data-is-filtered]', 1 );
 	})
 
+	.then( function() {
+        test.comment( '> observing envent filtered' );
+
+        test.assertSelectorHasText( 'p.eventCounter', '13' );
+    })
+
 	.run( function() { test.done(); });
 
 });

@@ -15,13 +15,22 @@
                     <tr><td>ghi</td><td>789</td></tr>
                 </tbody>
             </table>
+            <div><p class="eventCounter">0</p></div>
+
             <script>
                 $(function() {
-                    $( '#sorter table' ).tableable({
+                    var tableElement = $('#sorter table');
+
+                    tableElement.tableable({
                         sorter: {
                             initalSortColIndex: 1
                         }
                     });
+
+                    tableElement.on( 'sorted', function() {
+                        $('.eventCounter').text( parseInt($('.eventCounter').text())+1 );
+                    });
+
                 });
             </script>
         </div>

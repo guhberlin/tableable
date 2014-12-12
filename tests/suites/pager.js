@@ -75,6 +75,12 @@ casper.test.begin( 'tests: pager', function( test ) {
 		test.assertEquals( this.getElementAttribute('#pager ul li[data-show-page-index="24"]', 'class'), 'active' );
 	})
 
+	.then( function() {
+        test.comment( '> observing envent paged' );
+
+        test.assertSelectorHasText( 'p.eventCounter', '6' );
+    })
+
 	.run( function() { test.done(); });
 
 });

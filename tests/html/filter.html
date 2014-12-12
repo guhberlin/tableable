@@ -21,13 +21,21 @@
                     <tr><td>def</td><td>abcefg</td></tr>
                 </tbody>
             </table>
+            <div><p class="eventCounter">0</p></div>
+
             <script>
                 $(function() {
-                    $( '#filter table' ).tableable({
+                    var tableElement = $('#filter table');
+
+                    tableElement.tableable({
                         filter: {
                             filterInputSelector: '#filter .filter',
                             ignoreCase: true
                         }
+                    });
+
+                    tableElement.on( 'filtered', function() {
+                        $('.eventCounter').text( parseInt($('.eventCounter').text())+1 );
                     });
                 });
             </script>

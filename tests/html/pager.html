@@ -13,13 +13,19 @@
                 </tbody>
             </table>
             <ul class='pager'></ul>
+
+            <div><p class="eventCounter">0</p></div>
+
+
             <script>
                 $(function() {
+                    var tableElement = $('#pager table');
+
                     for (var i = 0; i < 94; i++) {
-                        $('#pager table tbody').append('<tr><td>'+i+'</td><td>'+(i*i)+'</td></tr>'); //+(i*i)
+                        $('tbody', tableElement).append('<tr><td>'+i+'</td><td>'+(i*i)+'</td></tr>'); //+(i*i)
                     };
 
-                    $( '#pager table' ).tableable({
+                    tableElement.tableable({
                         pager: {
                             pagerListSelector: '#pager .pager',
                             // useDottedPager: false,
@@ -30,6 +36,11 @@
                             nextLable: 'next',
                             lastLable: 'last',
                         }
+                    });
+
+
+                    tableElement.on( 'paged', function() {
+                        $('.eventCounter').text( parseInt($('.eventCounter').text())+1 );
                     });
                 });
             </script>

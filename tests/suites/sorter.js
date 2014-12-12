@@ -30,6 +30,12 @@ casper.test.begin( 'tests: sorter', function( test ) {
         test.assertSelectorHasText( '#sorter table tbody tr td:last-child', '789' );
     })
 
+    .then( function() {
+        test.comment( '> observing envent sorted' );
+
+        test.assertSelectorHasText( 'p.eventCounter', '2' );
+    })
+
  	.run( function() { test.done(); });
 
 });
