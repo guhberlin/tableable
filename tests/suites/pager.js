@@ -82,6 +82,13 @@ casper.test.begin( 'tests: pager', function( test ) {
         test.assertSelectorHasText( 'p.updatedEventCounter', '6' );
     })
 
+    .then( function() {
+    	test.comment( '> paging empty table' );
+
+    	test.assertElementCount( '#emptyPager ul li', 4 );
+    	test.assertElementCount( '#emptyPager ul li[data-show-page-index="-1"]', 4 );
+    })
+
 	.run( function() { test.done(); });
 
 });

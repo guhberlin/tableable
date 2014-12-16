@@ -50,5 +50,30 @@
             </script>
         </div>
 
+
+        <div id="emptyPager">
+            <table>
+                <tbody></tbody>
+            </table>
+            <ul class='emptyPager'></ul>
+
+            <script>
+                $(function() {
+                    var emptyTableElement = $('#emptyPager table');
+
+                    emptyTableElement.tableable({
+                        pager: {
+                            pagerListSelector: '#emptyPager .emptyPager',
+                            rowsPerPage: 4,
+                            firstLable: 'first',
+                            prevLable: 'prev',
+                            nextLable: 'next',
+                            lastLable: 'last',
+                        }
+                    });
+                });
+            </script>
+        </div>
+
     </body>
 </html>

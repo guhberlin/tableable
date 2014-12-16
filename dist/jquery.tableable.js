@@ -1,5 +1,5 @@
 /*
- *  jQuery tableable plugin - v2.4.5
+ *  jQuery tableable plugin - v2.4.6
  *  A plugin to filter, paginate and sort html tables
  *  http://guhberlin.github.io/tableable
  *
@@ -199,20 +199,20 @@ Pager.prototype.buildPagerList = function () {
 
     // first + prev
     if( self.settings.firstLable.length > 0 ) {
-        self.appendPagerItem( self.settings.firstLable, (cpi !== 1 ? 1 : self.settings.inactivPagerIndex) );
+        self.appendPagerItem( self.settings.firstLable, (cpi > 1 ? 1 : self.settings.inactivPagerIndex) );
     }
     if( self.settings.prevLable.length > 0 ) {
-        self.appendPagerItem( self.settings.prevLable, (cpi !== 1 ? cpi-1 : self.settings.inactivPagerIndex) );
+        self.appendPagerItem( self.settings.prevLable, (cpi > 1 ? cpi-1 : self.settings.inactivPagerIndex) );
     }
 
     self[self.pagerListBuildFunction]();
 
     // next + last
     if( self.settings.nextLable.length > 0 ) {
-        self.appendPagerItem( self.settings.nextLable, (cpi !== pageCount ? cpi+1 : self.settings.inactivPagerIndex) );
+        self.appendPagerItem( self.settings.nextLable, (cpi < pageCount ? cpi+1 : self.settings.inactivPagerIndex) );
     }
     if( self.settings.lastLable.length > 0 ) {
-        self.appendPagerItem( self.settings.lastLable, (cpi !== pageCount ? pageCount : self.settings.inactivPagerIndex) );
+        self.appendPagerItem( self.settings.lastLable, (cpi < pageCount ? pageCount : self.settings.inactivPagerIndex) );
     }
 
 
