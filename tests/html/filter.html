@@ -16,6 +16,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <tr data-custom-filter><td>not visable</td><td>abcefg</td></tr>
                     <tr><td>abc</td><td>abcefg</td></tr>
                     <tr><td>abc</td><td>abcefg</td></tr>
                     <tr><td>def</td><td>abcefg</td></tr>
@@ -31,6 +32,7 @@
                     tableElement.tableable({
                         filter: {
                             filterInputSelector: '#filter .filter',
+                            customFilteredAttributes: ['data-custom-filter'],
                             ignoreCase: true
                         }
                     });
