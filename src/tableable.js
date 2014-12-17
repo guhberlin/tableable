@@ -17,9 +17,7 @@ TableAble.prototype.initSettings = function ( externalOptions ) {
     self.settings.shouldSort     = ( externalOptions.sorter && ( $(self.element).find('thead').length ) ) ? true : false;
 
     self.settings = $.extend( true, self.settings, options.getDefaults(), externalOptions, options.getUneditableDefaults() );
-    self.settings.pager.attrsToIgnoreRowOnPaging = [].concat(
-        [self.settings.filter.filteredAttribute], self.settings.pager.customFilterAttributes
-    );
+    self.settings.pager.filteredAttribute = self.settings.filter.filteredAttribute;
 
     return self;
 };
@@ -27,15 +25,14 @@ TableAble.prototype.initSettings = function ( externalOptions ) {
 TableAble.prototype.initFeatures = function () {
     var self = this;
 
+    if ( self.settings.shouldPaginate ) {
+        self.pager  = new Pager ( self.element, self.settings.pager, function() { self.afterPaginate(); } );
+    }
     if ( self.settings.shouldFilter ) {
         self.filter = new Filter( self.element, self.settings.filter, function() { self.afterFilter(); } );
     }
     if ( self.settings.shouldSort )   {
         self.sorter = new Sorter( self.element, self.settings.sorter, function() { self.afterSort(); } );
-    }
-    if ( self.settings.shouldPaginate ) {
-        self.pager  = new Pager ( self.element, self.settings.pager, function() { self.afterPaginate(); } );
-        self.pager.paginate();
     }
 
     $(self.element).on( self.settings.events.refresh, function() {

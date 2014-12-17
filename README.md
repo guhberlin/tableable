@@ -28,12 +28,12 @@
 By passing the feature-objects to options you automatically activate the feature.
 
 ####FilterOpts
-| Option                            | Type    | Description                                    | Default        |
-| --------------------------------- | ------- | ---------------------------------------------- | -------------- |
-| `filterInputSelector`             | String  | selector for the filter-input-element          |                |
-| `notFilterAttribute`              | String  | disable filter on th if they have this attr    | data-no-filter |
-| `ignoreCase`                      | Boolean | en-/disable casesensetive filtering            | false          |
-| `customFilterAttributes`          | Array   | custom attributes for external filters         | []             |
+| Option                            | Type    | Description                                       | Default        |
+| --------------------------------- | ------- | ------------------------------------------------- | -------------- |
+| `filterInputSelector`             | String  | selector for the filter-input-element             |                |
+| `notFilterAttribute`              | String  | disable filter on th if they have this attr       | data-no-filter |
+| `ignoreCase`                      | Boolean | en-/disable casesensetive filtering               | false          |
+| `customFilteredAttributes`        | Array   | custom attributes for additional external filters | []             |
 
 ####PagerOpts
 | Option                                        | Type    | Description                                                                  | Default |
@@ -41,6 +41,7 @@ By passing the feature-objects to options you automatically activate the feature
 | `pagerListSelector`                           | String  | selector for the pager-ul-element                                            |         |
 | `useDottedPager`                              | Boolean | en-/disable dotted pager                                                     | true    |
 | `rowsPerPage`                                 | Integer | number of displayed rows per page                                            | 5       |
+| `customFilteredAttributes`                    | Array   | custom attributes for external filters                                       | []      |
 | `noOfShownPagesStartEnd`<sup>1</sup>          | Integer | number of displayed pagerElements at the start and end of the pager          | 2       |
 | `noOfShownPagesNextToCurrentPage`<sup>1</sup> | Integer | number of displayed pagerElements on either side of the current pagerElement | 1       |
 | `inactivPagerIndex`                           | String  | PagerIndex for pagerElements that dont provoke pagechanges                   | -1      |

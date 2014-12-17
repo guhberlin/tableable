@@ -1,5 +1,5 @@
 /*
- *  jQuery tableable plugin - v2.4.6
+ *  jQuery tableable plugin - v2.4.7
  *  A plugin to filter, paginate and sort html tables
  *  http://guhberlin.github.io/tableable
  *
@@ -38,6 +38,8 @@ function Filter ( element, options, cb ) {
     $( this.settings.filterInputSelector ).keyup( function() {
         self.filter();
     });
+
+    self.filter();
 }
 
 Filter.prototype.filter = function() {
@@ -63,7 +65,12 @@ Filter.prototype.filter = function() {
         .each( function() {
             var row = $(this);
             row.children( 'td' ).each( function(index, val) {
-                if ( ignoredColumnIndices.indexOf( $(this).index() ) >= 0 || Utils.Element( this ).hasAttr( self.settings.notFilterAttribute ) ) { return; }
+                if ( ignoredColumnIndices.indexOf( $(this).index() ) >= 0 ||
+                     Utils.Element( this ).hasAttr( self.settings.notFilterAttribute ) ||
+                     Utils.Element( row ).hasOneOfAttrs( self.settings.customFilteredAttributes ) )
+                {
+                    return;
+                }
 
                 val = ( self.settings.ignoreCase ) ? $(val).text().toLowerCase() : $(val).text() ;
                 if ( val.indexOf( searched ) >= 0 ) {
@@ -152,6 +159,8 @@ function Pager ( element, options, cb ) {
     this.afterPaginate = cb;
 
     this.pagerListBuildFunction = ( this.settings.useDottedPager ) ? 'buildDottedPagerList' : 'buildFullPagerList' ;
+
+    this.paginate();
 }
 
 Pager.prototype.paginate = function () {
@@ -164,7 +173,9 @@ Pager.prototype.paginate = function () {
         .children( 'tr' )
         .removeAttr( self.settings.pageIndexAttribute )
         .filter( function() {
-            return ( !Utils.Element( this ).hasOneOfAttrs( self.settings.attrsToIgnoreRowOnPaging ) );
+            return ( !Utils.Element( this ).hasOneOfAttrs( self.settings.customFilteredAttributes ) &&
+                     !Utils.Element( this ).hasAttr( self.settings.filteredAttribute )
+            );
         })
         .each( function(index) {
             if ( (index%self.settings.rowsPerPage) === 0 ) { pageCount++; }
@@ -182,7 +193,9 @@ Pager.prototype.getPageCount = function() {
         .children( 'tbody' )
         .children( 'tr' )
         .filter( function() {
-            return ( !Utils.Element( this ).hasOneOfAttrs( self.settings.attrsToIgnoreRowOnPaging ) );
+            return ( !Utils.Element( this ).hasOneOfAttrs( self.settings.customFilteredAttributes ) &&
+                     !Utils.Element( this ).hasAttr( self.settings.filteredAttribute )
+            );
         })
         .length / self.settings.rowsPerPage
     );
@@ -307,14 +320,15 @@ Options.prototype.getDefaults = function() {
             filterInputSelector: '',
             ignoreCase: false,
             notFilterAttribute: 'data-no-filter',
+            customFilteredAttributes: [],
         },
         pager:  {
             useDottedPager: true,
             pagerListSelector: '',
             rowsPerPage: 5,
+            customFilteredAttributes: [],
             noOfShownPagesStartEnd: 2,
             noOfShownPagesNextToCurrentPage: 1,
-            customFilterAttributes: [],
             inactivPagerIndex: '-1',
             firstLable: '',
             prevLable: '',
@@ -333,7 +347,8 @@ Options.prototype.getDefaults = function() {
 Options.prototype.getUneditableDefaults = function() {
     return {
         filter: {
-            filteredAttribute:       'data-is-filtered',
+            filteredAttribute:      'data-is-filtered',
+            displayType:            'table-row',
         },
         pager:  {
             pageIndexAttribute:     'data-page-index',
@@ -373,9 +388,7 @@ TableAble.prototype.initSettings = function ( externalOptions ) {
     self.settings.shouldSort     = ( externalOptions.sorter && ( $(self.element).find('thead').length ) ) ? true : false;
 
     self.settings = $.extend( true, self.settings, options.getDefaults(), externalOptions, options.getUneditableDefaults() );
-    self.settings.pager.attrsToIgnoreRowOnPaging = [].concat(
-        [self.settings.filter.filteredAttribute], self.settings.pager.customFilterAttributes
-    );
+    self.settings.pager.filteredAttribute = self.settings.filter.filteredAttribute;
 
     return self;
 };
@@ -383,15 +396,14 @@ TableAble.prototype.initSettings = function ( externalOptions ) {
 TableAble.prototype.initFeatures = function () {
     var self = this;
 
+    if ( self.settings.shouldPaginate ) {
+        self.pager  = new Pager ( self.element, self.settings.pager, function() { self.afterPaginate(); } );
+    }
     if ( self.settings.shouldFilter ) {
         self.filter = new Filter( self.element, self.settings.filter, function() { self.afterFilter(); } );
     }
     if ( self.settings.shouldSort )   {
         self.sorter = new Sorter( self.element, self.settings.sorter, function() { self.afterSort(); } );
-    }
-    if ( self.settings.shouldPaginate ) {
-        self.pager  = new Pager ( self.element, self.settings.pager, function() { self.afterPaginate(); } );
-        self.pager.paginate();
     }
 
     $(self.element).on( self.settings.events.refresh, function() {

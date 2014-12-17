@@ -5,6 +5,8 @@ function Pager ( element, options, cb ) {
     this.afterPaginate = cb;
 
     this.pagerListBuildFunction = ( this.settings.useDottedPager ) ? 'buildDottedPagerList' : 'buildFullPagerList' ;
+
+    this.paginate();
 }
 
 Pager.prototype.paginate = function () {
@@ -17,7 +19,9 @@ Pager.prototype.paginate = function () {
         .children( 'tr' )
         .removeAttr( self.settings.pageIndexAttribute )
         .filter( function() {
-            return ( !Utils.Element( this ).hasOneOfAttrs( self.settings.attrsToIgnoreRowOnPaging ) );
+            return ( !Utils.Element( this ).hasOneOfAttrs( self.settings.customFilteredAttributes ) &&
+                     !Utils.Element( this ).hasAttr( self.settings.filteredAttribute )
+            );
         })
         .each( function(index) {
             if ( (index%self.settings.rowsPerPage) === 0 ) { pageCount++; }
@@ -35,7 +39,9 @@ Pager.prototype.getPageCount = function() {
         .children( 'tbody' )
         .children( 'tr' )
         .filter( function() {
-            return ( !Utils.Element( this ).hasOneOfAttrs( self.settings.attrsToIgnoreRowOnPaging ) );
+            return ( !Utils.Element( this ).hasOneOfAttrs( self.settings.customFilteredAttributes ) &&
+                     !Utils.Element( this ).hasAttr( self.settings.filteredAttribute )
+            );
         })
         .length / self.settings.rowsPerPage
     );

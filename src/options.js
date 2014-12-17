@@ -7,14 +7,15 @@ Options.prototype.getDefaults = function() {
             filterInputSelector: '',
             ignoreCase: false,
             notFilterAttribute: 'data-no-filter',
+            customFilteredAttributes: [],
         },
         pager:  {
             useDottedPager: true,
             pagerListSelector: '',
             rowsPerPage: 5,
+            customFilteredAttributes: [],
             noOfShownPagesStartEnd: 2,
             noOfShownPagesNextToCurrentPage: 1,
-            customFilterAttributes: [],
             inactivPagerIndex: '-1',
             firstLable: '',
             prevLable: '',
@@ -33,7 +34,8 @@ Options.prototype.getDefaults = function() {
 Options.prototype.getUneditableDefaults = function() {
     return {
         filter: {
-            filteredAttribute:       'data-is-filtered',
+            filteredAttribute:      'data-is-filtered',
+            displayType:            'table-row',
         },
         pager:  {
             pageIndexAttribute:     'data-page-index',
