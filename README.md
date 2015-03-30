@@ -1,6 +1,6 @@
 # jQuery tableable
 
-### A plugin to filter, paginate and sort html tables.
+### A plugin to filter, paginate and sort html tables and any blockelement that should act as a table.
 
 ## Usage
 
@@ -61,7 +61,7 @@ By passing the feature-objects to options you automatically activate the feature
 
 ### Events
 
-#### Throwed by plugin
+#### Thrown by plugin
 
 After filtering, sorting and pageing the plugin will trigger events so you can add observers. All events are triggered on the rootelement.
 

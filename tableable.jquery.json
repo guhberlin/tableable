@@ -1,7 +1,7 @@
 {
 	"name": "tableable",
 	"title": "jQuery tableable plugin",
-	"description": "A plugin to filter, paginate and sort html tables",
+	"description": "A plugin to filter, paginate and sort html tables and any blockelement that should act as a table.",
 	"keywords": [
 		"jquery",
 		"plugins",
@@ -10,7 +10,7 @@
 		"pager",
 		"sorter"
 	],
-	"version": "2.4.7",
+	"version": "3.0.0",
 	"author": {
 		"name": "guhberlin",
 		"url": "https://github.com/guhberlin"

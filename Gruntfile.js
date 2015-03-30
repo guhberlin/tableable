@@ -40,6 +40,15 @@ module.exports = function(grunt) {
 		        },
 		    },
 		},
+		concat: {
+			dist: {
+				src: [ 'dist/jquery.tableable.js' ],
+				dest: 'dist/jquery.tableable.js'
+			},
+			options: {
+				banner: '<%= meta.banner %>'
+			}
+		},
 
 		// Lint definitions
 		jshint: {
@@ -82,12 +91,13 @@ module.exports = function(grunt) {
 	});
 
 	grunt.loadNpmTasks( 'grunt-contrib-copy'   );
+	grunt.loadNpmTasks( 'grunt-contrib-concat'   );
 	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
 	grunt.loadNpmTasks( 'grunt-contrib-uglify' );
 	grunt.loadNpmTasks( 'grunt-casper' );
 	grunt.loadNpmTasks("grunt-contrib-watch");
 
-	grunt.registerTask( 'default', [ 'jshint', 'copy', 'uglify', 'casper' ] );
+	grunt.registerTask( 'default', [ 'jshint', 'copy', 'concat', 'uglify', 'casper' ] );
 	grunt.registerTask( 'test',    [ 'casper' ] );
 
 };

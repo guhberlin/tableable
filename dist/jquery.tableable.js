@@ -1,3 +1,11 @@
+/*
+ *  jQuery tableable plugin - v3.0.0
+ *  A plugin to filter, paginate and sort html tables and any blockelement that should act as a table.
+ *  http://guhberlin.github.io/tableable
+ *
+ *  Made by guhberlin
+ *  Under BSD-3-Clause License
+ */
 
 ;(function ( $, window, document, undefined ) {
 
