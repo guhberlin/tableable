@@ -1,7 +1,8 @@
 
-function Filter ( element, options, cb ) {
+function Filter ( element, options, constants, cb ) {
     this.element     = element;
     this.settings    = options;
+    this.constants   = constants;
     this.afterFilter = cb;
 
     var self = this;
@@ -22,20 +23,20 @@ Filter.prototype.filter = function() {
     searched = ( self.settings.ignoreCase ) ? searched.toLowerCase() : searched ;
 
     $( self.element )
-        .children( 'thead' )
-        .children( 'tr' )
-        .children( 'th['+self.settings.notFilterAttribute+']' )
+        .children( self.constants.get('selector','thead') )
+        .children( self.constants.get('selector','tr') )
+        .children( self.constants.get('selector','th')+'['+self.settings.notFilterAttribute+']' )
         .each(function() { ignoredColumnIndices.push( $(this).index() ); })
     ;
 
     $( self.element )
-        .children( 'tbody' )
-        .children( 'tr' )
+        .children( self.constants.get('selector','tbody') )
+        .children( self.constants.get('selector','tr') )
         .css( 'display', 'none' )
         .attr( self.settings.filteredAttribute, '' )
         .each( function() {
             var row = $(this);
-            row.children( 'td' ).each( function(index, val) {
+            row.children( self.constants.get('selector','td') ).each( function(index, val) {
                 if ( ignoredColumnIndices.indexOf( $(this).index() ) >= 0 ||
                      Utils.Element( this ).hasAttr( self.settings.notFilterAttribute ) ||
                      Utils.Element( row ).hasOneOfAttrs( self.settings.customFilteredAttributes ) )

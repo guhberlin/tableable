@@ -1,7 +1,8 @@
 
 function TableAble ( element, opts ) {
-    this.element = element;
+    this.element = $(element);
 
+    this.constants = new Constants( element );
     this.initSettings( opts ).initFeatures();
 }
 
@@ -14,7 +15,7 @@ TableAble.prototype.initSettings = function ( externalOptions ) {
 
     self.settings.shouldPaginate = ( externalOptions.pager  && externalOptions.pager.pagerListSelector.length ) ? true : false;
     self.settings.shouldFilter   = ( externalOptions.filter && externalOptions.filter.filterInputSelector.length ) ? true : false;
-    self.settings.shouldSort     = ( externalOptions.sorter && ( $(self.element).find('thead').length ) ) ? true : false;
+    self.settings.shouldSort     = ( externalOptions.sorter && ( $(self.element).find( self.constants.get('selector','thead') ).length ) ) ? true : false;
 
     self.settings = $.extend( true, self.settings, options.getDefaults(), externalOptions, options.getUneditableDefaults() );
     self.settings.pager.filteredAttribute = self.settings.filter.filteredAttribute;
@@ -26,13 +27,13 @@ TableAble.prototype.initFeatures = function () {
     var self = this;
 
     if ( self.settings.shouldPaginate ) {
-        self.pager  = new Pager ( self.element, self.settings.pager, function() { self.afterPaginate(); } );
+        self.pager  = new Pager ( self.element, self.settings.pager, self.constants, function() { self.afterPaginate(); } );
     }
     if ( self.settings.shouldFilter ) {
-        self.filter = new Filter( self.element, self.settings.filter, function() { self.afterFilter(); } );
+        self.filter = new Filter( self.element, self.settings.filter, self.constants, function() { self.afterFilter(); } );
     }
     if ( self.settings.shouldSort )   {
-        self.sorter = new Sorter( self.element, self.settings.sorter, function() { self.afterSort(); } );
+        self.sorter = new Sorter( self.element, self.settings.sorter, self.constants, function() { self.afterSort(); } );
     }
 
     $(self.element).on( self.settings.events.refresh, function() {

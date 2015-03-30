@@ -1,7 +1,8 @@
 
-function Pager ( element, options, cb ) {
+function Pager ( element, options, constants, cb ) {
     this.element       = element;
     this.settings      = options;
+    this.constants     = constants;
     this.afterPaginate = cb;
 
     this.pagerListBuildFunction = ( this.settings.useDottedPager ) ? 'buildDottedPagerList' : 'buildFullPagerList' ;
@@ -15,8 +16,8 @@ Pager.prototype.paginate = function () {
     ;
 
     $( self.element )
-        .children( 'tbody' )
-        .children( 'tr' )
+        .children( self.constants.get('selector','tbody') )
+        .children( self.constants.get('selector','tr') )
         .removeAttr( self.settings.pageIndexAttribute )
         .filter( function() {
             return ( !Utils.Element( this ).hasOneOfAttrs( self.settings.customFilteredAttributes ) &&
@@ -36,8 +37,8 @@ Pager.prototype.getPageCount = function() {
     var self = this;
 
     return Math.ceil( $( self.element )
-        .children( 'tbody' )
-        .children( 'tr' )
+        .children( self.constants.get('selector','tbody') )
+        .children( self.constants.get('selector','tr') )
         .filter( function() {
             return ( !Utils.Element( this ).hasOneOfAttrs( self.settings.customFilteredAttributes ) &&
                      !Utils.Element( this ).hasAttr( self.settings.filteredAttribute )
@@ -119,10 +120,10 @@ Pager.prototype.showPage = function ( pageIndex ) {
     if ( pageIndex === self.settings.inactivPagerIndex ) { return; }
 
     $( self.element )
-        .children( 'tbody' )
-        .children( 'tr' )
+        .children( self.constants.get('selector','tbody') )
+        .children( self.constants.get('selector','tr') )
         .css( 'display', 'none' )
-        .filter( 'tr['+self.settings.pageIndexAttribute+'="'+pageIndex+'"]' )
+        .filter( self.constants.get('selector','tr')+'['+self.settings.pageIndexAttribute+'="'+pageIndex+'"]' )
         .css( 'display', self.settings.displayType )
     ;
 

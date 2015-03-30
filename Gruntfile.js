@@ -26,6 +26,7 @@ module.exports = function(grunt) {
 						'src/sorter.js',
 						'src/pager.js',
 						'src/options.js',
+						'src/constants.js',
 						'src/tableable.js',
 						'src/jquery.tableable.js'
 					],
