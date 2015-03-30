@@ -35,12 +35,10 @@ Options.prototype.getUneditableDefaults = function() {
     return {
         filter: {
             filteredAttribute:      'data-is-filtered',
-            displayType:            'table-row',
         },
         pager:  {
             pageIndexAttribute:     'data-page-index',
             showPageIndexAttribute: 'data-show-page-index',
-            displayType:            'table-row',
             currentPageIndex:       '1',
         },
         sorter: {

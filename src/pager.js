@@ -124,7 +124,7 @@ Pager.prototype.showPage = function ( pageIndex ) {
         .children( self.constants.get('selector','tr') )
         .css( 'display', 'none' )
         .filter( self.constants.get('selector','tr')+'['+self.settings.pageIndexAttribute+'="'+pageIndex+'"]' )
-        .css( 'display', self.settings.displayType )
+        .css( 'display', self.constants.get('displayType','tr') )
     ;
 
     self.settings.currentPageIndex = pageIndex;

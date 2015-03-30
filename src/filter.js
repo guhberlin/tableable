@@ -46,7 +46,7 @@ Filter.prototype.filter = function() {
 
                 val = ( self.settings.ignoreCase ) ? $(val).text().toLowerCase() : $(val).text() ;
                 if ( val.indexOf( searched ) >= 0 ) {
-                    row.css( 'display', self.settings.displayType ).removeAttr( self.settings.filteredAttribute );
+                    row.css( 'display', self.constants.get('displayType','tr') ).removeAttr( self.settings.filteredAttribute );
                 }
             });
         })
