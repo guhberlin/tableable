@@ -6,7 +6,7 @@
     </head>
     <body>
 
-        <div id="filter">
+        <div id="filter-table">
             <input class="filter" />
             <table>
                 <thead>
@@ -27,21 +27,62 @@
 
             <script>
                 $(function() {
-                    var tableElement = $('#filter table');
+                    var tableElement = $('#filter-table table');
 
                     tableElement.tableable({
                         filter: {
-                            filterInputSelector: '#filter .filter',
+                            filterInputSelector: '#filter-table .filter',
                             customFilteredAttributes: ['data-custom-filter'],
                             ignoreCase: true
                         }
                     });
 
                     tableElement.on( 'filtered', function() {
-                        $('.eventCounter').text( parseInt($('.eventCounter').text())+1 );
+                        $('#filter-table .eventCounter').text( parseInt($('#filter-table .eventCounter').text())+1 );
                     });
                     tableElement.on( 'updated', function() {
-                        $('.updatedEventCounter').text( parseInt($('.updatedEventCounter').text())+1 );
+                        $('#filter-table .updatedEventCounter').text( parseInt($('#filter-table .updatedEventCounter').text())+1 );
+                    });
+                });
+            </script>
+        </div>
+
+        <div id="filter-block">
+            <input class="filter" />
+            <div class="ta-table">
+                <div class="ta-thead">
+                    <div class="ta-tr">
+                        <div class="ta-th">demo</div>
+                        <div class="ta-th" data-no-filter>demo2</div>
+                    </div>
+                </div>
+                <div class="ta-tbody">
+                    <div class="ta-tr" data-custom-filter><div class="ta-td">not visable</div><div class="ta-td">abcefg</div></div>
+                    <div class="ta-tr"><div class="ta-td">abc</div><div class="ta-td">abcefg</div></div>
+                    <div class="ta-tr"><div class="ta-td">abc</div><div class="ta-td">abcefg</div></div>
+                    <div class="ta-tr"><div class="ta-td">def</div><div class="ta-td">abcefg</div></div>
+                </div>
+            </div>
+            <div><p class="eventCounter">0</p></div>
+            <div><p class="updatedEventCounter">0</p></div>
+
+            <script>
+                $(function() {
+                    var tableElement = $('#filter-block .ta-table');
+
+                    tableElement.tableable({
+                        filter: {
+                            filterInputSelector: '#filter-block .filter',
+                            customFilteredAttributes: ['data-custom-filter'],
+                            ignoreCase: true
+                        }
+                    });
+
+                    tableElement.on( 'filtered', function() {
+                        $('#filter-block .eventCounter').text( parseInt($('#filter-block .eventCounter').text())+1 );
+                    });
+                    tableElement.on( 'updated', function() {
+                        $('#filter-block .updatedEventCounter').text( parseInt($('#filter-block .updatedEventCounter').text())+1 );
                     });
                 });
             </script>

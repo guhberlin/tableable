@@ -6,7 +6,7 @@
     </head>
     <body>
 
-        <div id="sorter">
+        <div id="sorter-table">
             <table>
                 <thead><tr><th>head a</th><th data-no-sort>head b</th></tr></thead>
                 <tbody>
@@ -20,7 +20,7 @@
 
             <script>
                 $(function() {
-                    var tableElement = $('#sorter table');
+                    var tableElement = $('#sorter-table table');
 
                     tableElement.tableable({
                         sorter: {
@@ -29,10 +29,43 @@
                     });
 
                     tableElement.on( 'sorted', function() {
-                        $('.eventCounter').text( parseInt($('.eventCounter').text())+1 );
+                        $('#sorter-table .eventCounter').text( parseInt($('#sorter-table .eventCounter').text())+1 );
                     });
                     tableElement.on( 'updated', function() {
-                        $('.updatedEventCounter').text( parseInt($('.updatedEventCounter').text())+1 );
+                        $('#sorter-table .updatedEventCounter').text( parseInt($('#sorter-table .updatedEventCounter').text())+1 );
+                    });
+
+                });
+            </script>
+        </div>
+
+        <div id="sorter-block">
+            <div class="ta-table">
+                <div class="ta-thead"><div class="ta-tr"><div class="ta-th">head a</div><div class="ta-th" data-no-sort>head b</div></div></div>
+                <div class="ta-tbody">
+                    <div class="ta-tr"><div class="ta-td">def</div><div class="ta-td">456</div></div>
+                    <div class="ta-tr"><div class="ta-td">abc</div><div class="ta-td">123</div></div>
+                    <div class="ta-tr"><div class="ta-td">ghi</div><div class="ta-td">789</div></div>
+                </div>
+            </div>
+            <div><p class="eventCounter">0</p></div>
+            <div><p class="updatedEventCounter">0</p></div>
+
+            <script>
+                $(function() {
+                    var tableElement = $('#sorter-block .ta-table');
+
+                    tableElement.tableable({
+                        sorter: {
+                            initalSortColIndex: 1
+                        }
+                    });
+
+                    tableElement.on( 'sorted', function() {
+                        $('#sorter-block .eventCounter').text( parseInt($('#sorter-block .eventCounter').text())+1 );
+                    });
+                    tableElement.on( 'updated', function() {
+                        $('#sorter-block .updatedEventCounter').text( parseInt($('#sorter-block .updatedEventCounter').text())+1 );
                     });
 
                 });

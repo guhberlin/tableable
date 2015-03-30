@@ -6,7 +6,7 @@
     </head>
     <body>
 
-        <div id="pager">
+        <div id="pager-table">
             <table>
                 <tbody>
                     <tr data-custom-filter><td>not visible</td><td>not visible</td></tr>
@@ -20,7 +20,7 @@
 
             <script>
                 $(function() {
-                    var tableElement = $('#pager table');
+                    var tableElement = $('#pager-table table');
 
                     for (var i = 0; i < 94; i++) {
                         $('tbody', tableElement).append('<tr><td>'+i+'</td><td>'+(i*i)+'</td></tr>'); //+(i*i)
@@ -28,7 +28,7 @@
 
                     tableElement.tableable({
                         pager: {
-                            pagerListSelector: '#pager .pager',
+                            pagerListSelector: '#pager-table .pager',
                             // useDottedPager: false,
                             rowsPerPage: 4,
                             customFilteredAttributes: ['data-custom-filter'],
@@ -41,10 +41,59 @@
 
 
                     tableElement.on( 'paged', function() {
-                        $('.eventCounter').text( parseInt($('.eventCounter').text())+1 );
+                        $('#pager-table .eventCounter').text( parseInt($('#pager-table .eventCounter').text())+1 );
                     });
                     tableElement.on( 'updated', function() {
-                        $('.updatedEventCounter').text( parseInt($('.updatedEventCounter').text())+1 );
+                        $('#pager-table .updatedEventCounter').text( parseInt($('#pager-table .updatedEventCounter').text())+1 );
+                    });
+                });
+            </script>
+        </div>
+
+        <div id="pager-block">
+            <div class="ta-table">
+                <div class="ta-tbody">
+                    <div class="ta-tr" data-custom-filter><div class="ta-td">not visible</div><div class="ta-td">not visible</div></div>
+                </div>
+            </div>
+            <ul class='pager'></ul>
+
+            <div><p class="eventCounter">0</p></div>
+            <div><p class="updatedEventCounter">0</p></div>
+
+
+            <script>
+                $(function() {
+                    var tableElement = $('#pager-block .ta-table');
+
+                    for (var i = 0; i < 94; i++) {
+                        $('#pager-block .ta-tbody').append(
+                            '<div class="ta-tr">' +
+                                '<div class="ta-td">'+i+'</div>' +
+                                '<div class="ta-td">'+(i*i)+'</div>' +
+                            '</div>'
+                        ); //+(i*i)
+                    };
+
+                    tableElement.tableable({
+                        pager: {
+                            pagerListSelector: '#pager-block .pager',
+                            // useDottedPager: false,
+                            rowsPerPage: 4,
+                            customFilteredAttributes: ['data-custom-filter'],
+                            firstLable: 'first',
+                            prevLable: 'prev',
+                            nextLable: 'next',
+                            lastLable: 'last',
+                        }
+                    });
+
+
+                    tableElement.on( 'paged', function() {
+                        $('#pager-block .eventCounter').text( parseInt($('#pager-block .eventCounter').text())+1 );
+                    });
+                    tableElement.on( 'updated', function() {
+                        $('#pager-block .updatedEventCounter').text( parseInt($('#pager-block .updatedEventCounter').text())+1 );
                     });
                 });
             </script>
