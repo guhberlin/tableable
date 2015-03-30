@@ -1,16 +1,18 @@
 
 ;(function ( $, window, document, undefined ) {
 
-	'use strict';
+    'use strict';
 
-	$.fn.tableable = function ( options ) {
-		this.each(function() {
-			if ( !$.data( this, 'plugin_tableable' ) ) {
-				$.data( this, 'plugin_tableable', new TableAble( this, options ) );
-			}
-		});
+    //willBeReplacedAutomatically
 
-		return this;
-	};
+    $.fn.tableable = function ( options ) {
+        this.each(function() {
+            if ( !$.data( this, 'plugin_tableable' ) ) {
+                $.data( this, 'plugin_tableable', new TableAble( this, options ) );
+            }
+        });
+
+        return this;
+    };
 
 })( jQuery, window, document );

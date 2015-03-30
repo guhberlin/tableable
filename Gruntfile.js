@@ -17,24 +17,28 @@ module.exports = function(grunt) {
 				' */\n'
 		},
 
-		// Concat definitions
-		concat: {
-			dist: {
-				src: [
-						'src/utils.js',
-						'src/filter.js',
-						'src/sorter.js',
-						'src/pager.js',
-						'src/options.js',
-						'src/constants.js',
-						'src/tableable.js',
-						'src/jquery.tableable.js'
-					],
-				dest: 'dist/jquery.tableable.js'
-			},
-			options: {
-				banner: '<%= meta.banner %>'
-			}
+		copy: {
+		    index: {
+		        src: 'src/jquery.tableable.js',
+		        dest: 'dist/jquery.tableable.js',
+		        options: {
+		            process: function(content, srcpath) {
+		                var src = '';
+		                var sourceFiles = [
+		                    'src/utils.js',
+		                    'src/filter.js',
+		                    'src/sorter.js',
+		                    'src/pager.js',
+		                    'src/options.js',
+		                    'src/constants.js',
+		                    'src/tableable.js',
+		                ];
+		                sourceFiles.forEach(function(f) { src += grunt.file.read(f); });
+		                var regex = new RegExp('\/\/willBeReplacedAutomatically', 'g');
+		                return content.replace(regex, '' + src + '');
+		            },
+		        },
+		    },
 		},
 
 		// Lint definitions
@@ -77,13 +81,13 @@ module.exports = function(grunt) {
 
 	});
 
-	grunt.loadNpmTasks( 'grunt-contrib-concat' );
+	grunt.loadNpmTasks( 'grunt-contrib-copy'   );
 	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
 	grunt.loadNpmTasks( 'grunt-contrib-uglify' );
 	grunt.loadNpmTasks( 'grunt-casper' );
 	grunt.loadNpmTasks("grunt-contrib-watch");
 
-	grunt.registerTask( 'default', [ 'jshint', 'concat', 'uglify', 'casper' ] );
+	grunt.registerTask( 'default', [ 'jshint', 'copy', 'uglify', 'casper' ] );
 	grunt.registerTask( 'test',    [ 'casper' ] );
 
 };

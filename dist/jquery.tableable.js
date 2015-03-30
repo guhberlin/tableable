@@ -1,12 +1,9 @@
-/*
- *  jQuery tableable plugin - v2.4.7
- *  A plugin to filter, paginate and sort html tables
- *  http://guhberlin.github.io/tableable
- *
- *  Made by guhberlin
- *  Under BSD-3-Clause License
- */
 
+;(function ( $, window, document, undefined ) {
+
+    'use strict';
+
+    
 function Utils() {}
 
 
@@ -26,7 +23,6 @@ Utils.Element.prototype.hasOneOfAttrs = function( attributes ) {
         return self.hasAttr( attribute );
     }).length > 0 );
 };
-
 
 function Filter ( element, options, constants, cb ) {
     this.element     = element;
@@ -83,7 +79,6 @@ Filter.prototype.filter = function() {
 
     self.afterFilter();
 };
-
 
 function Sorter ( element, options, constants, cb ) {
     this.element   = element;
@@ -162,7 +157,6 @@ Sorter.prototype.sortWithCallback = function( sortCallBack ) {
         ($( self.element ).children( self.constants.get('selector','tbody') ).children( self.constants.get('selector','tr') )).sort( sortCallBack )
     );
 };
-
 
 function Pager ( element, options, constants, cb ) {
     this.element       = element;
@@ -323,7 +317,6 @@ Pager.prototype.appendPagerItem = function ( text, pageIndex, xtraAttrs ) {
 
 
 
-
 function Options() {}
 
 Options.prototype.getDefaults = function() {
@@ -381,7 +374,6 @@ Options.prototype.getUneditableDefaults = function() {
     };
 };
 
-
 function Constants( element ) {
     this.element     = element;
     this.elementType = ($(element).prop('tagName').toLowerCase()==='table') ? 'table' : 'block';
@@ -422,7 +414,6 @@ Constants.prototype.getBlockSelectors = function() {
         td   : '.ta-td'
     };
 };
-
 
 function TableAble ( element, opts ) {
     this.element = $(element);
@@ -518,18 +509,14 @@ TableAble.prototype.trigger = function( eventName, autoTriggerUpdate ) {
 };
 
 
-;(function ( $, window, document, undefined ) {
+    $.fn.tableable = function ( options ) {
+        this.each(function() {
+            if ( !$.data( this, 'plugin_tableable' ) ) {
+                $.data( this, 'plugin_tableable', new TableAble( this, options ) );
+            }
+        });
 
-	'use strict';
-
-	$.fn.tableable = function ( options ) {
-		this.each(function() {
-			if ( !$.data( this, 'plugin_tableable' ) ) {
-				$.data( this, 'plugin_tableable', new TableAble( this, options ) );
-			}
-		});
-
-		return this;
-	};
+        return this;
+    };
 
 })( jQuery, window, document );
