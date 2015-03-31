@@ -1,4 +1,4 @@
-# jQuery tableable
+# jQuery tableable [![Build Status](https://travis-ci.org/guhberlin/tableable.svg?branch=master)](https://travis-ci.org/guhberlin/tableable) 
 
 ### A plugin to filter, paginate and sort html tables and any blockelement that should act as a table.
 
