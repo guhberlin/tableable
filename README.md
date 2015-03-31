@@ -27,30 +27,31 @@
 
 To use Tableable on BlockElements (e.g. div) you have to pass some special classes on your elements to tell the plugin what is what.
 
-    ```html
-    <div class="ta-table">
-        <div class="ta-thead">
-            <div class="ta-tr">
-                <div class="ta-th">Name</div>
-                <div class="ta-th" data-no-filter>Age</div>
-            </div>
-        </div>
-        <div class="ta-tbody">
-            <div class="ta-tr">
-                <div class="ta-td">Jack</div>
-                <div class="ta-td">21</div>
-            </div>
-            <div class="ta-tr">
-                <div class="ta-td">Jim</div>
-                <div class="ta-td">25</div>
-            </div>
-            <div class="ta-tr">
-                <div class="ta-td">Jonny</div>
-                <div class="ta-td">24</div>
-            </div>
+```html
+<div class="ta-table">
+    <div class="ta-thead">
+        <div class="ta-tr">
+            <div class="ta-th">Name</div>
+            <div class="ta-th" data-no-filter>Age</div>
         </div>
     </div>
-    ```
+    <div class="ta-tbody">
+        <div class="ta-tr">
+            <div class="ta-td">Jack</div>
+            <div class="ta-td">21</div>
+        </div>
+        <div class="ta-tr">
+            <div class="ta-td">Jim</div>
+            <div class="ta-td">25</div>
+        </div>
+        <div class="ta-tr">
+            <div class="ta-td">Jonny</div>
+            <div class="ta-td">24</div>
+        </div>
+    </div>
+</div>
+```
+
 These classes have no styles by default and are only used to identify the elements.
 
 ### Options
