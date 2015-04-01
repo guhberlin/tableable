@@ -1,5 +1,6 @@
-# jQuery tableable [![Build Status](https://travis-ci.org/guhberlin/tableable.svg?branch=master)](https://travis-ci.org/guhberlin/tableable) [![GitHub release](https://img.shields.io/github/release/guhberlin/tableable.svg)](https://github.com/guhberlin/tableable/tarball/master) [![GitHub license](https://img.shields.io/badge/license-New%20BSD-blue.svg)](https://raw.githubusercontent.com/guhberlin/tableable/master/LICENSE.md)
+[![Build Status](https://img.shields.io/travis/guhberlin/tableable/master.svg?style=plastic)](https://travis-ci.org/guhberlin/tableable) [![GitHub release](https://img.shields.io/github/release/guhberlin/tableable.svg?style=plastic)](https://github.com/guhberlin/tableable/tarball/master) [![GitHub license](https://img.shields.io/badge/license-BSD--3--Clause-blue.svg?style=plastic)](https://raw.githubusercontent.com/guhberlin/tableable/master/LICENSE.md) [![Stories in Ready](https://badge.waffle.io/guhberlin/tableable.svg?label=ready&title=Ready)](https://waffle.io/guhberlin/tableable) [![David](https://img.shields.io/david/guhberlin/tableable.svg?style=plastic)](https://david-dm.org/guhberlin/tableable)
 
+# jQuery tableable
 
 ### A plugin to filter, paginate and sort html tables and any blockelement that should act as a table.
 
