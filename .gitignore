@@ -2,3 +2,4 @@
 node_modules
 tests/logs/*
 tests/test.html
+npm-debug.log

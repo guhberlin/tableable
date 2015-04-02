@@ -1,20 +1,56 @@
 {
-	"private": true,
-	"devDependencies": {
-		"grunt": "~0.4.5",
-		"grunt-cli": "~0.1.13",
-		"grunt-contrib-concat": "~0.4.0",
-		"grunt-contrib-jshint": "~0.10.0",
-		"grunt-contrib-uglify": "~0.4.0",
-		"grunt-contrib-copy": "~0.5.0",
-		"grunt-contrib-clean": "~0.5.0",
-		"grunt-contrib-watch": "~0.6.1",
-		"grunt-casper": "~0.3.5"
-	},
-	"directories": {
-		"test": "tests"
-	},
-	"scripts": {
-		"test": "grunt test"
-	}
+  "name": "tableable",
+  "title": "jQuery tableable plugin",
+  "version": "3.0.0",
+  "description": "A plugin to filter, paginate and sort html tables and any blockelement that should act as a table.",
+  "keywords": [
+    "jquery",
+    "plugins",
+    "table",
+    "filter",
+    "pager",
+    "sorter"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/guhberlin/tableable"
+  },
+  "author": "guhberlin (https://github.com/guhberlin)",
+  "maintainers": [
+    "Manuel Piesold <manuel@piesold.com> (https://github.com/manuelpiesold)",
+    "Alexander Lipinski <skeln@gmx.de> (https://github.com/skeln)"
+  ],
+  "licenses": [
+    {
+      "type": "BSD-3-Clause"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/guhberlin/tableable/issues"
+  },
+  "homepage": "http://guhberlin.github.io/tableable",
+  "docs": "https://github.com/guhberlin/tableable#readme",
+  "download": "https://github.com/guhberlin/tableable/archive/master.zip",
+  "dependencies": {
+    "jquery": ">=1.7"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-cli": "~0.1.13",
+    "grunt-contrib-concat": "~0.4.0",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-uglify": "~0.4.0",
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-casper": "~0.3.5"
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "main": "Gruntfile.js",
+  "license": "BSD-3-Clause"
 }

@@ -3,7 +3,7 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 
 		// Import package manifest
-		pkg: grunt.file.readJSON( 'tableable.jquery.json' ),
+		pkg: grunt.file.readJSON( 'package.json' ),
 
 		// Banner definitions
 		meta: {
@@ -17,8 +17,17 @@ module.exports = function(grunt) {
 				' */\n'
 		},
 
+		// copies
 		copy: {
-		    index: {
+
+			//
+		    json: {
+		        src: 'package.json',
+		        dest: 'tableable.jquery.json',
+		    },
+
+		    // src to dist
+		    src: {
 		        src: 'src/jquery.tableable.js',
 		        dest: 'dist/jquery.tableable.js',
 		        options: {
@@ -40,6 +49,7 @@ module.exports = function(grunt) {
 		        },
 		    },
 		},
+		// add banner to copy
 		concat: {
 			dist: {
 				src: [ 'dist/jquery.tableable.js' ],
@@ -52,14 +62,13 @@ module.exports = function(grunt) {
 
 		// Lint definitions
 		jshint: {
-			all: [
-				'src/*.js'
-			],
+			all: [ 'src/*.js' ],
 			options: {
 				jshintrc: '.jshintrc'
 			}
 		},
 
+		// test
 		casper: {
 			main: {
 				options: {
@@ -91,13 +100,15 @@ module.exports = function(grunt) {
 	});
 
 	grunt.loadNpmTasks( 'grunt-contrib-copy'   );
-	grunt.loadNpmTasks( 'grunt-contrib-concat'   );
+	grunt.loadNpmTasks( 'grunt-contrib-concat' );
 	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
 	grunt.loadNpmTasks( 'grunt-contrib-uglify' );
 	grunt.loadNpmTasks( 'grunt-casper' );
-	grunt.loadNpmTasks("grunt-contrib-watch");
+	grunt.loadNpmTasks( 'grunt-contrib-watch' );
 
-	grunt.registerTask( 'default', [ 'jshint', 'copy', 'concat', 'uglify', 'casper' ] );
+	grunt.registerTask( 'default', [ 'jshint', 'copy:json', 'copy:src', 'concat', 'uglify', 'casper' ] );
 	grunt.registerTask( 'test',    [ 'casper' ] );
+	grunt.registerTask( 'lint',    [ 'jshint' ] );
+	grunt.registerTask( 'build',   [ 'copy:src' ] );
 
 };
