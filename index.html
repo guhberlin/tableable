@@ -9,14 +9,17 @@
         <link rel="stylesheet" type="text/css" href="libs/bootstrap/css/bootstrap-theme.min.css">
 
         <link rel="stylesheet" type="text/css" href="css/guhberlin.css">
+        <link rel="stylesheet" type="text/css" href="css/pygment_trac.css">
+
+        <link rel="stylesheet" href="css/github.min.css"/>
 
         <script src="js/jquery.min.js"></script>
         <script src="js/jquery.tableable.min.js"></script>
+
+        <script type="text/javascript" src="js/underscore-min.js"></script>
+        <script type="text/javascript" src="js/github.min.js"></script>
+
         <script src="js/main.js"></script>
-
-
-        <link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" type="text/css" href="css/pygment_trac.css">
 
         <!--[if lt IE 9]>
         <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -27,7 +30,7 @@
     </head>
     <body>
 
-<header>
+        <header>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -40,11 +43,11 @@
 
         <div class="container">
             <div class="col-md-9">
-<section id="demo">
+                <section id="demo">
     <h1>Demo</h1>
     coming soon
 </section>
-<section id="usage">
+                <section id="usage">
     <h1>Usage</h1>
     <div class="highlight highlight-html">
 
@@ -289,7 +292,7 @@
     </section>
 </section>
 
-<section id="contributing">
+                <!-- <section id="contributing">
     <h1>Contributing</h1>
     <ol>
         <li>fork it!</li>
@@ -301,41 +304,77 @@
         <li>push to the branch: <code>git push origin new-feature-name</code></li>
         <li>submit a pull request :D</li>
     </ol>
+</section> -->
+                
+<h1>Contributer</h1>
+<section class="container">
+    <div class="col-md-1"></div>
+    <div class="col-md-3 user-profile" id="user-manu"></div>
+    <div class="col-md-3 user-profile" id="user-alex"></div>
+    <div class="col-md-1"></div>
 </section>
+
+<h1>Activity</h1>
+<section class="container">
+    <div class="col-md-8 user-profile" id="org"></div>
+</section>
+
+<script>
+    Github.userProfile({
+        username: "manuelpiesold",
+        selector: "#user-manu"
+    });
+    Github.userProfile({
+        username: "skeln",
+        selector: "#user-alex"
+    });
+    Github.repoActivity({
+        username: 'guhberlin',
+        reponame: 'tableable',
+        selector: '#org'
+    });
+</script>
+
             </div>
             <div class="col-md-2">
-<div id="sidebar" class="affix affix-top">
+                <div id="sidebar" class="affix affix-top">
     <section id="badges">
         <a href="https://travis-ci.org/guhberlin/tableable" target="_blank">
-            <img src="https://img.shields.io/travis/guhberlin/tableable/master.svg?style=plastic" alt="Build Status" />
-        </a>
-        <a href="https://github.com/guhberlin/tableable/tarball/master" target="_blank">
-            <img src="https://img.shields.io/github/release/guhberlin/tableable.svg?style=plastic" alt="GitHub release" />
-        </a>
-        <a href="https://raw.githubusercontent.com/guhberlin/tableable/master/LICENSE.md" target="_blank">
-            <img src="https://img.shields.io/badge/license-BSD--3--Clause-blue.svg?style=plastic" alt="GitHub license" />
-        </a>
-        <a href="https://waffle.io/guhberlin/tableable" target="_blank">
-            <img src="https://badge.waffle.io/guhberlin/tableable.svg?label=Ready&title=ToDo" alt="Stories in ToDo" />
-        </a>
-        <a href="https://david-dm.org/guhberlin/tableable" target="_blank">
-            <img src="https://img.shields.io/david/guhberlin/tableable.svg?style=plastic" alt="David DM - Dependencies Check" />
-        </a>
+    <img src="https://img.shields.io/travis/guhberlin/tableable/master.svg?style=plastic" alt="Build Status" />
+</a>
+<a href="https://github.com/guhberlin/tableable/tarball/master" target="_blank">
+    <img src="https://img.shields.io/github/release/guhberlin/tableable.svg?style=plastic" alt="GitHub release" />
+</a>
+<a href="https://raw.githubusercontent.com/guhberlin/tableable/master/LICENSE.md" target="_blank">
+    <img src="https://img.shields.io/badge/license-BSD--3--Clause-blue.svg?style=plastic" alt="GitHub license" />
+</a>
+<a href="https://waffle.io/guhberlin/tableable" target="_blank">
+    <img src="https://badge.waffle.io/guhberlin/tableable.svg?label=Ready&title=ToDo" alt="Stories in ToDo" />
+</a>
+<a href="https://david-dm.org/guhberlin/tableable" target="_blank">
+    <img src="https://img.shields.io/david/guhberlin/tableable.svg?style=plastic" alt="David DM - Dependencies Check" />
+</a>
+
     </section>
 
     <section id="downloads">
         <a href="https://github.com/guhberlin/tableable/zipball/master" class="btn btn-primary">
-            <small>Download</small> .zip file
-        </a>
-        <a href="https://github.com/guhberlin/tableable/tarball/master" class="btn btn-primary">
-            <small>Download</small> .tar.gz file
-        </a>
+    <small>Download</small> .zip file
+</a>
+<a href="https://github.com/guhberlin/tableable/tarball/master" class="btn btn-primary">
+    <small>Download</small> .tar.gz file
+</a>
+    </section>
+
+    <section id="github">
+        View the Project on Github
     </section>
 </div>
             </div>
         </div>
 
-<footer>
+
+        <footer>
     <nav class="navbar navbar-inverse navbar-fixed-bottom">
         <div class="container-fluid">
             <div class="navbar-header">

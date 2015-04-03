@@ -1,0 +1,29 @@
+
+<h1>Contributer</h1>
+<section class="container">
+    <div class="col-md-1"></div>
+    <div class="col-md-3 user-profile" id="user-manu"></div>
+    <div class="col-md-3 user-profile" id="user-alex"></div>
+    <div class="col-md-1"></div>
+</section>
+
+<h1>Activity</h1>
+<section class="container">
+    <div class="col-md-8 user-profile" id="org"></div>
+</section>
+
+<script>
+    Github.userProfile({
+        username: "manuelpiesold",
+        selector: "#user-manu"
+    });
+    Github.userProfile({
+        username: "skeln",
+        selector: "#user-alex"
+    });
+    Github.repoActivity({
+        username: 'guhberlin',
+        reponame: 'tableable',
+        selector: '#org'
+    });
+</script>

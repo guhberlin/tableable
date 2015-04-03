@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <meta http-equiv="X-UA-Compatible" content="chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery.tableable.min.js"></script>
+        <script src="js/main.js"></script>
+
+
+        <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+        <link rel="stylesheet" type="text/css" href="css/pygment_trac.css">
+
+        <link rel="stylesheet" type="text/css" href="css/guhberlin.css">
+        <link rel="stylesheet" type="text/css" href="css/guhberlin-color-theme.css">
+
+        <!--[if lt IE 9]>
+        <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        <title>Tableable by guhberlin</title>
+    </head>
+
+    <body>
+
+        <header id="bigHead">
+            <div class="inner">
+                <h1>Tableable</h1>
+                <h2>A jquery plugin to filter, paginate and sort html tables.</h2>
+                <a href="https://github.com/guhberlin/tableable" class="button">
+                    <small>View project on</small>GitHub
+                </a>
+            </div>
+        </header>
+        <div id="smallHead" style="display:none">
+            <div class="inner"><h1>Tableable</h1></div>
+        </div>
+
+
+        <div id="content-wrapper">
+            <div class="inner clearfix">
+                <section id="main-content">
+
+                    <!-- <p>desc here ... coming soon</p> -->
+
+                    <section id="demo">
+                        <h1><a href="#demo"></a>Demo</h1>
+
+                        <label for="filter">Filter</label>
+                        <input name="filter" id="demoFilter"/>
+
+                        <table id="demoTable">
+                            <thead><tr>
+                                <th>Name</th><th>Firstname</th><th>Birthday</th>
+                            </tr></thead>
+                            <tbody>
+                                <tr><td>Ham</td><td>Michael L.</td><td>1980/02/12</td></tr>
+                                <tr><td>Smith</td><td>Robert D.</td><td>1981/04/08</td></tr>
+                                <tr><td>Fontaine</td><td>Roger S.</td><td>1975/03/27</td></tr>
+                                <tr><td>Tilly</td><td>Bobby K.</td><td>1982/01/23</td></tr>
+                                <tr><td>McFadden</td><td>Christine S.</td><td>1980/04/21</td></tr>
+                                <tr><td>Cater</td><td>George L.</td><td>1976/08/06</td></tr>
+                            </tbody>
+                        </table>
+
+                        <ul id="demoPager"></ul>
+                        <div class="clearFix"></div>
+
+                    </section>
+
+                    <br />
+                    <section>
+                        <h1><a name="usage" class="anchor" href="#usage"></a>Usage</h1>
+                        <h2><a name="options" class="anchor" href="#options"></a>Options</h2>
+                        <h2><a name="events" class="anchor" href="#events"></a>Events</h2>
+
+                        <p>After action caused by the plugin it will trigger events. All events are triggered on the rootelement.</p>
+
+                        <div>
+
+                            <table class="slimTable">
+                                <thead>
+                                    <tr>
+                                        <th>Eventname</th><th>Trigger</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr>
+                                        <td><code>filtered</code></td>
+                                        <td>triggered each time the value of filter input is changed, so that the filter runs on the table</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>sorted</code></td>
+                                        <td>triggered each time the table is resorted</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>pageChanged</code></td>
+                                        <td>triggered each time one of the page buttons is clicked</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>updated</code></td>
+                                        <td>triggered each time <code>filtered</code> or <code>sorted</code> is triggered</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </section>
+                </section>
+
+
+            </div>
+        </div>
+
+    </body>
+</html>
+
