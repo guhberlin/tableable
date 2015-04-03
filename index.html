@@ -8,17 +8,15 @@
         <link rel="stylesheet" type="text/css" href="libs/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="libs/bootstrap/css/bootstrap-theme.min.css">
 
+        <link rel="stylesheet" type="text/css" href="css/guhberlin.css">
+
         <script src="js/jquery.min.js"></script>
         <script src="js/jquery.tableable.min.js"></script>
-        <!--<script src="js/main.js"></script>-->
+        <script src="js/main.js"></script>
 
 
         <link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet" type="text/css">
-        <!-- <link rel="stylesheet" type="text/css" href="css/stylesheet.css"> -->
         <link rel="stylesheet" type="text/css" href="css/pygment_trac.css">
-
-        <!-- <link rel="stylesheet" type="text/css" href="css/guhberlin.css"> -->
-        <!-- <link rel="stylesheet" type="text/css" href="css/guhberlin-color-theme.css"> -->
 
         <!--[if lt IE 9]>
         <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -26,14 +24,11 @@
 
         <title>Tableable by guhberlin</title>
 
-        <style>
-            body { padding-top: 70px; padding-bottom: 70px; }
-        </style>
     </head>
     <body>
 
 <header>
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">Tableable</a>
@@ -51,7 +46,7 @@
 </section>
 <section id="usage">
     <h1>Usage</h1>
-<div class="highlight highlight-html">
+    <div class="highlight highlight-html">
 
 <pre>
 <span class="c">&lt;!-- include requiered sources --&gt;</span>
@@ -66,15 +61,22 @@
 <pre>
 <span class="c">&lt;!-- call the plugin --&gt;</span>
 <span class="nt">&lt;script</span><span class="nt">&gt;</span><span class="highlight-javascript">
+    <span class="s2">var</span> options <span class="s2">=</span> { filter: {...}, pager: {...}, sorter: {...} };
     <span class="nx">$</span><span class="p">(</span><span class="s2">'#element'</span><span class="p">).</span><span class="nx">tableable</span><span class="p">(</span> <span class="nx">options</span> <span class="p">);</span>
 </span><span class="nt">&lt;/script&gt;</span>
 </pre>
 
 </div>
 
+    <section id="usage-block">
+        <h2>On Blocks</h2>
+    </section>
     <section id="usage-options">
         <h2>Options</h2>
-<table class="table">
+
+<section id="usage-options-filter">
+    <h3>Filter options</h3>
+    <table class="table">
     <thead>
         <th>Option</th>
         <th>Type</th>
@@ -108,7 +110,11 @@
         </tr>
     </tbody>
 </table>
-<table class="table">
+</section>
+
+<section id="usage-options-pager">
+    <h3>Pager options</h3>
+    <table class="table">
     <thead>
         <th>Option</th>
         <th>Type</th>
@@ -185,7 +191,11 @@
     </tbody>
 </table>
 
-<table class="table">
+</section>
+
+<section id="usage-options-sorter">
+    <h3>Sorter options</h3>
+    <table class="table">
     <thead>
         <th>Option</th>
         <th>Type</th>
@@ -219,24 +229,63 @@
         </tr>
     </tbody>
 </table>
+</section>
+
 <p id="option-ledgend">
     <sup>1</sup> ony useable with dottedPager<br />
     <sup>2</sup> can contain HTML<br />
     <sup>3</sup> not shown if empty<br />
 </p>
+
     </section>
     <section id="usage-events">
         <h2>Events</h2>
-<table class="table">
-    <thead>
-        <th>Name</th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Test</td>
-        </tr>
-    </tbody>
-</table>
+<section id="usage-events-thrown">
+    <h3>Thrown by plugin</h3>
+    <p>After filtering, sorting and pageing the plugin will trigger events so you can add observers. All events are triggered on the rootelement.</p>
+
+    <table class="table">
+        <thead>
+            <th>Eventname</th>
+            <th>Trigger</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>filtered</code></td>
+                <td>triggered each time the value of filter input is changed, so that the filter runs on the table</td>
+            </tr>
+            <tr>
+                <td><code>sorted</code></td>
+                <td>triggered each time the table is resorted</td>
+            </tr>
+            <tr>
+                <td><code>paged</code></td>
+                <td>triggered each time the table is paged</td>
+            </tr>
+            <tr>
+                <td><code>updated</code></td>
+                <td>triggered each time <code>filtered</code> or <code>sorted</code> is triggered</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section id="usage-events-observerd">
+    <h3>Observed by plugin</h3>
+
+    <table class="table">
+        <thead>
+            <th>Eventname</th>
+            <th>Trigger</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>refresh</code></td>
+                <td>you can trigger this event to retrigger filter, pager and sorter</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
     </section>
 </section>
 
@@ -255,13 +304,31 @@
 </section>
             </div>
             <div class="col-md-2">
-<div class="affix affix-top">
-    <section>
+<div id="sidebar" class="affix affix-top">
+    <section id="badges">
+        <a href="https://travis-ci.org/guhberlin/tableable" target="_blank">
+            <img src="https://img.shields.io/travis/guhberlin/tableable/master.svg?style=plastic" alt="Build Status" />
+        </a>
+        <a href="https://github.com/guhberlin/tableable/tarball/master" target="_blank">
+            <img src="https://img.shields.io/github/release/guhberlin/tableable.svg?style=plastic" alt="GitHub release" />
+        </a>
+        <a href="https://raw.githubusercontent.com/guhberlin/tableable/master/LICENSE.md" target="_blank">
+            <img src="https://img.shields.io/badge/license-BSD--3--Clause-blue.svg?style=plastic" alt="GitHub license" />
+        </a>
+        <a href="https://waffle.io/guhberlin/tableable" target="_blank">
+            <img src="https://badge.waffle.io/guhberlin/tableable.svg?label=Ready&title=ToDo" alt="Stories in ToDo" />
+        </a>
+        <a href="https://david-dm.org/guhberlin/tableable" target="_blank">
+            <img src="https://img.shields.io/david/guhberlin/tableable.svg?style=plastic" alt="David DM - Dependencies Check" />
+        </a>
+    </section>
+
+    <section id="downloads">
         <a href="https://github.com/guhberlin/tableable/zipball/master" class="btn btn-primary">
-            <small>Download</small>.zip file
+            <small>Download</small> .zip file
         </a>
         <a href="https://github.com/guhberlin/tableable/tarball/master" class="btn btn-primary">
-            <small>Download</small>.tar.gz file
+            <small>Download</small> .tar.gz file
         </a>
     </section>
 </div>
@@ -269,7 +336,7 @@
         </div>
 
 <footer>
-    <nav class="navbar navbar-default navbar-fixed-bottom">
+    <nav class="navbar navbar-inverse navbar-fixed-bottom">
         <div class="container-fluid">
             <div class="navbar-header">
                 <p class="navbar-text">

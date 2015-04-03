@@ -1,0 +1,47 @@
+<h2>Events</h2>
+<section id="usage-events-thrown">
+    <h3>Thrown by plugin</h3>
+    <p>After filtering, sorting and pageing the plugin will trigger events so you can add observers. All events are triggered on the rootelement.</p>
+
+    <table class="table">
+        <thead>
+            <th>Eventname</th>
+            <th>Trigger</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>filtered</code></td>
+                <td>triggered each time the value of filter input is changed, so that the filter runs on the table</td>
+            </tr>
+            <tr>
+                <td><code>sorted</code></td>
+                <td>triggered each time the table is resorted</td>
+            </tr>
+            <tr>
+                <td><code>paged</code></td>
+                <td>triggered each time the table is paged</td>
+            </tr>
+            <tr>
+                <td><code>updated</code></td>
+                <td>triggered each time <code>filtered</code> or <code>sorted</code> is triggered</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section id="usage-events-observerd">
+    <h3>Observed by plugin</h3>
+
+    <table class="table">
+        <thead>
+            <th>Eventname</th>
+            <th>Trigger</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>refresh</code></td>
+                <td>you can trigger this event to retrigger filter, pager and sorter</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
