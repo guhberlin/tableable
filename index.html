@@ -7,18 +7,11 @@
 
         <link rel="stylesheet" type="text/css" href="libs/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="libs/bootstrap/css/bootstrap-theme.min.css">
-
         <link rel="stylesheet" type="text/css" href="css/guhberlin.css">
         <link rel="stylesheet" type="text/css" href="css/pygment_trac.css">
 
-        <link rel="stylesheet" href="css/github.min.css"/>
-
         <script src="js/jquery.min.js"></script>
         <script src="js/jquery.tableable.min.js"></script>
-
-        <script type="text/javascript" src="js/underscore-min.js"></script>
-        <script type="text/javascript" src="js/github.min.js"></script>
-
         <script src="js/main.js"></script>
 
         <!--[if lt IE 9]>
@@ -26,6 +19,9 @@
         <![endif]-->
 
         <title>Tableable by guhberlin</title>
+        <meta name="description" content="A plugin to filter, paginate and sort html tables and any blockelement that should act as a table.">
+        <meta name="keywords" content="jquery,plugin,table,filter,pager,sorter">
+        <meta name="author" content="guhberlin,manuelpiesold">
 
     </head>
     <body>
@@ -46,7 +42,18 @@
                 <section id="demo">
     <h1>Demo</h1>
 
-    <p data-height="268" data-theme-id="0" data-slug-hash="EaJJxZ" data-default-tab="result" data-user="manuelpiesold" class='codepen'>See the Pen <a href='http://codepen.io/manuelpiesold/pen/EaJJxZ/'>TableAble - Simple demo</a> by manuel piesold (<a href='http://codepen.io/manuelpiesold'>@manuelpiesold</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <p data-height="268" data-theme-id="13760" data-slug-hash="ByEEOa" data-default-tab="result" data-user="manuelpiesold" class='codepen'>See the Pen <a href='http://codepen.io/manuelpiesold/pen/ByEEOa/'>Tableable - demo</a> by manuel piesold (<a href='http://codepen.io/manuelpiesold'>@manuelpiesold</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <p data-height="268" data-theme-id="13760" data-slug-hash="YPMMgg" data-default-tab="result" data-user="manuelpiesold" class='codepen'>See the Pen <a href='http://codepen.io/manuelpiesold/pen/YPMMgg/'>Tableable - demo on blockelement</a> by manuel piesold (<a href='http://codepen.io/manuelpiesold'>@manuelpiesold</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+        </div>
+    </div>
+
     <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 </section>
                 <section id="usage">
@@ -75,6 +82,35 @@
 
     <section id="usage-block">
         <h2>On Blocks</h2>
+
+<p>To use Tableable on BlockElements (e.g. div) you have to pass some special classes on your elements to tell the plugin what is what.</p>
+
+<ul>
+    <li>ta-table
+        <ul>
+            <li>ta-thead
+                <ul>
+                    <li>ta-tr
+                        <ul>
+                            <li>ta-th</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>ta-body
+                <ul>
+                    <li>ta-tr
+                        <ul>
+                            <li>ta-td</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<p>These classes have no styles by default and are only used to identify the elements.</p>
     </section>
     <section id="usage-options">
         <h2>Options</h2>
@@ -308,11 +344,16 @@
     </ol>
 </section> -->
                 
+<link rel="stylesheet" href="css/github.min.css"/>
+<script type="text/javascript" src="js/underscore-min.js"></script>
+<script type="text/javascript" src="js/github.min.js"></script>
+
+
 <h1>Contributer</h1>
 <section class="container">
     <div class="col-md-1"></div>
-    <div class="col-md-3 user-profile" id="user-manu"></div>
     <div class="col-md-3 user-profile" id="user-alex"></div>
+    <div class="col-md-3 user-profile" id="user-manu"></div>
     <div class="col-md-1"></div>
 </section>
 
@@ -323,12 +364,12 @@
 
 <script>
     Github.userProfile({
-        username: "manuelpiesold",
-        selector: "#user-manu"
-    });
-    Github.userProfile({
         username: "skeln",
         selector: "#user-alex"
+    });
+    Github.userProfile({
+        username: "manuelpiesold",
+        selector: "#user-manu"
     });
     Github.repoActivity({
         username: 'guhberlin',
@@ -369,7 +410,10 @@
     </section>
 
     <section id="github">
-        View the Project on Github
+        <p>View project on <a href="https://github.com/guhberlin/tableable">Github</a>!</p>
+<img src="img/github.png" width="50px" height="50px"/>
+
+
     </section>
 </div>
             </div>
