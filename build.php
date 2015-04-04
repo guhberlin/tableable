@@ -10,7 +10,7 @@ function buildHtml() {
     $srcFile  = "raw.html";
     $destFile = "index.html";
 
-    echo "build $destFile from $srcFile\n";
+    echo "build $destFile\n";
 
     $content = file_get_contents( $srcFile );
     $pattern = "!<link rel=\"import\" href=\".*?\">!";
@@ -32,8 +32,19 @@ function buildHtml() {
 }
 
 function buildCss() {
-    echo "build guhberlin.css from guhberlin.less\n";
-    exec( "lessc less/guhberlin.less > css/guhberlin.css" );
+    echo "build guhberlin.min.css\n";
+
+    echo "  compile less to css\n";
+    exec( "lessc less/guhberlin.less > css/guhberlin.min.css" );
+
+    echo "  minify css\n";
+    $content = file_get_contents( "css/guhberlin.min.css" );
+    $content = str_replace( "\n", "", $content );
+    $content = str_replace( "  ", "", $content );
+    $content = str_replace( ": ", ":", $content );
+    $content = str_replace( " {", "{", $content );
+
+    file_put_contents( "css/guhberlin.min.css", $content );
 }
 
 ?>
