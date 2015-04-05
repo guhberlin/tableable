@@ -1,8 +1,14 @@
 # jQuery tableable
 
-### A plugin to filter, paginate and sort html tables.
+### How to change this webpages
 
-## ToDo
+Be sure you never edit the 'index.html'. This file will be created automatically with the build.php.
+If you want to edit the page you have to change raw.html or any file under html/.
 
-- [ ] add icons to show sorting direction on demotable
+#### Usage of build-script:
 
+```bash
+./build.php
+```
+
+The script builds the index.html and the css/guhberlin.min.css.
