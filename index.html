@@ -12,6 +12,7 @@
 
         <script src="js/jquery.min.js"></script>
         <script src="js/jquery.tableable.min.js"></script>
+        <script src="libs/bootstrap/js/bootstrap.min.js"></script>
         <script src="js/main.js"></script>
 
         <!--[if lt IE 9]>
@@ -33,6 +34,25 @@
                 <a class="navbar-brand" href="#">Tableable</a>
                 <p class="navbar-text">A plugin to filter, paginate and sort html tables and any blockelement that should act as a table.</p>
             </div>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#demo">Demo</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Usage<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#usage">General</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#usage-options">Options</a></li>
+                        <li><a href="#usage-options-filter">&emsp;&bull; Filter</a></li>
+                        <li><a href="#usage-options-pager">&emsp;&bull; Pager</a></li>
+                        <li><a href="#usage-options-sorter">&emsp;&bull; Sorter</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#usage-events">Events</a></li>
+                    </ul>
+                </li>
+                <li><a href="#contributer">Contributer</a></li>
+            </ul>
+
         </div>
     </nav>
 </header>
@@ -80,10 +100,13 @@
 
 </div>
 
+
     <section id="usage-block">
         <h2>On Blocks</h2>
 
-<p>To use Tableable on BlockElements (e.g. div) you have to pass some special classes on your elements to tell the plugin what is what.</p>
+<p>
+    To use Tableable on BlockElements (e.g. div) you have to pass some special classes on your elements to tell the plugin what is what. These classes have no styles by default and are only used to identify the elements.
+</p>
 
 <ul>
     <li><code>ta-table</code>
@@ -110,10 +133,11 @@
     </li>
 </ul>
 
-<p>These classes have no styles by default and are only used to identify the elements.</p>
     </section>
     <section id="usage-options">
         <h2>Options</h2>
+
+<p>By passing the feature-objects to options you automatically activate the feature.</p>
 
 <section id="usage-options-filter">
     <h3>Filter options</h3>
@@ -349,17 +373,22 @@
 <script type="text/javascript" src="js/github.min.js"></script>
 
 
-<h1>Contributer</h1>
-<section class="container">
-    <div class="col-md-1"></div>
-    <div class="col-md-3 user-profile" id="user-alex"></div>
-    <div class="col-md-3 user-profile" id="user-manu"></div>
-    <div class="col-md-1"></div>
+<section id="contributer">
+    <h1>Contributer</h1>
+    <div class="container-fluid">
+        <div class="col-md-1"></div>
+        <div class="col-md-4 user-profile" id="user-alex"></div>
+        <div class="col-md-1"></div>
+        <div class="col-md-4 user-profile" id="user-manu"></div>
+        <div class="col-md-1"></div>
+    </div>
 </section>
 
-<h1>Activity</h1>
-<section class="container">
-    <div class="col-md-8 user-profile" id="org"></div>
+<section>
+    <h1>Activity</h1>
+    <div class="container-fluid">
+        <div class="user-profile" id="org"></div>
+    </div>
 </section>
 
 <script>
